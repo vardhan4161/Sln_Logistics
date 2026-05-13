@@ -1,7 +1,7 @@
 import { Feather } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { router } from "expo-router";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import {
   Alert,
   Platform,
@@ -16,6 +16,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import DatePickerField from "@/components/DatePickerField";
 import SearchableDropdown from "@/components/SearchableDropdown";
+import Toast from "@/components/Toast";
 import { useDB } from "@/contexts/DatabaseContext";
 import { useColors } from "@/hooks/useColors";
 
@@ -41,6 +42,14 @@ export default function NewTripScreen() {
   const [hamali, setHamali] = useState("");
   const [saving, setSaving] = useState(false);
 
+  const [toast, setToast] = useState<{
+    visible: boolean;
+    message: string;
+    type: "success" | "error" | "info";
+  }>({ visible: false, message: "", type: "success" });
+
+  const postSaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const [locationList, setLocationList] = useState<string[]>(() =>
     getLocations().map((l) => l.name)
   );
@@ -54,6 +63,17 @@ export default function NewTripScreen() {
     return r + h;
   }, [rate, hamali]);
 
+  const showToast = useCallback(
+    (message: string, type: "success" | "error" | "info" = "success") => {
+      setToast({ visible: true, message, type });
+    },
+    []
+  );
+
+  const hideToast = useCallback(() => {
+    setToast((prev) => ({ ...prev, visible: false }));
+  }, []);
+
   const resetForm = useCallback(() => {
     setDate(new Date());
     setFromLocation("");
@@ -66,14 +86,11 @@ export default function NewTripScreen() {
 
   const handleSave = useCallback(() => {
     if (!fromLocation || !toLocation || !vehicleNo) {
-      Alert.alert(
-        "Missing Fields",
-        "Please select From Location, To Location, and Vehicle Number."
-      );
+      showToast("Please fill From Location, To Location & Vehicle No.", "error");
       return;
     }
     if (!weight || parseFloat(weight) <= 0) {
-      Alert.alert("Invalid Weight", "Please enter a valid chargeable weight.");
+      showToast("Please enter a valid chargeable weight.", "error");
       return;
     }
     setSaving(true);
@@ -89,12 +106,14 @@ export default function NewTripScreen() {
         total_freight: totalFreight,
       });
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-      Alert.alert("Saved!", "Trip entry saved successfully.", [
-        { text: "New Entry", onPress: resetForm },
-        { text: "Go Back", onPress: () => router.back() },
-      ]);
+      showToast("Trip entry saved successfully!", "success");
+
+      if (postSaveTimer.current) clearTimeout(postSaveTimer.current);
+      postSaveTimer.current = setTimeout(() => {
+        resetForm();
+      }, 1800);
     } catch {
-      Alert.alert("Error", "Failed to save trip. Please try again.");
+      showToast("Failed to save trip. Please try again.", "error");
     } finally {
       setSaving(false);
     }
@@ -109,6 +128,7 @@ export default function NewTripScreen() {
     totalFreight,
     addTrip,
     resetForm,
+    showToast,
   ]);
 
   const handleAddLocation = useCallback(
@@ -128,145 +148,168 @@ export default function NewTripScreen() {
   );
 
   return (
-    <KeyboardAwareScrollViewCompat
-      style={[styles.container, { backgroundColor: colors.background }]}
-      contentContainerStyle={{
-        padding: 16,
-        paddingBottom:
-          (Platform.OS === "web" ? 34 : insets.bottom) + 40,
-      }}
-      keyboardShouldPersistTaps="handled"
-      bottomOffset={16}
-    >
-      <Text style={[styles.label, { color: colors.mutedForeground }]}>
-        Date
-      </Text>
-      <DatePickerField date={date} onChange={setDate} />
-
-      <SearchableDropdown
-        items={locationList}
-        onSelect={setFromLocation}
-        selectedValue={fromLocation}
-        placeholder="Select from location"
-        label="From Location *"
-        onAddNew={handleAddLocation}
+    <View style={[styles.root, { backgroundColor: colors.background }]}>
+      <Toast
+        visible={toast.visible}
+        message={toast.message}
+        type={toast.type}
+        onHide={hideToast}
       />
 
-      <SearchableDropdown
-        items={locationList}
-        onSelect={setToLocation}
-        selectedValue={toLocation}
-        placeholder="Select to location"
-        label="To Location *"
-        onAddNew={handleAddLocation}
-      />
-
-      <SearchableDropdown
-        items={vehicleList}
-        onSelect={setVehicleNo}
-        selectedValue={vehicleNo}
-        placeholder="Select vehicle number"
-        label="Vehicle Number *"
-        onAddNew={handleAddVehicle}
-      />
-
-      <Text style={[styles.label, { color: colors.mutedForeground }]}>
-        Chargeable Weight *
-      </Text>
-      <View
-        style={[
-          styles.inputSuffix,
-          { backgroundColor: colors.card, borderColor: colors.border },
-        ]}
+      <KeyboardAwareScrollViewCompat
+        style={styles.scroll}
+        contentContainerStyle={{
+          padding: 16,
+          paddingBottom:
+            (Platform.OS === "web" ? 34 : insets.bottom) + 40,
+        }}
+        keyboardShouldPersistTaps="handled"
+        bottomOffset={16}
       >
+        <Text style={[styles.label, { color: colors.mutedForeground }]}>
+          Date
+        </Text>
+        <DatePickerField date={date} onChange={setDate} />
+
+        <SearchableDropdown
+          items={locationList}
+          onSelect={setFromLocation}
+          selectedValue={fromLocation}
+          placeholder="Select from location"
+          label="From Location *"
+          onAddNew={handleAddLocation}
+        />
+
+        <SearchableDropdown
+          items={locationList}
+          onSelect={setToLocation}
+          selectedValue={toLocation}
+          placeholder="Select to location"
+          label="To Location *"
+          onAddNew={handleAddLocation}
+        />
+
+        <SearchableDropdown
+          items={vehicleList}
+          onSelect={setVehicleNo}
+          selectedValue={vehicleNo}
+          placeholder="Select vehicle number"
+          label="Vehicle Number *"
+          onAddNew={handleAddVehicle}
+        />
+
+        <Text style={[styles.label, { color: colors.mutedForeground }]}>
+          Chargeable Weight *
+        </Text>
+        <View
+          style={[
+            styles.inputSuffix,
+            { backgroundColor: colors.card, borderColor: colors.border },
+          ]}
+        >
+          <TextInput
+            style={[styles.flexInput, { color: colors.foreground }]}
+            placeholder="0.00"
+            placeholderTextColor={colors.mutedForeground}
+            value={weight}
+            onChangeText={setWeight}
+            keyboardType="decimal-pad"
+          />
+          <Text style={[styles.suffix, { color: colors.mutedForeground }]}>
+            MT
+          </Text>
+        </View>
+
+        <Text style={[styles.label, { color: colors.mutedForeground }]}>
+          Rate
+        </Text>
         <TextInput
-          style={[styles.flexInput, { color: colors.foreground }]}
+          style={[
+            styles.textInput,
+            {
+              backgroundColor: colors.card,
+              borderColor: colors.border,
+              color: colors.foreground,
+            },
+          ]}
           placeholder="0.00"
           placeholderTextColor={colors.mutedForeground}
-          value={weight}
-          onChangeText={setWeight}
+          value={rate}
+          onChangeText={setRate}
           keyboardType="decimal-pad"
         />
-        <Text style={[styles.suffix, { color: colors.mutedForeground }]}>
-          MT
-        </Text>
-      </View>
 
-      <Text style={[styles.label, { color: colors.mutedForeground }]}>
-        Rate
-      </Text>
-      <TextInput
-        style={[
-          styles.textInput,
-          {
-            backgroundColor: colors.card,
-            borderColor: colors.border,
-            color: colors.foreground,
-          },
-        ]}
-        placeholder="0.00"
-        placeholderTextColor={colors.mutedForeground}
-        value={rate}
-        onChangeText={setRate}
-        keyboardType="decimal-pad"
-      />
-
-      <Text style={[styles.label, { color: colors.mutedForeground }]}>
-        Hamali
-      </Text>
-      <TextInput
-        style={[
-          styles.textInput,
-          {
-            backgroundColor: colors.card,
-            borderColor: colors.border,
-            color: colors.foreground,
-          },
-        ]}
-        placeholder="0.00"
-        placeholderTextColor={colors.mutedForeground}
-        value={hamali}
-        onChangeText={setHamali}
-        keyboardType="decimal-pad"
-      />
-
-      <View
-        style={[
-          styles.totalBox,
-          {
-            backgroundColor: colors.secondary,
-            borderColor: colors.primary,
-          },
-        ]}
-      >
-        <Text style={[styles.totalLabel, { color: colors.primary }]}>
-          Total Freight (Auto-calculated)
+        <Text style={[styles.label, { color: colors.mutedForeground }]}>
+          Hamali
         </Text>
-        <Text style={[styles.totalAmount, { color: colors.primary }]}>
-          ₹ {totalFreight.toFixed(2)}
-        </Text>
-      </View>
+        <TextInput
+          style={[
+            styles.textInput,
+            {
+              backgroundColor: colors.card,
+              borderColor: colors.border,
+              color: colors.foreground,
+            },
+          ]}
+          placeholder="0.00"
+          placeholderTextColor={colors.mutedForeground}
+          value={hamali}
+          onChangeText={setHamali}
+          keyboardType="decimal-pad"
+        />
 
-      <TouchableOpacity
-        style={[
-          styles.saveBtn,
-          { backgroundColor: colors.primary, opacity: saving ? 0.7 : 1 },
-        ]}
-        onPress={handleSave}
-        disabled={saving}
-        activeOpacity={0.8}
-      >
-        <Feather name="save" size={20} color="#FFFFFF" />
-        <Text style={styles.saveBtnText}>
-          {saving ? "Saving..." : "Save Trip Entry"}
-        </Text>
-      </TouchableOpacity>
-    </KeyboardAwareScrollViewCompat>
+        <View
+          style={[
+            styles.totalBox,
+            {
+              backgroundColor: colors.secondary,
+              borderColor: colors.primary,
+            },
+          ]}
+        >
+          <Text style={[styles.totalLabel, { color: colors.primary }]}>
+            Total Freight (Auto-calculated)
+          </Text>
+          <Text style={[styles.totalAmount, { color: colors.primary }]}>
+            ₹ {totalFreight.toFixed(2)}
+          </Text>
+        </View>
+
+        <TouchableOpacity
+          style={[
+            styles.saveBtn,
+            { backgroundColor: colors.primary, opacity: saving ? 0.7 : 1 },
+          ]}
+          onPress={handleSave}
+          disabled={saving}
+          activeOpacity={0.8}
+        >
+          <Feather name="save" size={20} color="#FFFFFF" />
+          <Text style={styles.saveBtnText}>
+            {saving ? "Saving..." : "Save Trip Entry"}
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[
+            styles.backBtn,
+            { borderColor: colors.border, backgroundColor: colors.card },
+          ]}
+          onPress={() => router.back()}
+          activeOpacity={0.7}
+        >
+          <Text style={[styles.backBtnText, { color: colors.mutedForeground }]}>
+            Back to Home
+          </Text>
+        </TouchableOpacity>
+      </KeyboardAwareScrollViewCompat>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
+  root: { flex: 1 },
+  scroll: { flex: 1 },
   label: {
     fontSize: 13,
     fontWeight: "500",
@@ -313,6 +356,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "600",
     fontFamily: "Inter_600SemiBold",
+    flex: 1,
+    marginRight: 8,
   },
   totalAmount: {
     fontSize: 22,
@@ -326,11 +371,24 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingVertical: 17,
     borderRadius: 14,
+    marginBottom: 12,
   },
   saveBtnText: {
     color: "#FFFFFF",
     fontSize: 16,
     fontWeight: "700",
     fontFamily: "Inter_700Bold",
+  },
+  backBtn: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 14,
+    borderRadius: 14,
+    borderWidth: 1,
+  },
+  backBtnText: {
+    fontSize: 15,
+    fontFamily: "Inter_500Medium",
+    fontWeight: "500",
   },
 });
