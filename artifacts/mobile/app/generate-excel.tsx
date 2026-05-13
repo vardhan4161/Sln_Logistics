@@ -6,7 +6,6 @@ import * as Sharing from "expo-sharing";
 import React, { useCallback, useState } from "react";
 import {
   ActivityIndicator,
-  Alert,
   Platform,
   StyleSheet,
   Text,
@@ -16,6 +15,7 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as XLSX from "xlsx";
 
+import Toast from "@/components/Toast";
 import { Trip, useDB } from "@/contexts/DatabaseContext";
 import { useColors } from "@/hooks/useColors";
 
@@ -26,6 +26,11 @@ export default function GenerateExcelScreen() {
   const [trips, setTrips] = useState<Trip[]>([]);
   const [generating, setGenerating] = useState(false);
   const [lastFile, setLastFile] = useState<string | null>(null);
+  const [toast, setToast] = useState<{
+    visible: boolean;
+    message: string;
+    type: "success" | "error" | "info";
+  }>({ visible: false, message: "", type: "success" });
 
   useFocusEffect(
     useCallback(() => {
@@ -33,31 +38,18 @@ export default function GenerateExcelScreen() {
     }, [getTrips])
   );
 
-  const shareFile = useCallback(async (filePath: string) => {
-    if (Platform.OS === "web") {
-      Alert.alert(
-        "Web Preview",
-        "File sharing is available on the mobile device via Expo Go."
-      );
-      return;
-    }
-    const canShare = await Sharing.isAvailableAsync();
-    if (canShare) {
-      await Sharing.shareAsync(filePath, {
-        mimeType:
-          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        dialogTitle: "Share SLN Logistics Excel",
-        UTI: "com.microsoft.excel.xlsx",
-      });
-    } else {
-      Alert.alert(
-        "Saved",
-        `File saved to:\n${filePath}`
-      );
-    }
+  const showToast = useCallback(
+    (message: string, type: "success" | "error" | "info" = "success") => {
+      setToast({ visible: true, message, type });
+    },
+    []
+  );
+
+  const hideToast = useCallback(() => {
+    setToast((prev) => ({ ...prev, visible: false }));
   }, []);
 
-  const buildWorkbook = () => {
+  const buildWorkbook = useCallback(() => {
     const wb = XLSX.utils.book_new();
     const headers = [
       "S.No.",
@@ -95,11 +87,28 @@ export default function GenerateExcelScreen() {
     ];
     XLSX.utils.book_append_sheet(wb, ws, "SLN Logistics Trips");
     return wb;
-  };
+  }, [trips]);
 
-  const handleGenerate = async () => {
+  const shareFile = useCallback(async (filePath: string) => {
+    try {
+      const canShare = await Sharing.isAvailableAsync();
+      if (canShare) {
+        await Sharing.shareAsync(filePath, {
+          mimeType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          dialogTitle: "Share SLN Logistics Excel",
+          UTI: "com.microsoft.excel.xlsx",
+        });
+      } else {
+        showToast(`File saved: ${filePath.split("/").pop()}`, "info");
+      }
+    } catch {
+      showToast("Could not open share dialog. File was saved to device.", "info");
+    }
+  }, [showToast]);
+
+  const handleGenerate = useCallback(async () => {
     if (trips.length === 0) {
-      Alert.alert("No Trips", "There are no trip entries to export.");
+      showToast("No trips found. Add trip entries first.", "error");
       return;
     }
 
@@ -119,30 +128,41 @@ export default function GenerateExcelScreen() {
         const anchor = document.createElement("a");
         anchor.href = url;
         anchor.download = fileName;
+        document.body.appendChild(anchor);
         anchor.click();
+        document.body.removeChild(anchor);
         URL.revokeObjectURL(url);
-        Alert.alert("Downloaded", `${fileName} saved to your Downloads folder.`);
+        showToast(`${fileName} downloaded successfully!`, "success");
         return;
       }
 
-      const b64 = XLSX.write(wb, { type: "base64", bookType: "xlsx" });
-      const dir = (FileSystem.documentDirectory ?? "") + "SLN_Logistics/";
+      const baseDir = FileSystem.documentDirectory;
+      if (!baseDir) {
+        showToast("Cannot access device storage. Please try again.", "error");
+        return;
+      }
+
+      const dir = baseDir + "SLN_Logistics/";
       await FileSystem.makeDirectoryAsync(dir, { intermediates: true });
-      const fileUri = `${dir}${fileName}`;
+      const fileUri = dir + fileName;
+
+      const b64 = XLSX.write(wb, { type: "base64", bookType: "xlsx" });
       await FileSystem.writeAsStringAsync(fileUri, b64, {
         encoding: FileSystem.EncodingType.Base64,
       });
 
       setLastFile(fileUri);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-      await shareFile(fileUri);
+      showToast("Excel file created! Opening share...", "success");
+
+      setTimeout(() => shareFile(fileUri), 600);
     } catch (e) {
-      console.error(e);
-      Alert.alert("Error", "Failed to generate Excel file. Please try again.");
+      console.error("Excel generation error:", e);
+      showToast("Failed to generate Excel. Please try again.", "error");
     } finally {
       setGenerating(false);
     }
-  };
+  }, [trips, buildWorkbook, shareFile, showToast]);
 
   const totalFreight = trips.reduce((s, t) => s + t.total_freight, 0);
   const totalWeight = trips.reduce((s, t) => s + t.chargeable_weight, 0);
@@ -157,35 +177,28 @@ export default function GenerateExcelScreen() {
         },
       ]}
     >
+      <Toast
+        visible={toast.visible}
+        message={toast.message}
+        type={toast.type}
+        onHide={hideToast}
+      />
+
       <View style={[styles.statsCard, { backgroundColor: colors.primary }]}>
         <View style={styles.statItem}>
           <Feather name="list" size={22} color="rgba(255,255,255,0.8)" />
           <Text style={styles.statVal}>{trips.length}</Text>
           <Text style={styles.statLabel}>Total Trips</Text>
         </View>
-        <View
-          style={[
-            styles.statDiv,
-            { backgroundColor: "rgba(255,255,255,0.3)" },
-          ]}
-        />
+        <View style={[styles.statDiv, { backgroundColor: "rgba(255,255,255,0.3)" }]} />
         <View style={styles.statItem}>
           <Feather name="package" size={22} color="rgba(255,255,255,0.8)" />
           <Text style={styles.statVal}>{totalWeight.toFixed(1)} MT</Text>
           <Text style={styles.statLabel}>Total Weight</Text>
         </View>
-        <View
-          style={[
-            styles.statDiv,
-            { backgroundColor: "rgba(255,255,255,0.3)" },
-          ]}
-        />
+        <View style={[styles.statDiv, { backgroundColor: "rgba(255,255,255,0.3)" }]} />
         <View style={styles.statItem}>
-          <Feather
-            name="dollar-sign"
-            size={22}
-            color="rgba(255,255,255,0.8)"
-          />
+          <Feather name="dollar-sign" size={22} color="rgba(255,255,255,0.8)" />
           <Text style={styles.statVal}>₹{totalFreight.toFixed(0)}</Text>
           <Text style={styles.statLabel}>Total Freight</Text>
         </View>
@@ -199,19 +212,31 @@ export default function GenerateExcelScreen() {
       >
         <Feather name="info" size={18} color={colors.primary} />
         <Text style={[styles.infoText, { color: colors.mutedForeground }]}>
-          Generates a formatted Excel (.xlsx) with all trip records, totals, and
-          borders. File saved locally and shared via WhatsApp or other apps.
+          Generates a formatted Excel (.xlsx) with all trip records, totals and
+          column widths. Saved to device and shared via WhatsApp or any app.
         </Text>
       </View>
+
+      {trips.length === 0 && (
+        <View style={[styles.emptyBox, { borderColor: colors.border }]}>
+          <Feather name="alert-circle" size={20} color={colors.mutedForeground} />
+          <Text style={[styles.emptyText, { color: colors.mutedForeground }]}>
+            No trips yet. Add trip entries first, then come back to export.
+          </Text>
+        </View>
+      )}
 
       <View style={styles.actions}>
         <TouchableOpacity
           style={[
             styles.genBtn,
-            { backgroundColor: "#2E7D32", opacity: generating ? 0.7 : 1 },
+            {
+              backgroundColor: trips.length === 0 ? "#999" : "#2E7D32",
+              opacity: generating ? 0.7 : 1,
+            },
           ]}
           onPress={handleGenerate}
-          disabled={generating}
+          disabled={generating || trips.length === 0}
           activeOpacity={0.8}
         >
           {generating ? (
@@ -220,18 +245,19 @@ export default function GenerateExcelScreen() {
             <Feather name="file-text" size={22} color="#FFFFFF" />
           )}
           <Text style={styles.genBtnText}>
-            {generating ? "Generating..." : "Generate & Share Excel"}
+            {generating
+              ? "Generating..."
+              : trips.length === 0
+              ? "No Trips to Export"
+              : `Generate & Share Excel (${trips.length} trips)`}
           </Text>
         </TouchableOpacity>
 
-        {lastFile && !generating ? (
+        {lastFile && !generating && (
           <TouchableOpacity
             style={[
               styles.shareBtn,
-              {
-                backgroundColor: colors.card,
-                borderColor: colors.border,
-              },
+              { backgroundColor: colors.card, borderColor: colors.border },
             ]}
             onPress={() => shareFile(lastFile)}
             activeOpacity={0.8}
@@ -241,7 +267,7 @@ export default function GenerateExcelScreen() {
               Share Again
             </Text>
           </TouchableOpacity>
-        ) : null}
+        )}
       </View>
     </View>
   );
@@ -274,7 +300,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 12,
     borderWidth: 1,
-    marginBottom: 32,
+    marginBottom: 16,
     alignItems: "flex-start",
   },
   infoText: {
@@ -282,6 +308,22 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 20,
     fontFamily: "Inter_400Regular",
+  },
+  emptyBox: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    padding: 14,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderStyle: "dashed",
+    marginBottom: 16,
+  },
+  emptyText: {
+    flex: 1,
+    fontSize: 13,
+    fontFamily: "Inter_400Regular",
+    lineHeight: 18,
   },
   actions: { gap: 12 },
   genBtn: {
@@ -294,7 +336,7 @@ const styles = StyleSheet.create({
   },
   genBtnText: {
     color: "#FFFFFF",
-    fontSize: 17,
+    fontSize: 16,
     fontWeight: "700",
     fontFamily: "Inter_700Bold",
   },
