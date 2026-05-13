@@ -17,7 +17,11 @@
       "supportsTablet": false
     },
     "android": {
-      "package": "com.slnlogistics.app"
+      "package": "com.slnlogistics.app",
+      "permissions": [
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "favicon": "./assets/images/icon.png"

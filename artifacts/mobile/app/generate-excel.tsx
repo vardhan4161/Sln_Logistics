@@ -136,14 +136,17 @@ export default function GenerateExcelScreen() {
         return;
       }
 
-      const baseDir = FileSystem.documentDirectory;
+      const baseDir = FileSystem.documentDirectory || FileSystem.cacheDirectory;
       if (!baseDir) {
-        showToast("Cannot access device storage. Please try again.", "error");
+        showToast("Storage is currently unavailable. Please check app permissions.", "error");
         return;
       }
 
       const dir = baseDir + "SLN_Logistics/";
-      await FileSystem.makeDirectoryAsync(dir, { intermediates: true });
+      const dirInfo = await FileSystem.getInfoAsync(dir);
+      if (!dirInfo.exists) {
+        await FileSystem.makeDirectoryAsync(dir, { intermediates: true });
+      }
       const fileUri = dir + fileName;
 
       const b64 = XLSX.write(wb, { type: "base64", bookType: "xlsx" });
