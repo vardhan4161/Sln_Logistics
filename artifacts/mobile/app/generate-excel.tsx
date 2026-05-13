@@ -12,6 +12,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Linking,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as XLSX from "xlsx";
@@ -115,9 +116,12 @@ export default function GenerateExcelScreen() {
 
     setGenerating(true);
     try {
-      const { status } = await MediaLibrary.requestPermissionsAsync();
+      const { status, canAskAgain } = await MediaLibrary.requestPermissionsAsync();
       if (status !== "granted") {
-        showToast("Storage permission is required to save the Excel file.", "error");
+        showToast("Storage permission is required.", "error");
+        if (!canAskAgain) {
+          Linking.openSettings();
+        }
         setGenerating(false);
         return;
       }
@@ -144,18 +148,35 @@ export default function GenerateExcelScreen() {
         return;
       }
 
+      let fileUri = "";
       const baseDir = FileSystem.cacheDirectory || FileSystem.documentDirectory;
-      if (!baseDir) {
-        showToast("Device storage is busy or unavailable. Please restart the app.", "error");
-        return;
-      }
-
-      const fileUri = baseDir + fileName;
-
+      
       const b64 = XLSX.write(wb, { type: "base64", bookType: "xlsx" });
-      await FileSystem.writeAsStringAsync(fileUri, b64, {
-        encoding: FileSystem.EncodingType.Base64,
-      });
+
+      if (!baseDir) {
+        // Fallback: manually feed location
+        showToast("Using manual folder selection...", "info");
+        const permissions = await FileSystem.StorageAccessFramework.requestDirectoryPermissionsAsync();
+        if (!permissions.granted) {
+          showToast("Folder selection was denied.", "error");
+          setGenerating(false);
+          return;
+        }
+        const createdFileUri = await FileSystem.StorageAccessFramework.createFileAsync(
+          permissions.directoryUri,
+          fileName,
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        );
+        await FileSystem.writeAsStringAsync(createdFileUri, b64, {
+          encoding: FileSystem.EncodingType.Base64,
+        });
+        fileUri = createdFileUri;
+      } else {
+        fileUri = baseDir + fileName;
+        await FileSystem.writeAsStringAsync(fileUri, b64, {
+          encoding: FileSystem.EncodingType.Base64,
+        });
+      }
 
       setLastFile(fileUri);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
