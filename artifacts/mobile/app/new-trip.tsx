@@ -1,5 +1,4 @@
 import { Feather } from "@expo/vector-icons";
-import DateTimePicker from "@react-native-community/datetimepicker";
 import * as Haptics from "expo-haptics";
 import { router } from "expo-router";
 import React, { useCallback, useMemo, useState } from "react";
@@ -12,9 +11,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { KeyboardAwareScrollViewCompat } from "react-native-keyboard-controller";
+import { KeyboardAwareScrollViewCompat } from "@/components/KeyboardAwareScrollViewCompat";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+import DatePickerField from "@/components/DatePickerField";
 import SearchableDropdown from "@/components/SearchableDropdown";
 import { useDB } from "@/contexts/DatabaseContext";
 import { useColors } from "@/hooks/useColors";
@@ -33,7 +33,6 @@ export default function NewTripScreen() {
     useDB();
 
   const [date, setDate] = useState(new Date());
-  const [showDatePicker, setShowDatePicker] = useState(false);
   const [fromLocation, setFromLocation] = useState("");
   const [toLocation, setToLocation] = useState("");
   const [vehicleNo, setVehicleNo] = useState("");
@@ -142,44 +141,7 @@ export default function NewTripScreen() {
       <Text style={[styles.label, { color: colors.mutedForeground }]}>
         Date
       </Text>
-      <TouchableOpacity
-        style={[
-          styles.dateRow,
-          { backgroundColor: colors.card, borderColor: colors.border },
-        ]}
-        onPress={() => setShowDatePicker(true)}
-        activeOpacity={0.7}
-      >
-        <Feather name="calendar" size={18} color={colors.primary} />
-        <Text style={[styles.dateText, { color: colors.foreground }]}>
-          {formatDate(date)}
-        </Text>
-        <Feather name="chevron-down" size={18} color={colors.mutedForeground} />
-      </TouchableOpacity>
-
-      {showDatePicker && (
-        <DateTimePicker
-          value={date}
-          mode="date"
-          display={Platform.OS === "ios" ? "spinner" : "default"}
-          maximumDate={new Date()}
-          onChange={(_event, selectedDate) => {
-            if (Platform.OS !== "ios") setShowDatePicker(false);
-            if (selectedDate) setDate(selectedDate);
-          }}
-        />
-      )}
-      {showDatePicker && Platform.OS === "ios" && (
-        <TouchableOpacity
-          style={[
-            styles.dateConfirm,
-            { backgroundColor: colors.primary },
-          ]}
-          onPress={() => setShowDatePicker(false)}
-        >
-          <Text style={styles.dateConfirmText}>Done</Text>
-        </TouchableOpacity>
-      )}
+      <DatePickerField date={date} onChange={setDate} />
 
       <SearchableDropdown
         items={locationList}
@@ -311,29 +273,6 @@ const styles = StyleSheet.create({
     marginBottom: 6,
     marginTop: 4,
     fontFamily: "Inter_500Medium",
-  },
-  dateRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-    paddingHorizontal: 14,
-    paddingVertical: 14,
-    borderRadius: 10,
-    borderWidth: 1,
-    marginBottom: 16,
-  },
-  dateText: { flex: 1, fontSize: 15, fontFamily: "Inter_400Regular" },
-  dateConfirm: {
-    alignItems: "center",
-    paddingVertical: 12,
-    borderRadius: 10,
-    marginBottom: 16,
-  },
-  dateConfirmText: {
-    color: "#FFFFFF",
-    fontSize: 15,
-    fontWeight: "600",
-    fontFamily: "Inter_600SemiBold",
   },
   inputSuffix: {
     flexDirection: "row",

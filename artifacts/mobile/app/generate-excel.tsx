@@ -57,6 +57,46 @@ export default function GenerateExcelScreen() {
     }
   }, []);
 
+  const buildWorkbook = () => {
+    const wb = XLSX.utils.book_new();
+    const headers = [
+      "S.No.",
+      "Date",
+      "From Location",
+      "To Location",
+      "Vehicle No",
+      "Chargeable Weight (MT)",
+      "Rate",
+      "Hamali",
+      "Total Freight",
+    ];
+    const rows = trips.map((t, i) => [
+      i + 1,
+      t.trip_date,
+      t.from_location,
+      t.to_location,
+      t.vehicle_no,
+      t.chargeable_weight,
+      t.rate,
+      t.hamali,
+      t.total_freight,
+    ]);
+    const totalRow = [
+      "TOTAL", "", "", "", "",
+      trips.reduce((s, t) => s + t.chargeable_weight, 0),
+      trips.reduce((s, t) => s + t.rate, 0),
+      trips.reduce((s, t) => s + t.hamali, 0),
+      trips.reduce((s, t) => s + t.total_freight, 0),
+    ];
+    const ws = XLSX.utils.aoa_to_sheet([headers, ...rows, totalRow]);
+    ws["!cols"] = [
+      { wch: 7 }, { wch: 12 }, { wch: 26 }, { wch: 26 }, { wch: 14 },
+      { wch: 22 }, { wch: 12 }, { wch: 12 }, { wch: 14 },
+    ];
+    XLSX.utils.book_append_sheet(wb, ws, "SLN Logistics Trips");
+    return wb;
+  };
+
   const handleGenerate = async () => {
     if (trips.length === 0) {
       Alert.alert("No Trips", "There are no trip entries to export.");
@@ -65,72 +105,30 @@ export default function GenerateExcelScreen() {
 
     setGenerating(true);
     try {
-      const wb = XLSX.utils.book_new();
-
-      const headers = [
-        "S.No.",
-        "Date",
-        "From Location",
-        "To Location",
-        "Vehicle No",
-        "Chargeable Weight (MT)",
-        "Rate",
-        "Hamali",
-        "Total Freight",
-      ];
-
-      const rows = trips.map((t, i) => [
-        i + 1,
-        t.trip_date,
-        t.from_location,
-        t.to_location,
-        t.vehicle_no,
-        t.chargeable_weight,
-        t.rate,
-        t.hamali,
-        t.total_freight,
-      ]);
-
-      const totalWeight = trips.reduce((s, t) => s + t.chargeable_weight, 0);
-      const totalRate = trips.reduce((s, t) => s + t.rate, 0);
-      const totalHamali = trips.reduce((s, t) => s + t.hamali, 0);
-      const totalFreight = trips.reduce((s, t) => s + t.total_freight, 0);
-      const totalRow = [
-        "TOTAL",
-        "",
-        "",
-        "",
-        "",
-        totalWeight,
-        totalRate,
-        totalHamali,
-        totalFreight,
-      ];
-
-      const ws = XLSX.utils.aoa_to_sheet([headers, ...rows, totalRow]);
-      ws["!cols"] = [
-        { wch: 7 },
-        { wch: 12 },
-        { wch: 26 },
-        { wch: 26 },
-        { wch: 14 },
-        { wch: 22 },
-        { wch: 12 },
-        { wch: 12 },
-        { wch: 14 },
-      ];
-
-      XLSX.utils.book_append_sheet(wb, ws, "SLN Logistics Trips");
-      const b64 = XLSX.write(wb, { type: "base64", bookType: "xlsx" });
-
-      const dir =
-        (FileSystem.documentDirectory ?? "") + "SLN_Logistics/";
-      await FileSystem.makeDirectoryAsync(dir, { intermediates: true });
-
+      const wb = buildWorkbook();
       const now = new Date();
       const stamp = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, "0")}${String(now.getDate()).padStart(2, "0")}_${Date.now()}`;
-      const fileUri = `${dir}SLN_Logistics_${stamp}.xlsx`;
+      const fileName = `SLN_Logistics_${stamp}.xlsx`;
 
+      if (Platform.OS === "web") {
+        const buffer = XLSX.write(wb, { type: "array", bookType: "xlsx" });
+        const blob = new Blob([buffer], {
+          type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        });
+        const url = URL.createObjectURL(blob);
+        const anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.download = fileName;
+        anchor.click();
+        URL.revokeObjectURL(url);
+        Alert.alert("Downloaded", `${fileName} saved to your Downloads folder.`);
+        return;
+      }
+
+      const b64 = XLSX.write(wb, { type: "base64", bookType: "xlsx" });
+      const dir = (FileSystem.documentDirectory ?? "") + "SLN_Logistics/";
+      await FileSystem.makeDirectoryAsync(dir, { intermediates: true });
+      const fileUri = `${dir}${fileName}`;
       await FileSystem.writeAsStringAsync(fileUri, b64, {
         encoding: FileSystem.EncodingType.Base64,
       });
