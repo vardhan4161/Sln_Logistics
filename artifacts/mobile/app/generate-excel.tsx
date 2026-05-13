@@ -3,6 +3,7 @@ import * as FileSystem from "expo-file-system";
 import * as Haptics from "expo-haptics";
 import { useFocusEffect } from "expo-router";
 import * as Sharing from "expo-sharing";
+import * as MediaLibrary from "expo-media-library";
 import React, { useCallback, useState } from "react";
 import {
   ActivityIndicator,
@@ -114,6 +115,13 @@ export default function GenerateExcelScreen() {
 
     setGenerating(true);
     try {
+      const { status } = await MediaLibrary.requestPermissionsAsync();
+      if (status !== "granted") {
+        showToast("Storage permission is required to save the Excel file.", "error");
+        setGenerating(false);
+        return;
+      }
+
       const wb = buildWorkbook();
       const now = new Date();
       const stamp = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, "0")}${String(now.getDate()).padStart(2, "0")}_${Date.now()}`;
