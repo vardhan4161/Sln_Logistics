@@ -1,0 +1,271 @@
+Build a COMPLETE production-ready Android logistics mobile app using Flutter for a real transport business.
+
+APP NAME:
+SLN Logistics
+
+IMPORTANT:
+- Build ONLY for Android
+- Do NOT include iOS support
+- Do NOT use Firebase
+- Do NOT use cloud backend
+- Do NOT use internet dependency
+- App must work FULLY OFFLINE
+- APK installation only
+- Generate RELEASE APK file
+- Optimize for low-end Android phones
+- Prioritize speed, stability, and simplicity
+- Minimize AI token usage while generating code
+- Avoid unnecessary explanations
+- Avoid generating duplicate code
+- Reuse widgets and components efficiently
+- Keep architecture simple and optimized
+- Generate concise but production-ready code
+- Avoid unnecessary packages
+- Avoid overengineering
+- Focus on working functionality first
+
+MAIN PURPOSE:
+This app is for logistics trip entry and automatic Excel generation in the same format as existing transport Excel sheets.
+
+MAIN GOAL:
+Minimize typing and maximize dropdown/button selection for transport workers.
+
+TECH STACK:
+- Flutter
+- SQLite local database only
+- Provider state management
+- Syncfusion Flutter XlsIO for Excel generation
+
+REQUIRED PACKAGES ONLY:
+- sqflite
+- path_provider
+- provider
+- syncfusion_flutter_xlsio
+- open_file
+- intl
+
+EXTRACTED MASTER DATA
+
+PRELOAD THESE LOCATIONS INTO SQLITE DATABASE:
+
+- Gubba-Medchal
+- IIL-Karkapatla
+- Priya feeds - Cherlapally
+- SANZYME
+- ARC Transport Medchal
+- BIO CHEMICHAL SANATHNAGAR
+- Potential-ALEAP
+- Bollaram
+- Sainath-Jeedimetla
+- IIL-Uppal
+- IIL-Gachibowli
+- RGIA-Airport
+- RGI Airport
+- ICD-Sanathnagar
+- Jiyaguda
+- Cherlapally
+- Medchal
+- Uppal
+- Gachibowli
+- Airport
+- Sanathnagar
+- Jeedimetla
+- ALEAP
+
+PRELOAD THESE VEHICLE NUMBERS INTO SQLITE DATABASE:
+
+- TG12T6078
+- TS12UC3042
+- TS06UA7249
+- TS05UA0781
+- TG08T9023
+- AP28TA4481
+- AP29TB9031
+- TS07UA1111
+- TS09UB2222
+- TG10TC3333
+- AP31TA4444
+- TS11UD5555
+- TG07TE6666
+- AP09TB7777
+
+APP FLOW
+
+HOME SCREEN:
+- New Trip Entry
+- Generate Excel
+- View Trips
+- Manage Locations
+- Manage Vehicles
+
+NEW TRIP ENTRY SCREEN:
+
+FIELDS:
+
+1. Date
+- Default current date
+- Date picker
+
+2. From Location
+- Searchable dropdown
+- Load saved locations
+- Add new location if not available
+- Auto-save permanently
+
+3. To Location
+- Same logic as From Location
+
+4. Vehicle Number
+- Searchable dropdown
+- Load saved vehicle numbers
+- Add new vehicle if not available
+- Auto-save permanently
+
+5. Chargeable Weight
+- Numeric input
+- Suffix "MT"
+
+6. Rate
+- Numeric input
+
+7. Hamali
+- Numeric input
+
+8. Total Freight
+- Auto calculate:
+  Total Freight = Rate + Hamali
+- Read-only field
+
+9. Save Entry Button
+- Save trip to SQLite database
+- Show success snackbar
+
+DATABASE TABLES:
+
+1. locations
+- id
+- name
+
+2. vehicles
+- id
+- vehicle_no
+
+3. trips
+- id
+- serial_no
+- trip_date
+- from_location
+- to_location
+- vehicle_no
+- chargeable_weight
+- rate
+- hamali
+- total_freight
+- created_at
+
+FEATURE REQUIREMENTS:
+
+- Fully offline
+- Lightweight APK
+- Fast startup
+- Low RAM usage
+- Smooth scrolling
+- Search optimized dropdowns
+- Large touch-friendly buttons
+- Minimal typing
+- Auto-save reusable values
+- Form validation
+- Prevent crashes
+- Stable production-ready code
+- No placeholder implementations
+- No unnecessary animations
+- Optimized SQLite queries
+- Reusable widgets
+- Minimal rebuilds
+- Efficient memory usage
+
+EXCEL GENERATION REQUIREMENTS:
+
+Generate Excel EXACTLY in this format:
+
+Columns:
+- S.No.
+- Date
+- From Location
+- To location
+- Vehicle No
+- Chargeable weight
+- Rate
+- Hamali
+- Total freight
+
+FEATURES:
+- Auto serial numbers
+- Auto total calculations
+- Final TOTAL row
+- Borders for all cells
+- Bold headers
+- Professional formatting
+- Auto column width
+- Save as .xlsx
+
+WHEN "GENERATE EXCEL" IS CLICKED:
+- Fetch all saved trips
+- Generate formatted Excel file
+- Save locally inside:
+
+Documents/SLN_Logistics/
+
+- Open automatically after generation
+- Allow WhatsApp sharing
+
+UI DESIGN REQUIREMENTS:
+
+- Professional logistics business UI
+- Blue and white theme
+- Card-based layout
+- Simple design for non-technical users
+- One-hand usage friendly
+- Fast-entry optimized
+
+PROJECT STRUCTURE:
+
+lib/
+ ├── models/
+ ├── database/
+ ├── services/
+ ├── screens/
+ ├── widgets/
+ ├── providers/
+ ├── excel/
+ └── main.dart
+
+IMPORTANT DEVELOPMENT REQUIREMENTS:
+
+- Generate COMPLETE working Flutter project
+- Include all required Dart files
+- Include pubspec.yaml
+- Include SQLite helper
+- Include Excel generation service
+- Ensure NO compile errors
+- Generate release-ready APK setup
+- App must run without modifications
+- Use clean architecture but keep it lightweight
+- Optimize for APK size
+- Use const widgets wherever possible
+- Minimize widget rebuilds
+- Avoid unnecessary state updates
+- Use efficient local database operations
+- Ensure stable Excel generation
+
+FINAL OUTPUT REQUIRED:
+- Complete Flutter project
+- Proper folder structure
+- Release-ready Android APK build instructions
+- Command to generate APK:
+  flutter build apk --release
+- Ensure final APK installs and runs correctly on Android devices
+
+IMPORTANT:
+This app is for real transport workers.
+Reliability, speed, and ease of use are more important than fancy UI or complex architecture.
