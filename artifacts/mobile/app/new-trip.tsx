@@ -185,7 +185,6 @@ export default function NewTripScreen() {
             (Platform.OS === "web" ? 34 : insets.bottom) + 40,
         }}
         keyboardShouldPersistTaps="handled"
-        bottomOffset={16}
       >
         <Text style={[styles.label, { color: colors.mutedForeground }]}>
           Date
