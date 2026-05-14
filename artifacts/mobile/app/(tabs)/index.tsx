@@ -1,6 +1,7 @@
 import { Feather } from "@expo/vector-icons";
-import { router } from "expo-router";
-import React from "react";
+import * as Haptics from "expo-haptics";
+import { router, useFocusEffect } from "expo-router";
+import React, { useCallback, useState } from "react";
 import {
   Platform,
   ScrollView,
@@ -11,65 +12,39 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+import { useDB } from "@/contexts/DatabaseContext";
 import { useColors } from "@/hooks/useColors";
-
-interface MenuItem {
-  id: string;
-  title: string;
-  subtitle: string;
-  icon: keyof typeof Feather.glyphMap;
-  route: string;
-  accent: string;
-}
-
-const MENU_ITEMS: MenuItem[] = [
-  {
-    id: "1",
-    title: "New Trip Entry",
-    subtitle: "Record a new transport trip",
-    icon: "plus-circle",
-    route: "/new-trip",
-    accent: "#1565C0",
-  },
-  {
-    id: "2",
-    title: "Generate Excel",
-    subtitle: "Export trips to Excel (.xlsx)",
-    icon: "file-text",
-    route: "/generate-excel",
-    accent: "#2E7D32",
-  },
-  {
-    id: "3",
-    title: "View Trips",
-    subtitle: "Browse all recorded trips",
-    icon: "list",
-    route: "/trips",
-    accent: "#E65100",
-  },
-  {
-    id: "4",
-    title: "Manage Locations",
-    subtitle: "Add or remove route locations",
-    icon: "map-pin",
-    route: "/locations",
-    accent: "#6A1B9A",
-  },
-  {
-    id: "5",
-    title: "Manage Vehicles",
-    subtitle: "Add or remove vehicle numbers",
-    icon: "truck",
-    route: "/vehicles",
-    accent: "#00695C",
-  },
-];
 
 export default function HomeScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
+  const { getTrips } = useDB();
 
-  const topPad = Platform.OS === "web" ? 67 : insets.top + 16;
+  const [stats, setStats] = useState({
+    totalTrips: 0,
+    totalWeight: 0,
+    totalFreight: 0,
+    todayTrips: 0,
+  });
+
+  useFocusEffect(
+    useCallback(() => {
+      const trips = getTrips();
+      const today = new Date();
+      const dd = String(today.getDate()).padStart(2, "0");
+      const mm = String(today.getMonth() + 1).padStart(2, "0");
+      const yyyy = today.getFullYear();
+      const todayStr = `${dd}/${mm}/${yyyy}`;
+      setStats({
+        totalTrips: trips.length,
+        totalWeight: trips.reduce((s, t) => s + t.chargeable_weight, 0),
+        totalFreight: trips.reduce((s, t) => s + t.total_freight, 0),
+        todayTrips: trips.filter((t) => t.trip_date === todayStr).length,
+      });
+    }, [getTrips])
+  );
+
+  const topPad = Platform.OS === "web" ? 20 : insets.top + 8;
   const botPad = Platform.OS === "web" ? 34 : insets.bottom + 32;
 
   return (
@@ -78,83 +53,102 @@ export default function HomeScreen() {
       contentContainerStyle={{ paddingTop: topPad, paddingBottom: botPad }}
       showsVerticalScrollIndicator={false}
     >
+      {/* HEADER */}
       <View style={styles.header}>
         <View style={[styles.logoBox, { backgroundColor: colors.primary }]}>
-          <Feather name="truck" size={30} color="#FFFFFF" />
+          <Feather name="truck" size={26} color="#FFFFFF" />
         </View>
-        <View style={styles.headerText}>
-          <Text style={[styles.appName, { color: colors.foreground }]}>
-            SLN Logistics
-          </Text>
-          <Text
-            style={[styles.appSubtitle, { color: colors.mutedForeground }]}
-          >
+        <View style={{ flex: 1 }}>
+          <Text style={[styles.appName, { color: colors.foreground }]}>SLN Logistics</Text>
+          <Text style={[styles.appSub, { color: colors.mutedForeground }]}>
             Transport Management System
           </Text>
         </View>
+        {stats.todayTrips > 0 && (
+          <View style={[styles.todayPill, { backgroundColor: colors.primary }]}>
+            <Text style={styles.todayPillText}>{stats.todayTrips} today</Text>
+          </View>
+        )}
       </View>
 
-      <View
-        style={[styles.divider, { backgroundColor: colors.border }]}
-      />
+      {/* STATS BANNER */}
+      <View style={[styles.statsBanner, { backgroundColor: colors.primary }]}>
+        <View style={styles.statItem}>
+          <Text style={styles.statVal}>{stats.totalTrips}</Text>
+          <Text style={styles.statLbl}>Total Trips</Text>
+        </View>
+        <View style={[styles.statDiv, { backgroundColor: "rgba(255,255,255,0.22)" }]} />
+        <View style={styles.statItem}>
+          <Text style={styles.statVal}>{stats.totalWeight.toFixed(1)}</Text>
+          <Text style={styles.statLbl}>MT Moved</Text>
+        </View>
+        <View style={[styles.statDiv, { backgroundColor: "rgba(255,255,255,0.22)" }]} />
+        <View style={styles.statItem}>
+          <Text style={styles.statVal}>
+            ₹{stats.totalFreight >= 1000
+              ? `${(stats.totalFreight / 1000).toFixed(1)}K`
+              : stats.totalFreight.toFixed(0)}
+          </Text>
+          <Text style={styles.statLbl}>Freight Earned</Text>
+        </View>
+      </View>
 
-      <View style={styles.menu}>
-        {MENU_ITEMS.map((item) => (
-          <TouchableOpacity
-            key={item.id}
-            style={[
-              styles.card,
-              {
-                backgroundColor: colors.card,
-                borderColor: colors.border,
-              },
-            ]}
-            onPress={() => router.push(item.route as never)}
-            activeOpacity={0.7}
-          >
-            <View
-              style={[
-                styles.iconBox,
-                { backgroundColor: item.accent + "1A" },
-              ]}
+      {/* PRIMARY CTA */}
+      <View style={styles.section}>
+        <TouchableOpacity
+          style={[styles.primaryBtn, { backgroundColor: colors.primary }]}
+          onPress={() => {
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+            router.push("/new-trip");
+          }}
+          activeOpacity={0.82}
+        >
+          <View style={styles.primaryIconWrap}>
+            <Feather name="plus" size={22} color={colors.primary} />
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={styles.primaryTitle}>New Trip Entry</Text>
+            <Text style={styles.primarySub}>Record a transport trip now</Text>
+          </View>
+          <Feather name="arrow-right" size={20} color="rgba(255,255,255,0.6)" />
+        </TouchableOpacity>
+      </View>
+
+      {/* QUICK ACTIONS 2×2 GRID */}
+      <View style={styles.section}>
+        <Text style={[styles.sectionLabel, { color: colors.mutedForeground }]}>
+          QUICK ACTIONS
+        </Text>
+        <View style={styles.grid}>
+          {[
+            { icon: "file-text" as const, label: "Generate Excel", sub: "Export & share", accent: "#2E7D32", route: "/generate-excel" },
+            { icon: "list" as const,      label: "View Trips",     sub: "Browse entries",  accent: "#E65100", route: "/trips" },
+            { icon: "map-pin" as const,   label: "Locations",      sub: "Manage routes",   accent: "#6A1B9A", route: "/locations" },
+            { icon: "truck" as const,     label: "Vehicles",       sub: "Manage fleet",    accent: "#00695C", route: "/vehicles" },
+          ].map((item) => (
+            <TouchableOpacity
+              key={item.label}
+              style={[styles.gridCard, { backgroundColor: colors.card, borderColor: colors.border }]}
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                router.push(item.route as never);
+              }}
+              activeOpacity={0.75}
             >
-              <Feather name={item.icon} size={26} color={item.accent} />
-            </View>
-            <View style={styles.cardBody}>
-              <Text
-                style={[styles.cardTitle, { color: colors.foreground }]}
-              >
-                {item.title}
-              </Text>
-              <Text
-                style={[
-                  styles.cardSubtitle,
-                  { color: colors.mutedForeground },
-                ]}
-              >
-                {item.subtitle}
-              </Text>
-            </View>
-            <Feather
-              name="chevron-right"
-              size={20}
-              color={colors.mutedForeground}
-            />
-          </TouchableOpacity>
-        ))}
+              <View style={[styles.gridIcon, { backgroundColor: item.accent + "18" }]}>
+                <Feather name={item.icon} size={22} color={item.accent} />
+              </View>
+              <Text style={[styles.gridLabel, { color: colors.foreground }]}>{item.label}</Text>
+              <Text style={[styles.gridSub, { color: colors.mutedForeground }]}>{item.sub}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
       </View>
 
-      <View
-        style={[
-          styles.footer,
-          {
-            backgroundColor: colors.secondary,
-            borderColor: colors.border,
-          },
-        ]}
-      >
-        <Feather name="wifi-off" size={14} color={colors.primary} />
-        <Text style={[styles.footerText, { color: colors.primary }]}>
+      {/* OFFLINE PILL */}
+      <View style={[styles.offlinePill, { backgroundColor: colors.secondary, borderColor: colors.border }]}>
+        <Feather name="wifi-off" size={13} color={colors.primary} />
+        <Text style={[styles.offlineText, { color: colors.primary }]}>
           Fully offline — no internet required
         </Text>
       </View>
@@ -164,78 +158,34 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 16,
-    paddingHorizontal: 20,
-    paddingBottom: 20,
-  },
-  logoBox: {
-    width: 60,
-    height: 60,
-    borderRadius: 18,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  headerText: { flex: 1 },
-  appName: {
-    fontSize: 24,
-    fontWeight: "700",
-    fontFamily: "Inter_700Bold",
-  },
-  appSubtitle: {
-    fontSize: 13,
-    marginTop: 3,
-    fontFamily: "Inter_400Regular",
-  },
-  divider: { height: 1, marginHorizontal: 20, marginBottom: 20 },
-  menu: { paddingHorizontal: 16, gap: 10 },
-  card: {
-    flexDirection: "row",
-    alignItems: "center",
-    padding: 16,
-    borderRadius: 14,
-    borderWidth: 1,
-    gap: 14,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.06,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  iconBox: {
-    width: 52,
-    height: 52,
-    borderRadius: 14,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  cardBody: { flex: 1 },
-  cardTitle: {
-    fontSize: 16,
-    fontWeight: "600",
-    fontFamily: "Inter_600SemiBold",
-  },
-  cardSubtitle: {
-    fontSize: 13,
-    marginTop: 2,
-    fontFamily: "Inter_400Regular",
-  },
-  footer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-    marginHorizontal: 16,
-    marginTop: 20,
-    padding: 14,
-    borderRadius: 12,
-    borderWidth: 1,
-    justifyContent: "center",
-  },
-  footerText: {
-    fontSize: 13,
-    fontFamily: "Inter_500Medium",
-    fontWeight: "500",
-  },
+
+  header: { flexDirection: "row", alignItems: "center", gap: 14, paddingHorizontal: 20, paddingBottom: 16 },
+  logoBox: { width: 50, height: 50, borderRadius: 15, alignItems: "center", justifyContent: "center" },
+  appName: { fontSize: 21, fontWeight: "700", fontFamily: "Inter_700Bold" },
+  appSub: { fontSize: 12, marginTop: 1, fontFamily: "Inter_400Regular" },
+  todayPill: { paddingHorizontal: 10, paddingVertical: 5, borderRadius: 20 },
+  todayPillText: { color: "#FFF", fontSize: 12, fontFamily: "Inter_600SemiBold", fontWeight: "600" },
+
+  statsBanner: { flexDirection: "row", marginHorizontal: 16, borderRadius: 20, paddingVertical: 22, paddingHorizontal: 8, marginBottom: 20 },
+  statItem: { flex: 1, alignItems: "center" },
+  statVal: { color: "#FFF", fontSize: 20, fontWeight: "700", fontFamily: "Inter_700Bold" },
+  statLbl: { color: "rgba(255,255,255,0.7)", fontSize: 11, marginTop: 3, fontFamily: "Inter_400Regular" },
+  statDiv: { width: 1, marginHorizontal: 4 },
+
+  section: { paddingHorizontal: 16, marginBottom: 20 },
+  sectionLabel: { fontSize: 11, fontWeight: "700", fontFamily: "Inter_700Bold", letterSpacing: 1, marginBottom: 12 },
+
+  primaryBtn: { flexDirection: "row", alignItems: "center", gap: 14, borderRadius: 20, paddingHorizontal: 18, paddingVertical: 18 },
+  primaryIconWrap: { width: 44, height: 44, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.95)", alignItems: "center", justifyContent: "center" },
+  primaryTitle: { color: "#FFF", fontSize: 17, fontWeight: "700", fontFamily: "Inter_700Bold" },
+  primarySub: { color: "rgba(255,255,255,0.72)", fontSize: 13, marginTop: 2, fontFamily: "Inter_400Regular" },
+
+  grid: { flexDirection: "row", flexWrap: "wrap", gap: 12 },
+  gridCard: { width: "47%", borderRadius: 16, borderWidth: 1, padding: 16, gap: 8, shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.06, shadowRadius: 6, elevation: 2 },
+  gridIcon: { width: 44, height: 44, borderRadius: 13, alignItems: "center", justifyContent: "center" },
+  gridLabel: { fontSize: 14, fontWeight: "600", fontFamily: "Inter_600SemiBold" },
+  gridSub: { fontSize: 12, fontFamily: "Inter_400Regular" },
+
+  offlinePill: { flexDirection: "row", alignItems: "center", gap: 8, marginHorizontal: 16, padding: 13, borderRadius: 12, borderWidth: 1, justifyContent: "center" },
+  offlineText: { fontSize: 13, fontFamily: "Inter_500Medium", fontWeight: "500" },
 });

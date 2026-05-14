@@ -133,7 +133,7 @@ export default function GenerateExcelScreen() {
       const totalRow = [
         "TOTAL", "", "", "", "",
         tripList.reduce((s, t) => s + t.chargeable_weight, 0),
-        tripList.reduce((s, t) => s + t.rate, 0),
+        "",
         tripList.reduce((s, t) => s + t.hamali, 0),
         tripList.reduce((s, t) => s + t.total_freight, 0),
       ];
@@ -185,77 +185,25 @@ export default function GenerateExcelScreen() {
 
       const b64 = XLSX.write(wb, { type: "base64", bookType: "xlsx" });
 
-      if (Platform.OS === "android") {
-        try {
-          const SAF = FileSystem.StorageAccessFramework;
-
-          showToast("Choose a folder to save the Excel file…", "info");
-
-          const perm = await SAF.requestDirectoryPermissionsAsync();
-          if (!perm.granted) {
-            throw new Error("Folder permission denied");
-          }
-
-          const fileUri = await SAF.createFileAsync(
-            perm.directoryUri,
-            fileName,
-            MIME
-          );
-          await FileSystem.writeAsStringAsync(fileUri, b64, {
-            encoding: FileSystem.EncodingType.Base64,
-          });
-
-          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-          showToast(`Saved! "${fileName}" is in your chosen folder.`, "success");
-
-          const canShare = await Sharing.isAvailableAsync();
-          if (canShare) {
-            setTimeout(async () => {
-              try {
-                await Sharing.shareAsync(fileUri, {
-                  mimeType: MIME,
-                  dialogTitle: "Share SLN Logistics Excel",
-                });
-              } catch {}
-            }, 800);
-          }
-          return;
-        } catch (safError) {
-          console.warn("SAF Error, falling back:", safError);
-          showToast("Folder picker failed. Saving to default folder...", "info");
-          // Fall through to the documentDirectory saving logic below
-        }
-      }
-
-      const baseDir = FileSystem.documentDirectory;
-      if (!baseDir) {
+      const cacheDir = FileSystem.cacheDirectory;
+      if (!cacheDir) {
         showToast("Cannot access device storage.", "error");
         return;
       }
-      const dir = baseDir + "SLN_Logistics/";
-      await FileSystem.makeDirectoryAsync(dir, { intermediates: true });
-      const fileUri = dir + fileName;
+
+      const fileUri = cacheDir + fileName;
       await FileSystem.writeAsStringAsync(fileUri, b64, {
         encoding: FileSystem.EncodingType.Base64,
       });
+
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-      showToast("Excel created! Opening share…", "success");
-      setTimeout(async () => {
-        try {
-          const canShare = await Sharing.isAvailableAsync();
-          if (canShare) {
-            await Sharing.shareAsync(fileUri, {
-              mimeType: MIME,
-              dialogTitle: "Share SLN Logistics Excel",
-              UTI: "com.microsoft.excel.xlsx",
-            });
-          } else {
-            showToast(`Saved to: ${fileUri}`, "info");
-          }
-        } catch {
-          showToast(`Saved to SLN_Logistics folder.`, "info");
-        }
-      }, 600);
+      showToast("Excel ready! Tap Save or share via WhatsApp…", "success");
+
+      await Sharing.shareAsync(fileUri, {
+        mimeType: MIME,
+        dialogTitle: "Save or Share SLN Logistics Excel",
+        UTI: "com.microsoft.excel.xlsx",
+      });
     } catch (e) {
       console.error("Excel error:", e);
       showToast("Failed to generate Excel. Please try again.", "error");
@@ -377,15 +325,12 @@ export default function GenerateExcelScreen() {
         </View>
       )}
 
-      {Platform.OS === "android" && (
-        <View style={[styles.infoCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
-          <Feather name="folder" size={18} color={colors.primary} />
-          <Text style={[styles.infoText, { color: colors.mutedForeground }]}>
-            On Android, you will be asked to choose a folder to save the Excel file.
-            You can pick Downloads, Documents, or any folder you like.
-          </Text>
-        </View>
-      )}
+      <View style={[styles.infoCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+        <Feather name="share-2" size={18} color={colors.primary} />
+        <Text style={[styles.infoText, { color: colors.mutedForeground }]}>
+          After generating, a share sheet opens. Tap "Save to Files" or "Downloads" to store it, or send directly via WhatsApp, Gmail, etc.
+        </Text>
+      </View>
 
       <TouchableOpacity
         style={[
