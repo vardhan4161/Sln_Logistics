@@ -28,9 +28,7 @@ jobs:
           version: 9
 
       - name: 📦 Install dependencies
-        run: |
-          cd artifacts/mobile
-          pnpm install --no-frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       - name: 🛠 Prebuild Android
         run: |
