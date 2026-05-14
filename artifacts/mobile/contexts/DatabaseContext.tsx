@@ -209,7 +209,7 @@ export function DatabaseProvider({ children }: { children: React.ReactNode }) {
 
   const getTrips = useCallback((): Trip[] => {
     return db.getAllSync(
-      "SELECT * FROM trips ORDER BY created_at ASC"
+      "SELECT * FROM trips ORDER BY created_at DESC"
     );
   }, [db]);
 
