@@ -64,11 +64,10 @@ export default function NewTripScreen() {
   );
 
   const totalFreight = useMemo(() => {
-    const w = parseFloat(weight) || 0;
     const r = parseFloat(rate) || 0;
     const h = parseFloat(hamali) || 0;
-    return (w * r) + h;
-  }, [weight, rate, hamali]);
+    return r + h;
+  }, [rate, hamali]);
 
   const showToast = useCallback(
     (message: string, type: "success" | "error" | "info" = "success") => {

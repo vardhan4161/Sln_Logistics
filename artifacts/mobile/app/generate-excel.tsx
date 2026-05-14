@@ -186,41 +186,45 @@ export default function GenerateExcelScreen() {
       const b64 = XLSX.write(wb, { type: "base64", bookType: "xlsx" });
 
       if (Platform.OS === "android") {
-        const SAF = FileSystem.StorageAccessFramework;
+        try {
+          const SAF = FileSystem.StorageAccessFramework;
 
-        showToast("Choose a folder to save the Excel file…", "info");
+          showToast("Choose a folder to save the Excel file…", "info");
 
-        const perm = await SAF.requestDirectoryPermissionsAsync();
-        if (!perm.granted) {
-          showToast("Folder permission denied. Please try again.", "error");
+          const perm = await SAF.requestDirectoryPermissionsAsync();
+          if (!perm.granted) {
+            throw new Error("Folder permission denied");
+          }
+
+          const fileUri = await SAF.createFileAsync(
+            perm.directoryUri,
+            fileName,
+            MIME
+          );
+          await FileSystem.writeAsStringAsync(fileUri, b64, {
+            encoding: FileSystem.EncodingType.Base64,
+          });
+
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+          showToast(`Saved! "${fileName}" is in your chosen folder.`, "success");
+
+          const canShare = await Sharing.isAvailableAsync();
+          if (canShare) {
+            setTimeout(async () => {
+              try {
+                await Sharing.shareAsync(fileUri, {
+                  mimeType: MIME,
+                  dialogTitle: "Share SLN Logistics Excel",
+                });
+              } catch {}
+            }, 800);
+          }
           return;
+        } catch (safError) {
+          console.warn("SAF Error, falling back:", safError);
+          showToast("Folder picker failed. Saving to default folder...", "info");
+          // Fall through to the documentDirectory saving logic below
         }
-
-        const fileUri = await SAF.createFileAsync(
-          perm.directoryUri,
-          fileName,
-          MIME
-        );
-        await FileSystem.writeAsStringAsync(fileUri, b64, {
-          encoding: FileSystem.EncodingType.Base64,
-        });
-
-        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-        showToast(`Saved! "${fileName}" is in your chosen folder.`, "success");
-
-        const canShare = await Sharing.isAvailableAsync();
-        if (canShare) {
-          setTimeout(async () => {
-            try {
-              await Sharing.shareAsync(fileUri, {
-                mimeType: MIME,
-                dialogTitle: "Share SLN Logistics Excel",
-              });
-            } catch {
-            }
-          }, 800);
-        }
-        return;
       }
 
       const baseDir = FileSystem.documentDirectory;
