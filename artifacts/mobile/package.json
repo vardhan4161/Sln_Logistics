@@ -59,7 +59,7 @@
   "dependencies": {
     "@react-native-community/datetimepicker": "^8.4.4",
     "expo-file-system": "^19.0.22",
-    "expo-media-library": "^56.0.3",
+    "expo-media-library": "~18.2.1",
     "expo-sharing": "^14.0.8",
     "expo-sqlite": "^16.0.10",
     "xlsx": "^0.18.5"
