@@ -1,4 +1,4 @@
-name: Build APK
+name: Build Android APK (Native)
 on:
   push:
     branches:
@@ -11,20 +11,29 @@ jobs:
       - name: 🏗 Checkout
         uses: actions/checkout@v4
 
+      - name: 🏗 Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'zulu'
+
       - name: 🏗 Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
 
-      - name: 🏗 Setup EAS
-        uses: expo/expo-github-action@v8
-        with:
-          eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
-
       - name: 📦 Install dependencies
         run: npm install
 
-      - name: 🚀 Build APK
-        run: eas build --platform android --profile production --non-interactive
+      - name: 🚀 Build Android APK
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleRelease
+
+      - name: 📤 Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SLN-Logistics-APK
+          path: android/app/build/outputs/apk/release/app-release.apk
