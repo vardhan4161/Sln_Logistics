@@ -41,7 +41,7 @@ jobs:
         run: |
           cd artifacts/mobile/android
           chmod +x gradlew
-          ./gradlew assembleRelease
+          ./gradlew assembleRelease -PkotlinVersion=2.1.20
 
       - name: 📤 Upload Artifact
         uses: actions/upload-artifact@v4
