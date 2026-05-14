@@ -30,8 +30,12 @@ function formatDate(date: Date): string {
 export default function NewTripScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
-  const { getLocations, getVehicles, addLocation, addVehicle, addTrip, lookupRouteRate } =
-    useDB();
+  const db = useDB();
+  const { getLocations, getVehicles, addLocation, addVehicle, addTrip, lookupRouteRate } = db;
+  
+  useEffect(() => {
+    console.log("DB_CONTEXT_KEYS:", Object.keys(db));
+  }, [db]);
 
   const [date, setDate] = useState(new Date());
   const [fromLocation, setFromLocation] = useState("");
