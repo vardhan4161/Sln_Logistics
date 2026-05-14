@@ -1,7 +1,7 @@
 import { Feather } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { router } from "expo-router";
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
   Platform,
@@ -50,6 +50,12 @@ export default function NewTripScreen() {
 
   const postSaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  useEffect(() => {
+    return () => {
+      if (postSaveTimer.current) clearTimeout(postSaveTimer.current);
+    };
+  }, []);
+
   const [locationList, setLocationList] = useState<string[]>(() =>
     getLocations().map((l) => l.name)
   );
@@ -58,10 +64,11 @@ export default function NewTripScreen() {
   );
 
   const totalFreight = useMemo(() => {
+    const w = parseFloat(weight) || 0;
     const r = parseFloat(rate) || 0;
     const h = parseFloat(hamali) || 0;
-    return r + h;
-  }, [rate, hamali]);
+    return (w * r) + h;
+  }, [weight, rate, hamali]);
 
   const showToast = useCallback(
     (message: string, type: "success" | "error" | "info" = "success") => {

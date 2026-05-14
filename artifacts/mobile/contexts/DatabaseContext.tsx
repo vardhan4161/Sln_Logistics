@@ -216,10 +216,10 @@ export function DatabaseProvider({ children }: { children: React.ReactNode }) {
   const addTrip = useCallback(
     (tripData: Omit<Trip, "id" | "serial_no" | "created_at">): Trip => {
       const created_at = new Date().toISOString();
-      const countResult = db.getFirstSync<{ count: number }>(
-        "SELECT COUNT(*) as count FROM trips"
+      const maxResult = db.getFirstSync<{ max_sn: number }>(
+        "SELECT MAX(serial_no) as max_sn FROM trips"
       );
-      const serial_no = (countResult?.count ?? 0) + 1;
+      const serial_no = (maxResult?.max_sn ?? 0) + 1;
       const result = db.runSync(
         "INSERT INTO trips (serial_no, trip_date, from_location, to_location, vehicle_no, chargeable_weight, rate, hamali, total_freight, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         [

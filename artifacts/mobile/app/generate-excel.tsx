@@ -1,5 +1,5 @@
 import { Feather } from "@expo/vector-icons";
-import * as FileSystem from "expo-file-system/legacy";
+import * as FileSystem from "expo-file-system";
 import * as Haptics from "expo-haptics";
 import { useFocusEffect } from "expo-router";
 import * as Sharing from "expo-sharing";
