@@ -32,6 +32,11 @@ jobs:
           cd artifacts/mobile
           pnpm install --no-frozen-lockfile
 
+      - name: 🛠 Prebuild Android
+        run: |
+          cd artifacts/mobile
+          npx expo prebuild --platform android --non-interactive --no-install
+
       - name: 🚀 Build Android APK
         run: |
           cd artifacts/mobile/android
