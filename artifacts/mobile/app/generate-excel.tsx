@@ -1,11 +1,11 @@
 import { Feather } from "@expo/vector-icons";
+import * as FileSystem from "expo-file-system/legacy";
 import * as Haptics from "expo-haptics";
 import { useFocusEffect } from "expo-router";
 import * as Sharing from "expo-sharing";
 import React, { useCallback, useState } from "react";
 import {
   ActivityIndicator,
-  Alert,
   Platform,
   ScrollView,
   StyleSheet,
@@ -15,7 +15,6 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as XLSX from "xlsx";
-import * as FileSystem from "expo-file-system";
 
 import DatePickerField from "@/components/DatePickerField";
 import Toast from "@/components/Toast";
@@ -47,38 +46,6 @@ function monthLabel(d: Date): string {
 
 const MIME = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 
-function makeFileName(): string {
-  const now = new Date();
-  const stamp = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, "0")}${String(now.getDate()).padStart(2, "0")}_${Date.now()}`;
-  return `SLN_Logistics_${stamp}.xlsx`;
-}
-
-function buildWorkbook(tripList: Trip[]) {
-  const wb = XLSX.utils.book_new();
-  const headers = [
-    "S.No.", "Date", "From Location", "To Location", "Vehicle No",
-    "Chargeable Weight (MT)", "Rate", "Hamali", "Total Freight",
-  ];
-  const rows = tripList.map((t, i) => [
-    i + 1, t.trip_date, t.from_location, t.to_location, t.vehicle_no,
-    t.chargeable_weight, t.rate, t.hamali, t.total_freight,
-  ]);
-  const totalRow = [
-    "TOTAL", "", "", "", "",
-    tripList.reduce((s, t) => s + t.chargeable_weight, 0),
-    "",
-    tripList.reduce((s, t) => s + t.hamali, 0),
-    tripList.reduce((s, t) => s + t.total_freight, 0),
-  ];
-  const ws = XLSX.utils.aoa_to_sheet([headers, ...rows, totalRow]);
-  ws["!cols"] = [
-    { wch: 7 }, { wch: 12 }, { wch: 26 }, { wch: 26 }, { wch: 14 },
-    { wch: 22 }, { wch: 12 }, { wch: 12 }, { wch: 14 },
-  ];
-  XLSX.utils.book_append_sheet(wb, ws, "SLN Logistics Trips");
-  return wb;
-}
-
 export default function GenerateExcelScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
@@ -98,9 +65,9 @@ export default function GenerateExcelScreen() {
   useFocusEffect(useCallback(() => { setAllTrips(getTrips()); }, [getTrips]));
 
   const showToast = useCallback(
-    (message: string, type: "success" | "error" | "info" = "success") => {
-      setToast({ visible: true, message, type });
-    }, []
+    (message: string, type: "success" | "error" | "info" = "success") =>
+      setToast({ visible: true, message, type }),
+    []
   );
   const hideToast = useCallback(() => setToast((p) => ({ ...p, visible: false })), []);
 
@@ -127,21 +94,47 @@ export default function GenerateExcelScreen() {
 
   const trips = filteredTrips();
 
+  const buildWorkbook = useCallback((tripList: Trip[]) => {
+    const wb = XLSX.utils.book_new();
+    const headers = [
+      "S.No.", "Date", "From Location", "To Location", "Vehicle No",
+      "Chargeable Weight (MT)", "Rate", "Hamali", "Total Freight",
+    ];
+    const rows = tripList.map((t, i) => [
+      i + 1, t.trip_date, t.from_location, t.to_location, t.vehicle_no,
+      t.chargeable_weight, t.rate, t.hamali, t.total_freight,
+    ]);
+    const totalRow = [
+      "TOTAL", "", "", "", "",
+      tripList.reduce((s, t) => s + t.chargeable_weight, 0),
+      "",
+      tripList.reduce((s, t) => s + t.hamali, 0),
+      tripList.reduce((s, t) => s + t.total_freight, 0),
+    ];
+    const ws = XLSX.utils.aoa_to_sheet([headers, ...rows, totalRow]);
+    ws["!cols"] = [
+      { wch: 7 }, { wch: 12 }, { wch: 26 }, { wch: 26 }, { wch: 14 },
+      { wch: 22 }, { wch: 12 }, { wch: 12 }, { wch: 14 },
+    ];
+    XLSX.utils.book_append_sheet(wb, ws, "SLN Logistics Trips");
+    return wb;
+  }, []);
+
   const handleGenerate = useCallback(async () => {
     const tripList = filteredTrips();
     if (tripList.length === 0) {
       showToast("No trips in the selected date range.", "error");
       return;
     }
-
     setGenerating(true);
 
     try {
       const wb = buildWorkbook(tripList);
-      const fileName = makeFileName();
-      const b64 = XLSX.write(wb, { type: "base64", bookType: "xlsx" });
+      const now = new Date();
+      const stamp = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, "0")}${String(now.getDate()).padStart(2, "0")}`;
+      const fileName = `SLN_Logistics_${stamp}.xlsx`;
 
-      // ── WEB ────────────────────────────────────────────────────────────────
+      // ── WEB ──────────────────────────────────────────────────────────────
       if (Platform.OS === "web") {
         const buf = XLSX.write(wb, { type: "array", bookType: "xlsx" });
         const blob = new Blob([buf], { type: MIME });
@@ -154,96 +147,39 @@ export default function GenerateExcelScreen() {
         return;
       }
 
-      // ── ANDROID: try SAF folder picker first ───────────────────────────────
-      if (Platform.OS === "android") {
-        try {
-          const SAF = FileSystem.StorageAccessFramework;
-          if (SAF) {
-            showToast("Choose a folder to save the Excel file…", "info");
-            const perm = await SAF.requestDirectoryPermissionsAsync();
-            if (perm.granted) {
-              const fileUri = await SAF.createFileAsync(perm.directoryUri, fileName, MIME);
-              await FileSystem.writeAsStringAsync(fileUri, b64, {
-                encoding: FileSystem.EncodingType.Base64,
-              });
-              Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-              showToast(`✅ Saved to your chosen folder!`, "success");
-              // Also share so user can open it
-              setTimeout(async () => {
-                try {
-                  if (await Sharing.isAvailableAsync()) {
-                    await Sharing.shareAsync(fileUri, { mimeType: MIME, dialogTitle: "Open or Share Excel" });
-                  }
-                } catch {}
-              }, 700);
-              return;
-            }
-            // User cancelled folder picker — fall through to share method
-          }
-        } catch (safErr) {
-          console.warn("SAF failed:", safErr);
-          // Fall through to next method
-        }
-      }
+      // ── NATIVE (Android / iOS) ────────────────────────────────────────────
+      // Step 1: generate the base64 xlsx data
+      const b64 = XLSX.write(wb, { type: "base64", bookType: "xlsx" });
 
-      // ── UNIVERSAL FALLBACK: write to cache then share ──────────────────────
-      // This ALWAYS works on every Android/iOS device, no permissions needed.
-      // The cacheDirectory is always writable by the app sandbox.
-      let fileUri: string | null = null;
+      // Step 2: write to the app's private cache — no permissions needed,
+      //         always succeeds on every Android/iOS device.
+      const fileUri = `${FileSystem.cacheDirectory}${fileName}`;
+      await FileSystem.writeAsStringAsync(fileUri, b64, {
+        encoding: FileSystem.EncodingType.Base64,
+      });
 
-      // Try multiple directories in order of preference
-      const candidateDirs = [
-        FileSystem.cacheDirectory,
-        FileSystem.documentDirectory,
-      ].filter(Boolean) as string[];
-
-      for (const dir of candidateDirs) {
-        try {
-          const path = `${dir}${fileName}`;
-          await FileSystem.writeAsStringAsync(path, b64, {
-            encoding: FileSystem.EncodingType.Base64,
-          });
-          fileUri = path;
-          break;
-        } catch {
-          continue;
-        }
-      }
-
-      if (!fileUri) {
-        // Absolute last resort: show the user the base64 data encoded as a data URI
-        // and offer to share it via the clipboard or alert
-        Alert.alert(
-          "Storage Unavailable",
-          "Your device is blocking file creation. Please try:\n\n1. Restart the app\n2. Clear app cache in Settings\n3. Re-install the app\n\nIf the problem persists, contact support.",
-          [{ text: "OK" }]
-        );
-        return;
-      }
-
-      // Share sheet — lets user save to Downloads, WhatsApp, Gmail, etc.
-      const canShare = await Sharing.isAvailableAsync();
-      if (!canShare) {
-        showToast(`File created at: ${fileUri}`, "info");
-        return;
-      }
-
+      // Step 3: open the system share sheet so the user can pick where to save.
+      //         "Save to Files", "Downloads", WhatsApp, Gmail all appear here.
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-      showToast("Excel ready! Tap 'Save to Files' or share via WhatsApp…", "success");
+      showToast("Excel ready! Choose where to save or share it.", "success");
 
       await Sharing.shareAsync(fileUri, {
         mimeType: MIME,
-        dialogTitle: "Save or Share SLN Logistics Excel",
+        dialogTitle: "Save or Share — SLN Logistics Excel",
         UTI: "com.microsoft.excel.xlsx",
       });
 
     } catch (e: any) {
-      console.error("Excel generation error:", e);
-      showToast(`Error: ${e?.message ?? "Unknown error. Please try again."}`, "error");
+      console.error("Excel error:", e);
+      // Show the real error so we can diagnose exactly what failed
+      showToast(
+        `Failed: ${e?.message ?? JSON.stringify(e)}`,
+        "error"
+      );
     } finally {
       setGenerating(false);
     }
-  }, [filteredTrips, showToast]);
+  }, [filteredTrips, buildWorkbook, showToast]);
 
   const totalFreight = trips.reduce((s, t) => s + t.total_freight, 0);
   const totalWeight = trips.reduce((s, t) => s + t.chargeable_weight, 0);
@@ -342,11 +278,11 @@ export default function GenerateExcelScreen() {
         </View>
       )}
 
-      {/* Info card */}
+      {/* Info */}
       <View style={[styles.infoCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
-        <Feather name="info" size={18} color={colors.primary} />
+        <Feather name="share-2" size={18} color={colors.primary} />
         <Text style={[styles.infoText, { color: colors.mutedForeground }]}>
-          On Android: first a folder picker opens so you can choose where to save. If that's unavailable, the Excel opens in the share sheet — tap "Save to Files", "Downloads", WhatsApp, Gmail, etc.
+          After generating, a share sheet opens. Tap "Save to Files" or "Downloads" to store the Excel, or share directly via WhatsApp, Gmail, etc.
         </Text>
       </View>
 
