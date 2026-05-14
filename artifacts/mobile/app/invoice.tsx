@@ -105,55 +105,85 @@ export default function InvoiceScreen() {
       const period = `${fmtDot(freshStart)} to ${fmtDot(freshEnd)}`;
       const gstDisplay = `${gstPct || "0"}%`;
 
-      const buildHtml = (): string => `<!DOCTYPE html><html><head><meta charset="utf-8"/>
-      <style>
-        body{font-family:Arial,sans-serif;font-size:11px;margin:0;padding:20px;color:#000;}
-        table{width:100%;border-collapse:collapse;}
-        td,th{border:1px solid #000;padding:6px 8px;}
-        .center{text-align:center;} .bold{font-weight:bold;} .right{text-align:right;}
-        .title{font-size:18px;font-weight:bold;text-align:center;}
-        .sub{font-size:10px;text-align:center;}
-        .noborder td{border:none;}
-        .section-header{text-align:center;font-weight:bold;background:#f9f9f9;}
-      </style></head><body>
-      <table><tr><td colspan="4" class="title">${COMPANY.name}</td></tr>
-      <tr><td colspan="4" class="sub bold">${COMPANY.address},&nbsp;&nbsp;GST NO. ${COMPANY.gst},&nbsp;&nbsp;Mobile:${COMPANY.mobile}</td></tr>
-      <tr><td colspan="4" class="section-header">Tax Invoice</td></tr>
-      <tr>
-        <td colspan="2" style="vertical-align:top;width:55%;">
-          <b>To</b><br/>${CLIENT.name}<br/>${CLIENT.address1}<br/>${CLIENT.address2}<br/>
-          GST No.&nbsp;&nbsp;&nbsp;&nbsp;${CLIENT.gst}<br/>Place of Supply: ${CLIENT.place}
-        </td>
-        <td colspan="2" style="vertical-align:top;">
-          <table class="noborder"><tr><td>Inv. No.</td><td><b>${invNo}</b></td></tr>
-          <tr><td>Inv. Dt</td><td>${fmtDot(invDate)}</td></tr></table>
-        </td>
-      </tr>
-      <tr><th>Bill particulars</th><th class="right">Amount</th><th class="center">GST</th><th class="right">Total Amount</th></tr>
-      <tr>
-        <td style="padding:16px 8px;">Transportation service for the period of <b>${period}</b><br/><br/><i>as per the particulars attached</i></td>
-        <td class="right bold">${freshAmount.toLocaleString("en-IN")}</td>
-        <td class="center">${gstDisplay}</td>
-        <td class="right bold">${freshTotal.toLocaleString("en-IN")}</td>
-      </tr>
-      <tr>
-        <td class="right bold">Total</td>
-        <td class="right bold">${freshAmount.toLocaleString("en-IN")}</td>
-        <td class="center">${freshGst > 0 ? freshGst.toLocaleString("en-IN") : "-"}</td>
-        <td class="right bold">${freshTotal.toLocaleString("en-IN")}</td>
-      </tr>
-      <tr><td colspan="4" style="padding:10px 8px;"><b>Remarks:</b>&nbsp;${REMARKS}</td></tr>
-      <tr><td colspan="4" style="height:60px;text-align:right;padding:10px 20px;vertical-align:bottom;">
-        <b>for SLN Logistics</b><br/><br/><br/>Authorised Signatory
-      </td></tr>
-      </table></body></html>`;
+      const buildHtml = (): string => {
+        const tripRows = freshTrips.map(t => `
+          <tr>
+            <td class="center">${t.serial_no}</td>
+            <td class="center">${t.trip_date}</td>
+            <td class="center">${t.vehicle_no}</td>
+            <td>${t.from_location} to ${t.to_location}</td>
+            <td class="center">${t.chargeable_weight} MT</td>
+            <td class="right">${t.rate.toLocaleString("en-IN")}</td>
+            <td class="right">${t.hamali.toLocaleString("en-IN")}</td>
+            <td class="right">${t.total_freight.toLocaleString("en-IN")}</td>
+          </tr>
+        `).join("");
+
+        return `<!DOCTYPE html><html><head><meta charset="utf-8"/>
+        <style>
+          body{font-family:Arial,sans-serif;font-size:10px;margin:0;padding:20px;color:#000;}
+          table{width:100%;border-collapse:collapse;margin-bottom:20px;}
+          td,th{border:1px solid #000;padding:4px 6px;}
+          .center{text-align:center;} .bold{font-weight:bold;} .right{text-align:right;}
+          .title{font-size:16px;font-weight:bold;text-align:center;}
+          .sub{font-size:9px;text-align:center;}
+          .noborder td{border:none;padding:2px 0;}
+          .section-header{text-align:center;font-weight:bold;background:#f2f2f2;font-size:11px;padding:6px;}
+          .particulars-table th{background:#f9f9f9;}
+          .page-break{page-break-before:always;}
+        </style></head><body>
+        <!-- Summary Page -->
+        <table><tr><td colspan="4" class="title">${COMPANY.name}</td></tr>
+        <tr><td colspan="4" class="sub bold">${COMPANY.address},&nbsp;&nbsp;GST NO. ${COMPANY.gst},&nbsp;&nbsp;Mobile:${COMPANY.mobile}</td></tr>
+        <tr><td colspan="4" class="section-header">TAX INVOICE</td></tr>
+        <tr>
+          <td colspan="2" style="vertical-align:top;width:60%;">
+            <b>To</b><br/>${CLIENT.name}<br/>${CLIENT.address1}<br/>${CLIENT.address2}<br/>
+            GST No.&nbsp;&nbsp;&nbsp;&nbsp;${CLIENT.gst}<br/>Place of Supply: ${CLIENT.place}
+          </td>
+          <td colspan="2" style="vertical-align:top;">
+            <table class="noborder"><tr><td>Inv. No.</td><td><b>${invNo}</b></td></tr>
+            <tr><td>Inv. Dt</td><td>${fmtDot(invDate)}</td></tr></table>
+          </td>
+        </tr>
+        <tr><th>Bill particulars</th><th class="right">Amount</th><th class="center">GST</th><th class="right">Total Amount</th></tr>
+        <tr style="height:120px;">
+          <td style="vertical-align:top;padding:15px 10px;">Transportation service for the period of <b>${period}</b><br/><br/><i>as per the particulars attached</i></td>
+          <td class="right bold" style="vertical-align:top;padding-top:15px;">${freshAmount.toLocaleString("en-IN")}</td>
+          <td class="center" style="vertical-align:top;padding-top:15px;">${gstDisplay}</td>
+          <td class="right bold" style="vertical-align:top;padding-top:15px;">${freshTotal.toLocaleString("en-IN")}</td>
+        </tr>
+        <tr>
+          <td class="right bold">Total</td>
+          <td class="right bold">${freshAmount.toLocaleString("en-IN")}</td>
+          <td class="center">${freshGst > 0 ? freshGst.toLocaleString("en-IN") : "-"}</td>
+          <td class="right bold">${freshTotal.toLocaleString("en-IN")}</td>
+        </tr>
+        <tr><td colspan="4" style="padding:10px 8px;"><b>Remarks:</b>&nbsp;${REMARKS}</td></tr>
+        <tr><td colspan="4" style="height:80px;text-align:right;padding:10px 20px;vertical-align:bottom;">
+          <b>for SLN Logistics</b><br/><br/><br/>Authorised Signatory
+        </td></tr>
+        </table>
+
+        <!-- Particulars Page -->
+        <div class="page-break"></div>
+        <div class="title" style="margin-bottom:10px;">Trip Particulars Annexure</div>
+        <div class="center bold" style="margin-bottom:15px;">Period: ${period} | Invoice No: ${invNo}</div>
+        <table class="particulars-table">
+          <tr><th>S.No</th><th>Date</th><th>Vehicle</th><th>Route</th><th>Weight</th><th>Rate</th><th>Hamali</th><th>Total</th></tr>
+          ${tripRows}
+          <tr><td colspan="5" class="right bold">Grand Total (${freshTrips.length} trips)</td><td class="right bold" colspan="3">₹ ${freshAmount.toLocaleString("en-IN")}</td></tr>
+        </table>
+        </body></html>`;
+      };
 
       const buildXlsx = () => {
         const wb = XLSX.utils.book_new();
-        const rows: any[][] = [
+        // Summary Sheet
+        const summaryRows: any[][] = [
           [COMPANY.name, "", "", ""],
           [`${COMPANY.address}  GST NO. ${COMPANY.gst}  Mobile: ${COMPANY.mobile}`, "", "", ""],
-          ["Tax Invoice", "", "", ""],
+          ["TAX INVOICE", "", "", ""],
           ["To", "", "Inv. No.", invNo],
           [CLIENT.name, "", "Inv. Dt", fmtDot(invDate)],
           [CLIENT.address1, "", "", ""],
@@ -169,15 +199,27 @@ export default function InvoiceScreen() {
           ["", "", "for SLN Logistics", ""],
           ["", "", "Authorised Signatory", ""],
         ];
-        const ws = XLSX.utils.aoa_to_sheet(rows);
-        ws["!cols"] = [{ wch: 50 }, { wch: 14 }, { wch: 10 }, { wch: 16 }];
-        XLSX.utils.book_append_sheet(wb, ws, "Invoice");
+        const wsSummary = XLSX.utils.aoa_to_sheet(summaryRows);
+        wsSummary["!cols"] = [{ wch: 50 }, { wch: 14 }, { wch: 10 }, { wch: 16 }];
+        XLSX.utils.book_append_sheet(wb, wsSummary, "Invoice Summary");
+
+        // Particulars Sheet
+        const partHeaders = ["S.No", "Date", "Vehicle No", "From Location", "To Location", "Weight (MT)", "Rate", "Hamali", "Total"];
+        const partData = freshTrips.map(t => [t.serial_no, t.trip_date, t.vehicle_no, t.from_location, t.to_location, t.chargeable_weight, t.rate, t.hamali, t.total_freight]);
+        const wsPart = XLSX.utils.aoa_to_sheet([partHeaders, ...partData]);
+        wsPart["!cols"] = [{ wch: 6 }, { wch: 12 }, { wch: 15 }, { wch: 25 }, { wch: 25 }, { wch: 12 }, { wch: 10 }, { wch: 10 }, { wch: 12 }];
+        XLSX.utils.book_append_sheet(wb, wsPart, "Trip Particulars");
+
         return wb;
       };
 
       if (Platform.OS === "web") {
         const w = window.open("", "_blank");
-        w?.document.write(buildHtml()); w?.document.close(); w?.print();
+        if (w) {
+          w.document.write(buildHtml());
+          w.document.close();
+          setTimeout(() => { w.print(); }, 500);
+        }
         showToast("Invoice opened for printing!", "success");
         return;
       }
@@ -193,13 +235,13 @@ export default function InvoiceScreen() {
       await FileSystem.writeAsStringAsync(xlsxDest, b64, { encoding: FileSystem.EncodingType.Base64 });
 
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-      showToast(`Invoice ${invNo} created! Choose PDF or Excel to share.`, "success");
+      showToast(`Invoice ${invNo} created with ${freshTrips.length} trips!`, "success");
 
       if (await Sharing.isAvailableAsync()) {
         await Sharing.shareAsync(pdfDest, { mimeType: "application/pdf", dialogTitle: `Share Invoice ${invNo} (PDF)` });
         setTimeout(async () => {
           try { await Sharing.shareAsync(xlsxDest, { mimeType: MIME_XLSX, dialogTitle: `Share Invoice ${invNo} (Excel)` }); } catch {}
-        }, 500);
+        }, 800);
       }
     } catch (e: any) {
       showToast(`Error: ${e?.message ?? "Unknown error"}`, "error");
