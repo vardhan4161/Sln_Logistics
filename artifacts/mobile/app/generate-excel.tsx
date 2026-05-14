@@ -95,21 +95,34 @@ export default function GenerateExcelScreen() {
   const trips = filteredTrips();
 
   const buildWorkbook = useCallback((tripList: Trip[]) => {
+    // Sort oldest → newest so Excel rows go chronologically
+    const sorted = [...tripList].sort((a, b) => {
+      const toMs = (dateStr: string) => {
+        const parts = dateStr.split("/");
+        if (parts.length === 3) {
+          const [dd, mm, yyyy] = parts;
+          return new Date(parseInt(yyyy, 10), parseInt(mm, 10) - 1, parseInt(dd, 10)).getTime();
+        }
+        return new Date(dateStr).getTime();
+      };
+      return toMs(a.trip_date) - toMs(b.trip_date);
+    });
+
     const wb = XLSX.utils.book_new();
     const headers = [
       "S.No.", "Date", "From Location", "To Location", "Vehicle No",
       "Chargeable Weight (MT)", "Rate", "Hamali", "Total Freight",
     ];
-    const rows = tripList.map((t, i) => [
+    const rows = sorted.map((t, i) => [
       i + 1, t.trip_date, t.from_location, t.to_location, t.vehicle_no,
       t.chargeable_weight, t.rate, t.hamali, t.total_freight,
     ]);
     const totalRow = [
       "TOTAL", "", "", "", "",
-      tripList.reduce((s, t) => s + t.chargeable_weight, 0),
+      sorted.reduce((s, t) => s + t.chargeable_weight, 0),
       "",
-      tripList.reduce((s, t) => s + t.hamali, 0),
-      tripList.reduce((s, t) => s + t.total_freight, 0),
+      sorted.reduce((s, t) => s + t.hamali, 0),
+      sorted.reduce((s, t) => s + t.total_freight, 0),
     ];
     const ws = XLSX.utils.aoa_to_sheet([headers, ...rows, totalRow]);
     ws["!cols"] = [
