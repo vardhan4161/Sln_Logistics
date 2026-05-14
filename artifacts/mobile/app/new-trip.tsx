@@ -30,7 +30,7 @@ function formatDate(date: Date): string {
 export default function NewTripScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
-  const { getLocations, getVehicles, addLocation, addVehicle, addTrip, getRouteRate } =
+  const { getLocations, getVehicles, addLocation, addVehicle, addTrip, lookupRouteRate } =
     useDB();
 
   const [date, setDate] = useState(new Date());
@@ -93,7 +93,7 @@ export default function NewTripScreen() {
   // Auto-fill rate & hamali when from + to + weight are all set
   useEffect(() => {
     if (fromLocation && toLocation && parseFloat(weight) > 0) {
-      const found = getRouteRate(fromLocation, toLocation, parseFloat(weight));
+      const found = lookupRouteRate(fromLocation, toLocation, parseFloat(weight));
       if (found) {
         setRate(String(found.rate));
         setHamali(String(found.hamali));

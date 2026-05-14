@@ -24,7 +24,7 @@ export default function EditTripScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { getTrips, updateTrip, getLocations, addLocation, getVehicles, addVehicle, getRouteRate } = useDB();
+  const { getTrips, updateTrip, getLocations, addLocation, getVehicles, addVehicle, lookupRouteRate } = useDB();
 
   const trip = useMemo(() => getTrips().find((t) => t.id === parseInt(id ?? "0")), [id]);
   const [tripDate, setTripDate] = useState<Date>(trip ? parseDMY(trip.trip_date) : new Date());
@@ -48,7 +48,7 @@ export default function EditTripScreen() {
     // Skip on mount — only auto-fill when user actively changes route/weight
     if (isFirstRender.current) { isFirstRender.current = false; return; }
     if (fromLocation && toLocation && parseFloat(weight) > 0) {
-      const found = getRouteRate(fromLocation, toLocation, parseFloat(weight));
+      const found = lookupRouteRate(fromLocation, toLocation, parseFloat(weight));
       if (found) { setRate(String(found.rate)); setHamali(String(found.hamali)); }
     }
   }, [fromLocation, toLocation, weight]);
