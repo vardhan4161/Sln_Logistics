@@ -22,7 +22,7 @@ jobs:
           version: 11
 
       - name: Install Dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --no-frozen-lockfile --aggregate-output --ignore-scripts
 
       - name: Setup Java
         uses: actions/setup-java@v4
