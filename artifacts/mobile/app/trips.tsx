@@ -1,6 +1,6 @@
 import { Feather } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
-import { useFocusEffect } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
 import React, { useCallback, useRef, useState } from "react";
 import {
   Animated,
@@ -24,10 +24,12 @@ function TripCard({
   item,
   colors,
   onDelete,
+  onEdit,
 }: {
   item: Trip;
   colors: Colors;
   onDelete: (id: number) => void;
+  onEdit: (id: number) => void;
 }) {
   const swipeRef = useRef<Swipeable>(null);
 
@@ -65,10 +67,14 @@ function TripCard({
       friction={2}
       rightThreshold={40}
     >
-      <View style={[styles.card, { backgroundColor: colors.card, borderColor: colors.border }]}>
+      <TouchableOpacity
+        style={[styles.card, { backgroundColor: colors.card, borderColor: colors.border }]}
+        onPress={() => onEdit(item.id)}
+        activeOpacity={0.85}
+      >
         <View style={[styles.accentBar, { backgroundColor: colors.primary }]} />
         <View style={styles.cardBody}>
-          {/* Row 1: serial, vehicle, date */}
+          {/* Row 1: serial, vehicle, date, edit icon */}
           <View style={styles.cardTop}>
             <View style={[styles.snBadge, { backgroundColor: colors.secondary }]}>
               <Text style={[styles.snText, { color: colors.primary }]}>#{item.serial_no}</Text>
@@ -80,24 +86,21 @@ function TripCard({
               </Text>
             </View>
             <Text style={[styles.dateText, { color: colors.mutedForeground }]}>{item.trip_date}</Text>
+            <Feather name="edit-2" size={13} color={colors.primary} />
           </View>
 
           {/* Row 2: route */}
           <View style={styles.routeRow}>
             <View style={{ flex: 1 }}>
               <Text style={[styles.locLabel, { color: colors.mutedForeground }]}>FROM</Text>
-              <Text style={[styles.locVal, { color: colors.foreground }]} numberOfLines={1}>
-                {item.from_location}
-              </Text>
+              <Text style={[styles.locVal, { color: colors.foreground }]} numberOfLines={1}>{item.from_location}</Text>
             </View>
             <View style={[styles.arrowCircle, { backgroundColor: colors.secondary }]}>
               <Feather name="arrow-right" size={14} color={colors.primary} />
             </View>
             <View style={{ flex: 1, alignItems: "flex-end" }}>
               <Text style={[styles.locLabel, { color: colors.mutedForeground }]}>TO</Text>
-              <Text style={[styles.locVal, { color: colors.foreground }]} numberOfLines={1}>
-                {item.to_location}
-              </Text>
+              <Text style={[styles.locVal, { color: colors.foreground }]} numberOfLines={1}>{item.to_location}</Text>
             </View>
           </View>
 
@@ -106,29 +109,21 @@ function TripCard({
             <View style={styles.chips}>
               <View style={[styles.chip, { backgroundColor: colors.muted }]}>
                 <Feather name="package" size={11} color={colors.mutedForeground} />
-                <Text style={[styles.chipText, { color: colors.mutedForeground }]}>
-                  {item.chargeable_weight} MT
-                </Text>
+                <Text style={[styles.chipText, { color: colors.mutedForeground }]}>{item.chargeable_weight} MT</Text>
               </View>
               <View style={[styles.chip, { backgroundColor: colors.muted }]}>
-                <Text style={[styles.chipText, { color: colors.mutedForeground }]}>
-                  ₹{item.rate}
-                </Text>
+                <Text style={[styles.chipText, { color: colors.mutedForeground }]}>₹{item.rate}</Text>
               </View>
               {item.hamali > 0 && (
                 <View style={[styles.chip, { backgroundColor: colors.muted }]}>
-                  <Text style={[styles.chipText, { color: colors.mutedForeground }]}>
-                    H ₹{item.hamali}
-                  </Text>
+                  <Text style={[styles.chipText, { color: colors.mutedForeground }]}>H ₹{item.hamali}</Text>
                 </View>
               )}
             </View>
-            <Text style={[styles.freightAmt, { color: colors.primary }]}>
-              ₹{item.total_freight.toLocaleString("en-IN")}
-            </Text>
+            <Text style={[styles.freightAmt, { color: colors.primary }]}>₹{item.total_freight.toLocaleString("en-IN")}</Text>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     </Swipeable>
   );
 }
@@ -190,9 +185,9 @@ export default function TripsScreen() {
 
       {trips.length > 0 && (
         <View style={[styles.hintRow, { backgroundColor: colors.muted }]}>
-          <Feather name="chevrons-left" size={13} color={colors.mutedForeground} />
+          <Feather name="edit-2" size={13} color={colors.mutedForeground} />
           <Text style={[styles.hintText, { color: colors.mutedForeground }]}>
-            Swipe left on any trip to delete it
+            Tap a trip to edit • Swipe left to delete
           </Text>
         </View>
       )}
@@ -206,7 +201,7 @@ export default function TripsScreen() {
           paddingBottom: (Platform.OS === "web" ? 34 : insets.bottom) + 24,
         }}
         renderItem={({ item }) => (
-          <TripCard item={item} colors={colors} onDelete={handleDelete} />
+          <TripCard item={item} colors={colors} onDelete={handleDelete} onEdit={(id) => router.push(`/edit-trip?id=${id}` as never)} />
         )}
         ListEmptyComponent={
           <View style={styles.empty}>

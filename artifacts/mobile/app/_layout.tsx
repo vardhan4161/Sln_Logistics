@@ -40,15 +40,12 @@ function RootLayoutNav() {
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="new-trip" options={{ title: "New Trip Entry" }} />
       <Stack.Screen name="trips" options={{ title: "View Trips" }} />
-      <Stack.Screen
-        name="locations"
-        options={{ title: "Manage Locations" }}
-      />
+      <Stack.Screen name="edit-trip" options={{ title: "Edit Trip" }} />
+      <Stack.Screen name="locations" options={{ title: "Manage Locations" }} />
       <Stack.Screen name="vehicles" options={{ title: "Manage Vehicles" }} />
-      <Stack.Screen
-        name="generate-excel"
-        options={{ title: "Generate Excel" }}
-      />
+      <Stack.Screen name="generate-excel" options={{ title: "Generate Excel" }} />
+      <Stack.Screen name="invoice" options={{ title: "Generate Invoice" }} />
+      <Stack.Screen name="rates" options={{ title: "Rate Table" }} />
     </Stack>
   );
 }
