@@ -61,10 +61,13 @@
       "reactCompiler": false
     },
     "extra": {
+      "router": {
+        "origin": "https://replit.com/"
+      },
       "eas": {
-        "projectId": "5e17322e-5c7d-4d9f-a99f-dbc666095470"
+        "projectId": "7bce66f9-2e9a-43be-8198-9c9036bc4c79"
       }
     },
-    "owner": "vardhan096"
+    "owner": "vardhangoud09"
   }
 }

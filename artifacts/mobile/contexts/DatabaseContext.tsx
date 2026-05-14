@@ -227,7 +227,7 @@ export function DatabaseProvider({ children }: { children: React.ReactNode }) {
 
   // ── Trips ──────────────────────────────────────────────────────────────────
   const getTrips = useCallback((): Trip[] => {
-    return db.getAllSync("SELECT * FROM trips ORDER BY created_at DESC");
+    return db.getAllSync("SELECT * FROM trips ORDER BY trip_date DESC, serial_no DESC");
   }, [db]);
 
   const addTrip = useCallback((tripData: Omit<Trip, "id" | "serial_no" | "created_at">): Trip => {

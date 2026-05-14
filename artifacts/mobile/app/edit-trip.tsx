@@ -1,7 +1,7 @@
 import { Feather } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { router, useLocalSearchParams } from "expo-router";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -26,7 +26,7 @@ export default function EditTripScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { getTrips, updateTrip, getLocations, addLocation, getVehicles, addVehicle, getRouteRate } = useDB();
 
-  const trip = getTrips().find((t) => t.id === parseInt(id ?? "0"));
+  const trip = useMemo(() => getTrips().find((t) => t.id === parseInt(id ?? "0")), [id]);
   const [tripDate, setTripDate] = useState<Date>(trip ? parseDMY(trip.trip_date) : new Date());
   const [fromLocation, setFromLocation] = useState(trip?.from_location ?? "");
   const [toLocation, setToLocation] = useState(trip?.to_location ?? "");
@@ -37,11 +37,16 @@ export default function EditTripScreen() {
   const [saving, setSaving] = useState(false);
   const [toast, setToast] = useState<{ visible: boolean; message: string; type: "success" | "error" | "info" }>({ visible: false, message: "", type: "success" });
 
+  // Prevents auto-rate from overwriting the existing trip's rate on first render
+  const isFirstRender = useRef(true);
+
   const locations = getLocations().map((l) => l.name);
   const vehicles = getVehicles().map((v) => v.vehicle_no);
   const totalFreight = (parseFloat(rate) || 0) + (parseFloat(hamali) || 0);
 
   useEffect(() => {
+    // Skip on mount — only auto-fill when user actively changes route/weight
+    if (isFirstRender.current) { isFirstRender.current = false; return; }
     if (fromLocation && toLocation && parseFloat(weight) > 0) {
       const found = getRouteRate(fromLocation, toLocation, parseFloat(weight));
       if (found) { setRate(String(found.rate)); setHamali(String(found.hamali)); }
@@ -91,7 +96,7 @@ export default function EditTripScreen() {
       </View>
 
       <TouchableOpacity style={[styles.btn, { backgroundColor: saving ? "#888" : "#2E7D32" }]}
-        onPress={() => {
+        onPress={useCallback(() => {
           if (!fromLocation || !toLocation || !vehicleNo || !weight || !rate) {
             setToast({ visible: true, message: "Fill all required fields.", type: "error" }); return;
           }
@@ -105,7 +110,7 @@ export default function EditTripScreen() {
           setToast({ visible: true, message: "Trip updated!", type: "success" });
           setSaving(false);
           setTimeout(() => router.back(), 900);
-        }}
+        }, [fromLocation, toLocation, vehicleNo, weight, rate, hamali, tripDate, totalFreight, id, updateTrip])}
         disabled={saving} activeOpacity={0.85}>
         <Feather name="check" size={20} color="#FFF" />
         <Text style={styles.btnText}>{saving ? "Saving…" : "Save Changes"}</Text>
