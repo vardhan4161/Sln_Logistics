@@ -1,42 +1,39 @@
-name: Build Android APK
+name: Build Android APK (Native)
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: 🏗 Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          version: 11
-
-      - name: Install Dependencies
-        run: pnpm install --no-frozen-lockfile --aggregate-output --ignore-scripts
-
-      - name: Setup Java
+      - name: 🏗 Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'microsoft'
-          java-version: '21'
+          java-version: '17'
+          distribution: 'zulu'
 
-      - name: Build APK
+      - name: 🏗 Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: 📦 Install dependencies
+        run: |
+          cd artifacts/mobile
+          npm install
+
+      - name: 🚀 Build Android APK
         run: |
           cd artifacts/mobile/android
           chmod +x gradlew
-          ./gradlew assembleRelease --no-daemon
+          ./gradlew assembleRelease
 
-      - name: Upload APK
+      - name: 📤 Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: SLN-Logistics-APK
