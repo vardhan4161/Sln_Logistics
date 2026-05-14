@@ -24,6 +24,15 @@ export interface Trip {
   created_at: string;
 }
 
+export interface Route {
+  id: number;
+  from_location: string;
+  to_location: string;
+  weight_mt: number;
+  rate: number;
+  hamali: number;
+}
+
 interface DBContextType {
   getLocations: () => Location[];
   addLocation: (name: string) => Location | null;
@@ -33,7 +42,14 @@ interface DBContextType {
   deleteVehicle: (id: number) => void;
   getTrips: () => Trip[];
   addTrip: (trip: Omit<Trip, "id" | "serial_no" | "created_at">) => Trip;
+  updateTrip: (id: number, trip: Omit<Trip, "id" | "serial_no" | "created_at">) => void;
   deleteTrip: (id: number) => void;
+  getRoutes: () => Route[];
+  addRoute: (r: Omit<Route, "id">) => Route | null;
+  updateRoute: (id: number, r: Omit<Route, "id">) => void;
+  deleteRoute: (id: number) => void;
+  lookupRouteRate: (from: string, to: string, weight: number) => { rate: number; hamali: number } | null;
+  getNextInvoiceNo: (monthKey: string) => string;
 }
 
 const SEED_LOCATION_NAMES = [
@@ -93,9 +109,12 @@ export function DatabaseProvider({ children }: { children: React.ReactNode }) {
     SEED_VEHICLE_NOS.map((vehicle_no, i) => ({ id: i + 1, vehicle_no }))
   );
   const [trips, setTrips] = useState<Trip[]>([]);
+  const [routes, setRoutes] = useState<Route[]>([]);
+  const [invoiceSeqs, setInvoiceSeqs] = useState<Record<string, number>>({});
   const nextLocationId = React.useRef(SEED_LOCATION_NAMES.length + 1);
   const nextVehicleId = React.useRef(SEED_VEHICLE_NOS.length + 1);
   const nextTripId = React.useRef(1);
+  const nextRouteId = React.useRef(1);
 
   const getLocations = useCallback((): Location[] => {
     return [...locations].sort((a, b) => a.name.localeCompare(b.name));
@@ -170,6 +189,41 @@ export function DatabaseProvider({ children }: { children: React.ReactNode }) {
     setTrips((prev) => prev.filter((t) => t.id !== id));
   }, []);
 
+  const getRoutes = useCallback((): Route[] => [...routes].sort((a, b) => a.from_location.localeCompare(b.from_location)), [routes]);
+  
+  const addRoute = useCallback((r: Omit<Route, "id">): Route | null => {
+    const newRoute: Route = { id: nextRouteId.current++, ...r };
+    setRoutes((prev) => [...prev, newRoute]);
+    return newRoute;
+  }, []);
+
+  const updateRoute = useCallback((id: number, r: Omit<Route, "id">) => {
+    setRoutes((prev) => prev.map((old) => (old.id === id ? { ...old, ...r } : old)));
+  }, []);
+
+  const deleteRoute = useCallback((id: number) => {
+    setRoutes((prev) => prev.filter((r) => r.id !== id));
+  }, []);
+
+  const lookupRouteRate = useCallback((from: string, to: string, weight: number) => {
+    const matching = routes.filter(r => r.from_location === from && r.to_location === to);
+    if (matching.length === 0) return null;
+    
+    const exact = matching.find(r => r.weight_mt === weight);
+    if (exact) return { rate: exact.rate, hamali: exact.hamali };
+    
+    // Sort by closest weight
+    const closest = matching.sort((a, b) => Math.abs(a.weight_mt - weight) - Math.abs(b.weight_mt - weight))[0];
+    return { rate: closest.rate, hamali: closest.hamali };
+  }, [routes]);
+
+  const getNextInvoiceNo = useCallback((monthKey: string) => {
+    const current = invoiceSeqs[monthKey] || 0;
+    const nextSeq = current + 1;
+    setInvoiceSeqs(prev => ({ ...prev, [monthKey]: nextSeq }));
+    return `IIL/${monthKey.slice(0, 2)}/${monthKey.slice(2)}/${String(nextSeq).padStart(3, "0")}`;
+  }, [invoiceSeqs]);
+
   return (
     <DBContext.Provider
       value={{
@@ -181,7 +235,14 @@ export function DatabaseProvider({ children }: { children: React.ReactNode }) {
         deleteVehicle,
         getTrips,
         addTrip,
+        updateTrip,
         deleteTrip,
+        getRoutes,
+        addRoute,
+        updateRoute,
+        deleteRoute,
+        lookupRouteRate,
+        getNextInvoiceNo,
       }}
     >
       {children}
