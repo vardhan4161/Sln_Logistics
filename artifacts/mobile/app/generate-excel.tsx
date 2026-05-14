@@ -185,13 +185,16 @@ export default function GenerateExcelScreen() {
 
       const b64 = XLSX.write(wb, { type: "base64", bookType: "xlsx" });
 
-      const cacheDir = FileSystem.cacheDirectory;
-      if (!cacheDir) {
+      const targetDir = FileSystem.documentDirectory || FileSystem.cacheDirectory;
+      if (!targetDir) {
         showToast("Cannot access device storage.", "error");
         return;
       }
 
-      const fileUri = cacheDir + fileName;
+      const dir = targetDir + "SLN_Logistics/";
+      await FileSystem.makeDirectoryAsync(dir, { intermediates: true });
+      const fileUri = dir + fileName;
+      
       await FileSystem.writeAsStringAsync(fileUri, b64, {
         encoding: FileSystem.EncodingType.Base64,
       });
