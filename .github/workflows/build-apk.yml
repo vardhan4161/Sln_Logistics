@@ -36,8 +36,6 @@ jobs:
         run: |
           cd artifacts/mobile
           CI=1 npx expo prebuild --platform android --no-install
-          # Fix incompatibility with RN 0.76 by removing properties it doesn't support
-          sed -i '/enableBundleCompression/d' android/app/build.gradle
 
       - name: 🚀 Build Android APK
         run: |
