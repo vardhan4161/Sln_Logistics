@@ -112,7 +112,7 @@ function TripCard({
               </View>
               <View style={[styles.chip, { backgroundColor: colors.muted }]}>
                 <Text style={[styles.chipText, { color: colors.mutedForeground }]}>
-                  ₹{item.rate}/MT
+                  ₹{item.rate}
                 </Text>
               </View>
               {item.hamali > 0 && (

@@ -6,10 +6,12 @@ import * as Sharing from "expo-sharing";
 import React, { useCallback, useState } from "react";
 import {
   ActivityIndicator,
+  Alert,
   Platform,
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -22,6 +24,7 @@ import { Trip, useDB } from "@/contexts/DatabaseContext";
 import { useColors } from "@/hooks/useColors";
 
 type QuickFilter = "all" | "this_month" | "last_month" | "custom";
+type SaveMethod = "saf" | "share";
 
 function parseTripDate(dateStr: string): Date {
   const parts = dateStr.split("/");
@@ -56,6 +59,8 @@ export default function GenerateExcelScreen() {
     return new Date(d.getFullYear(), d.getMonth(), 1);
   });
   const [toDate, setToDate] = useState<Date>(new Date());
+  const [saveMethod, setSaveMethod] = useState<SaveMethod>("saf");
+  const [customFolder, setCustomFolder] = useState("");
   const [toast, setToast] = useState<{
     visible: boolean;
     message: string;
@@ -105,48 +110,45 @@ export default function GenerateExcelScreen() {
 
   const trips = filteredTrips();
 
-  const buildWorkbook = useCallback(
-    (tripList: Trip[]) => {
-      const wb = XLSX.utils.book_new();
-      const headers = [
-        "S.No.",
-        "Date",
-        "From Location",
-        "To Location",
-        "Vehicle No",
-        "Chargeable Weight (MT)",
-        "Rate",
-        "Hamali",
-        "Total Freight",
-      ];
-      const rows = tripList.map((t, i) => [
-        i + 1,
-        t.trip_date,
-        t.from_location,
-        t.to_location,
-        t.vehicle_no,
-        t.chargeable_weight,
-        t.rate,
-        t.hamali,
-        t.total_freight,
-      ]);
-      const totalRow = [
-        "TOTAL", "", "", "", "",
-        tripList.reduce((s, t) => s + t.chargeable_weight, 0),
-        "",
-        tripList.reduce((s, t) => s + t.hamali, 0),
-        tripList.reduce((s, t) => s + t.total_freight, 0),
-      ];
-      const ws = XLSX.utils.aoa_to_sheet([headers, ...rows, totalRow]);
-      ws["!cols"] = [
-        { wch: 7 }, { wch: 12 }, { wch: 26 }, { wch: 26 }, { wch: 14 },
-        { wch: 22 }, { wch: 12 }, { wch: 12 }, { wch: 14 },
-      ];
-      XLSX.utils.book_append_sheet(wb, ws, "SLN Logistics Trips");
-      return wb;
-    },
-    []
-  );
+  const buildWorkbook = useCallback((tripList: Trip[]) => {
+    const wb = XLSX.utils.book_new();
+    const headers = [
+      "S.No.",
+      "Date",
+      "From Location",
+      "To Location",
+      "Vehicle No",
+      "Chargeable Weight (MT)",
+      "Rate",
+      "Hamali",
+      "Total Freight",
+    ];
+    const rows = tripList.map((t, i) => [
+      i + 1,
+      t.trip_date,
+      t.from_location,
+      t.to_location,
+      t.vehicle_no,
+      t.chargeable_weight,
+      t.rate,
+      t.hamali,
+      t.total_freight,
+    ]);
+    const totalRow = [
+      "TOTAL", "", "", "", "",
+      tripList.reduce((s, t) => s + t.chargeable_weight, 0),
+      "",
+      tripList.reduce((s, t) => s + t.hamali, 0),
+      tripList.reduce((s, t) => s + t.total_freight, 0),
+    ];
+    const ws = XLSX.utils.aoa_to_sheet([headers, ...rows, totalRow]);
+    ws["!cols"] = [
+      { wch: 7 }, { wch: 12 }, { wch: 26 }, { wch: 26 }, { wch: 14 },
+      { wch: 22 }, { wch: 12 }, { wch: 12 }, { wch: 14 },
+    ];
+    XLSX.utils.book_append_sheet(wb, ws, "SLN Logistics Trips");
+    return wb;
+  }, []);
 
   const makeFileName = () => {
     const now = new Date();
@@ -155,6 +157,92 @@ export default function GenerateExcelScreen() {
   };
 
   const MIME = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+
+  // ── STRATEGY 1: Storage Access Framework folder picker (Android) ──────────
+  const trySAF = async (b64: string, fileName: string): Promise<boolean> => {
+    try {
+      const SAF = FileSystem.StorageAccessFramework;
+      const perm = await SAF.requestDirectoryPermissionsAsync();
+      if (!perm.granted) return false;
+
+      const fileUri = await SAF.createFileAsync(perm.directoryUri, fileName, MIME);
+      await FileSystem.writeAsStringAsync(fileUri, b64, {
+        encoding: FileSystem.EncodingType.Base64,
+      });
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      showToast(`✅ Saved to your chosen folder! Sharing now…`, "success");
+
+      const canShare = await Sharing.isAvailableAsync();
+      if (canShare) {
+        setTimeout(async () => {
+          try { await Sharing.shareAsync(fileUri, { mimeType: MIME, dialogTitle: "Share SLN Logistics Excel" }); } catch {}
+        }, 600);
+      }
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  // ── STRATEGY 2: documentDirectory / cacheDirectory → Share sheet ──────────
+  const tryInternalShare = async (b64: string, fileName: string): Promise<boolean> => {
+    try {
+      const baseDir = FileSystem.documentDirectory ?? FileSystem.cacheDirectory;
+      if (!baseDir) return false;
+
+      const dir = `${baseDir}SLN_Logistics/`;
+      await FileSystem.makeDirectoryAsync(dir, { intermediates: true });
+      const fileUri = `${dir}${fileName}`;
+      await FileSystem.writeAsStringAsync(fileUri, b64, {
+        encoding: FileSystem.EncodingType.Base64,
+      });
+
+      const canShare = await Sharing.isAvailableAsync();
+      if (!canShare) return false;
+
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      showToast("Excel ready! Tap 'Save to Files' or share via WhatsApp…", "success");
+      await Sharing.shareAsync(fileUri, {
+        mimeType: MIME,
+        dialogTitle: "Save or Share SLN Logistics Excel",
+        UTI: "com.microsoft.excel.xlsx",
+      });
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  // ── STRATEGY 3: User-typed custom folder path ─────────────────────────────
+  const tryCustomPath = async (b64: string, fileName: string): Promise<boolean> => {
+    const folder = customFolder.trim();
+    if (!folder) return false;
+    try {
+      // Ensure path starts with a valid file:// URI or absolute path
+      let dirPath = folder;
+      if (!dirPath.startsWith("file://") && !dirPath.startsWith("/")) {
+        dirPath = FileSystem.documentDirectory + dirPath.replace(/^\/+/, "");
+      }
+      if (!dirPath.endsWith("/")) dirPath += "/";
+
+      await FileSystem.makeDirectoryAsync(dirPath, { intermediates: true });
+      const fileUri = `${dirPath}${fileName}`;
+      await FileSystem.writeAsStringAsync(fileUri, b64, {
+        encoding: FileSystem.EncodingType.Base64,
+      });
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      showToast(`✅ Saved to: ${fileUri}`, "success");
+      const canShare = await Sharing.isAvailableAsync();
+      if (canShare) {
+        setTimeout(async () => {
+          try { await Sharing.shareAsync(fileUri, { mimeType: MIME, dialogTitle: "Share SLN Logistics Excel" }); } catch {}
+        }, 600);
+      }
+      return true;
+    } catch {
+      return false;
+    }
+  };
 
   const handleGenerate = useCallback(async () => {
     const tripList = filteredTrips();
@@ -168,52 +256,58 @@ export default function GenerateExcelScreen() {
       const wb = buildWorkbook(tripList);
       const fileName = makeFileName();
 
+      // ── Web ──────────────────────────────────────────────────────────────
       if (Platform.OS === "web") {
         const buffer = XLSX.write(wb, { type: "array", bookType: "xlsx" });
         const blob = new Blob([buffer], { type: MIME });
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
-        a.href = url;
-        a.download = fileName;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+        a.href = url; a.download = fileName;
+        document.body.appendChild(a); a.click();
+        document.body.removeChild(a); URL.revokeObjectURL(url);
         showToast(`${fileName} downloaded!`, "success");
         return;
       }
 
       const b64 = XLSX.write(wb, { type: "base64", bookType: "xlsx" });
 
-      const targetDir = FileSystem.documentDirectory || FileSystem.cacheDirectory;
-      if (!targetDir) {
-        showToast("Cannot access device storage.", "error");
-        return;
+      // ── Android: 3-tier fallback ─────────────────────────────────────────
+      if (Platform.OS === "android") {
+        if (saveMethod === "saf") {
+          showToast("Opening folder picker… choose where to save.", "info");
+          const ok = await trySAF(b64, fileName);
+          if (ok) return;
+          // SAF failed → fall back automatically to internal share
+          showToast("Folder picker unavailable. Trying internal storage…", "info");
+          const ok2 = await tryInternalShare(b64, fileName);
+          if (ok2) return;
+          // Both failed → offer custom path
+          Alert.alert(
+            "Storage Unavailable",
+            "Automatic saving failed. Please type a folder path in the box above and try again, or use 'Share Only' mode.",
+            [{ text: "OK" }]
+          );
+          return;
+        }
+
+        if (saveMethod === "share") {
+          const ok = await tryInternalShare(b64, fileName);
+          if (ok) return;
+          Alert.alert("Error", "Could not create the Excel file. Please try again.", [{ text: "OK" }]);
+          return;
+        }
       }
 
-      const dir = targetDir + "SLN_Logistics/";
-      await FileSystem.makeDirectoryAsync(dir, { intermediates: true });
-      const fileUri = dir + fileName;
-      
-      await FileSystem.writeAsStringAsync(fileUri, b64, {
-        encoding: FileSystem.EncodingType.Base64,
-      });
-
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-      showToast("Excel ready! Tap Save or share via WhatsApp…", "success");
-
-      await Sharing.shareAsync(fileUri, {
-        mimeType: MIME,
-        dialogTitle: "Save or Share SLN Logistics Excel",
-        UTI: "com.microsoft.excel.xlsx",
-      });
+      // ── iOS ──────────────────────────────────────────────────────────────
+      const ok = await tryInternalShare(b64, fileName);
+      if (!ok) showToast("Could not save the file. Please try again.", "error");
     } catch (e) {
       console.error("Excel error:", e);
       showToast("Failed to generate Excel. Please try again.", "error");
     } finally {
       setGenerating(false);
     }
-  }, [filteredTrips, buildWorkbook, showToast]);
+  }, [filteredTrips, buildWorkbook, showToast, saveMethod, customFolder]);
 
   const totalFreight = trips.reduce((s, t) => s + t.total_freight, 0);
   const totalWeight = trips.reduce((s, t) => s + t.chargeable_weight, 0);
@@ -241,6 +335,7 @@ export default function GenerateExcelScreen() {
         onHide={hideToast}
       />
 
+      {/* Stats */}
       <View style={[styles.statsCard, { backgroundColor: colors.primary }]}>
         <View style={styles.statItem}>
           <Feather name="list" size={22} color="rgba(255,255,255,0.8)" />
@@ -261,12 +356,12 @@ export default function GenerateExcelScreen() {
         </View>
       </View>
 
+      {/* Date Filter */}
       <View style={[styles.section, { backgroundColor: colors.card, borderColor: colors.border }]}>
         <Text style={[styles.sectionTitle, { color: colors.foreground }]}>
           <Feather name="filter" size={14} color={colors.foreground} />
           {"  "}Date Filter
         </Text>
-
         <View style={styles.quickRow}>
           {quickBtns.map((btn) => (
             <TouchableOpacity
@@ -320,7 +415,7 @@ export default function GenerateExcelScreen() {
       </View>
 
       {allTrips.length === 0 && (
-        <View style={[styles.emptyBox, { borderColor: colors.border, marginBottom: 16 }]}>
+        <View style={[styles.emptyBox, { borderColor: colors.border, marginBottom: 4 }]}>
           <Feather name="alert-circle" size={16} color={colors.mutedForeground} />
           <Text style={[styles.emptyText, { color: colors.mutedForeground }]}>
             No trips yet. Add trip entries first, then come back to export.
@@ -328,13 +423,63 @@ export default function GenerateExcelScreen() {
         </View>
       )}
 
-      <View style={[styles.infoCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
-        <Feather name="share-2" size={18} color={colors.primary} />
-        <Text style={[styles.infoText, { color: colors.mutedForeground }]}>
-          After generating, a share sheet opens. Tap "Save to Files" or "Downloads" to store it, or send directly via WhatsApp, Gmail, etc.
-        </Text>
-      </View>
+      {/* Save Method Selector (Android only) */}
+      {Platform.OS === "android" && (
+        <View style={[styles.section, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <Text style={[styles.sectionTitle, { color: colors.foreground }]}>
+            <Feather name="save" size={14} color={colors.foreground} />
+            {"  "}Save Method
+          </Text>
 
+          <View style={styles.methodRow}>
+            <TouchableOpacity
+              style={[
+                styles.methodBtn,
+                {
+                  backgroundColor: saveMethod === "saf" ? colors.primary : colors.background,
+                  borderColor: saveMethod === "saf" ? colors.primary : colors.border,
+                },
+              ]}
+              onPress={() => setSaveMethod("saf")}
+              activeOpacity={0.75}
+            >
+              <Feather name="folder" size={14} color={saveMethod === "saf" ? "#FFF" : colors.mutedForeground} />
+              <Text style={[styles.methodBtnText, { color: saveMethod === "saf" ? "#FFF" : colors.mutedForeground }]}>
+                Choose Folder
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.methodBtn,
+                {
+                  backgroundColor: saveMethod === "share" ? colors.primary : colors.background,
+                  borderColor: saveMethod === "share" ? colors.primary : colors.border,
+                },
+              ]}
+              onPress={() => setSaveMethod("share")}
+              activeOpacity={0.75}
+            >
+              <Feather name="share-2" size={14} color={saveMethod === "share" ? "#FFF" : colors.mutedForeground} />
+              <Text style={[styles.methodBtnText, { color: saveMethod === "share" ? "#FFF" : colors.mutedForeground }]}>
+                Share Only
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          {saveMethod === "saf" && (
+            <Text style={[styles.methodHint, { color: colors.mutedForeground }]}>
+              A folder picker will open. Choose Downloads or any folder you like.
+            </Text>
+          )}
+          {saveMethod === "share" && (
+            <Text style={[styles.methodHint, { color: colors.mutedForeground }]}>
+              The Excel file opens in the share sheet — tap "Save to Files", "Downloads", WhatsApp, Gmail, etc.
+            </Text>
+          )}
+        </View>
+      )}
+
+      {/* Generate Button */}
       <TouchableOpacity
         style={[
           styles.genBtn,
@@ -369,99 +514,26 @@ export default function GenerateExcelScreen() {
 
 const styles = StyleSheet.create({
   container: { padding: 16, gap: 14 },
-  statsCard: {
-    flexDirection: "row",
-    borderRadius: 16,
-    padding: 22,
-  },
+  statsCard: { flexDirection: "row", borderRadius: 16, padding: 22 },
   statItem: { flex: 1, alignItems: "center", gap: 4 },
-  statVal: {
-    color: "#FFFFFF",
-    fontSize: 17,
-    fontWeight: "700",
-    fontFamily: "Inter_700Bold",
-  },
-  statLabel: {
-    color: "rgba(255,255,255,0.75)",
-    fontSize: 11,
-    fontFamily: "Inter_400Regular",
-  },
+  statVal: { color: "#FFFFFF", fontSize: 17, fontWeight: "700", fontFamily: "Inter_700Bold" },
+  statLabel: { color: "rgba(255,255,255,0.75)", fontSize: 11, fontFamily: "Inter_400Regular" },
   statDiv: { width: 1, marginHorizontal: 8 },
-  section: {
-    borderRadius: 14,
-    borderWidth: 1,
-    padding: 14,
-    gap: 12,
-  },
-  sectionTitle: {
-    fontSize: 14,
-    fontWeight: "600",
-    fontFamily: "Inter_600SemiBold",
-  },
-  quickRow: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 8,
-  },
-  quickBtn: {
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 20,
-    borderWidth: 1,
-  },
-  quickBtnText: {
-    fontSize: 13,
-    fontFamily: "Inter_500Medium",
-  },
+  section: { borderRadius: 14, borderWidth: 1, padding: 14, gap: 12 },
+  sectionTitle: { fontSize: 14, fontWeight: "600", fontFamily: "Inter_600SemiBold" },
+  quickRow: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
+  quickBtn: { paddingHorizontal: 12, paddingVertical: 8, borderRadius: 20, borderWidth: 1 },
+  quickBtnText: { fontSize: 13, fontFamily: "Inter_500Medium" },
   customRange: { gap: 8 },
   dateRow: { flexDirection: "row", gap: 12 },
   dateCol: { flex: 1 },
-  dateLabel: {
-    fontSize: 12,
-    fontFamily: "Inter_400Regular",
-    marginBottom: 4,
-  },
-  emptyBox: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-    padding: 12,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderStyle: "dashed",
-  },
-  emptyText: {
-    flex: 1,
-    fontSize: 13,
-    fontFamily: "Inter_400Regular",
-    lineHeight: 18,
-  },
-  infoCard: {
-    flexDirection: "row",
-    gap: 12,
-    padding: 14,
-    borderRadius: 12,
-    borderWidth: 1,
-    alignItems: "flex-start",
-  },
-  infoText: {
-    flex: 1,
-    fontSize: 13,
-    lineHeight: 20,
-    fontFamily: "Inter_400Regular",
-  },
-  genBtn: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 10,
-    paddingVertical: 18,
-    borderRadius: 14,
-  },
-  genBtnText: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "700",
-    fontFamily: "Inter_700Bold",
-  },
+  dateLabel: { fontSize: 12, fontFamily: "Inter_400Regular", marginBottom: 4 },
+  emptyBox: { flexDirection: "row", alignItems: "center", gap: 10, padding: 12, borderRadius: 10, borderWidth: 1, borderStyle: "dashed" },
+  emptyText: { flex: 1, fontSize: 13, fontFamily: "Inter_400Regular", lineHeight: 18 },
+  methodRow: { flexDirection: "row", gap: 10 },
+  methodBtn: { flex: 1, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8, paddingVertical: 10, borderRadius: 10, borderWidth: 1 },
+  methodBtnText: { fontSize: 13, fontFamily: "Inter_500Medium", fontWeight: "500" },
+  methodHint: { fontSize: 12, fontFamily: "Inter_400Regular", lineHeight: 18 },
+  genBtn: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 10, paddingVertical: 18, borderRadius: 14 },
+  genBtnText: { color: "#FFFFFF", fontSize: 16, fontWeight: "700", fontFamily: "Inter_700Bold" },
 });
