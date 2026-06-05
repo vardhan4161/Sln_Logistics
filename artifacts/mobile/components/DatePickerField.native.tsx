@@ -3,7 +3,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import React, { useState } from "react";
 import { Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-import { useColors } from "@/hooks/useColors";
+import { useColors } from "../hooks/useColors";
 
 interface Props {
   date: Date;

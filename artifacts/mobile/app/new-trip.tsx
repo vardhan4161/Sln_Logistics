@@ -11,14 +11,15 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { KeyboardAwareScrollViewCompat } from "@/components/KeyboardAwareScrollViewCompat";
+import { KeyboardAwareScrollViewCompat } from "../components/KeyboardAwareScrollViewCompat";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import DatePickerField from "@/components/DatePickerField";
-import SearchableDropdown from "@/components/SearchableDropdown";
-import Toast from "@/components/Toast";
-import { useDB } from "@/contexts/DatabaseContext";
-import { useColors } from "@/hooks/useColors";
+import DatePickerField from "../components/DatePickerField";
+import SearchableDropdown from "../components/SearchableDropdown";
+import Toast from "../components/Toast";
+import { useDB } from "../contexts/DatabaseContext";
+import { useAuth } from "../contexts/AuthContext";
+import { useColors } from "../hooks/useColors";
 
 function formatDate(date: Date): string {
   const dd = String(date.getDate()).padStart(2, "0");
@@ -30,6 +31,7 @@ function formatDate(date: Date): string {
 export default function NewTripScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
+  const { userName } = useAuth();
   const db = useDB();
   const { getLocations, getVehicles, addLocation, addVehicle, addTrip, lookupRouteRate } = db;
   
@@ -125,6 +127,7 @@ export default function NewTripScreen() {
         rate: parseFloat(rate) || 0,
         hamali: parseFloat(hamali) || 0,
         total_freight: totalFreight,
+        added_by: userName,
       });
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       showToast("Trip entry saved successfully!", "success");

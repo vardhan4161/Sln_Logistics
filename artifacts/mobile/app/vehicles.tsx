@@ -15,9 +15,9 @@ import {
 import { Swipeable } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import Toast from "@/components/Toast";
-import { Vehicle, useDB } from "@/contexts/DatabaseContext";
-import { useColors } from "@/hooks/useColors";
+import Toast from "../components/Toast";
+import { Vehicle, useDB } from "../contexts/DatabaseContext";
+import { useColors } from "../hooks/useColors";
 
 function VehicleRow({
   item,
@@ -25,7 +25,7 @@ function VehicleRow({
   onDelete,
 }: {
   item: Vehicle;
-  colors: ReturnType<typeof import("@/hooks/useColors").useColors>;
+  colors: ReturnType<typeof import("../hooks/useColors").useColors>;
   onDelete: (id: number, vehicle_no: string) => void;
 }) {
   const swipeRef = useRef<Swipeable>(null);

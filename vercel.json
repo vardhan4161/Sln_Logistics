@@ -1,0 +1,16 @@
+{
+  "buildCommand": "pnpm --filter @workspace/api-server run build",
+  "builds": [
+    {
+      "src": "artifacts/api-server/api/index.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/artifacts/api-server/api/index.ts"
+    }
+  ]
+}

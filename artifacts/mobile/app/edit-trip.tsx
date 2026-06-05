@@ -5,11 +5,11 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import DatePickerField from "@/components/DatePickerField";
-import SearchableDropdown from "@/components/SearchableDropdown";
-import Toast from "@/components/Toast";
-import { useDB } from "@/contexts/DatabaseContext";
-import { useColors } from "@/hooks/useColors";
+import DatePickerField from "../components/DatePickerField";
+import SearchableDropdown from "../components/SearchableDropdown";
+import Toast from "../components/Toast";
+import { useDB } from "../contexts/DatabaseContext";
+import { useColors } from "../hooks/useColors";
 
 function parseDMY(str: string): Date {
   const p = str.split("/");

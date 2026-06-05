@@ -1,0 +1,852 @@
+﻿--------- beginning of crash
+11-08 09:40:19.735  1042  1042 F libc    : Fatal signal 6 (SIGABRT), code -1 (SI_QUEUE) in tid 1042 (init), pid 1042 (init)
+11-08 09:40:19.760  1042  1042 F libc    : Crash due to signal: crash_dump helper failed to exec, or was killed
+06-04 19:50:51.970  5742  5742 F libc    : Fatal signal 6 (SIGABRT), code -1 (SI_QUEUE) in tid 5742 (init), pid 5742 (init)
+06-04 19:50:52.043  5742  5742 F libc    : Crash due to signal: crash_dump helper failed to exec, or was killed
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: FATAL EXCEPTION: mqt_v_native
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: Process: com.slnlogistics.app, PID: 14990
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: com.facebook.react.common.JavascriptException: Error: No routes found
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: This error is located at:
+06-04 20:29:38.924 14990 15022 E AndroidRuntime:     at ContextNavigator (address at index.android.bundle:1:790046)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime:     at ExpoRoot (address at index.android.bundle:1:789689)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime:     at App (<anonymous>)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime:     at RCTView (<anonymous>)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime:     at View (address at index.android.bundle:1:459795)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime:     at AppContainer (address at index.android.bundle:1:459123), stack:
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: useStore@1:921184
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: ContextNavigator@1:790203
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: renderWithHooks@1:219127
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: updateFunctionComponent@1:237877
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: beginWork@1:245700
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: performUnitOfWork@1:264296
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: workLoopSync@1:263304
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: renderRootSync@1:263136
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: performWorkOnRoot@1:260783
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: performWorkOnRootViaSchedulerTask@1:214614
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at com.facebook.react.modules.core.ExceptionsManagerModule.reportException(ExceptionsManagerModule.kt:52)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at com.facebook.jni.NativeRunnable.run(Native Method)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadHandler.dispatchMessage(MessageQueueThreadHandler.kt:21)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.startNewBackgroundThread$lambda$1(MessageQueueThreadImpl.kt:175)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.$r8$lambda$ldnZnqelhYFctGaUKkOKYj5rxo4(Unknown Source:0)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at java.lang.Thread.run(Thread.java:1564)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: FATAL EXCEPTION: mqt_v_native
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: Process: com.slnlogistics.app, PID: 15156
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: com.facebook.react.common.JavascriptException: Error: No routes found
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: This error is located at:
+06-04 20:29:40.180 15156 15188 E AndroidRuntime:     at ContextNavigator (address at index.android.bundle:1:790046)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime:     at ExpoRoot (address at index.android.bundle:1:789689)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime:     at App (<anonymous>)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime:     at RCTView (<anonymous>)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime:     at View (address at index.android.bundle:1:459795)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime:     at AppContainer (address at index.android.bundle:1:459123), stack:
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: useStore@1:921184
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: ContextNavigator@1:790203
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: renderWithHooks@1:219127
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: updateFunctionComponent@1:237877
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: beginWork@1:245700
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: performUnitOfWork@1:264296
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: workLoopSync@1:263304
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: renderRootSync@1:263136
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: performWorkOnRoot@1:260783
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: performWorkOnRootViaSchedulerTask@1:214614
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at com.facebook.react.modules.core.ExceptionsManagerModule.reportException(ExceptionsManagerModule.kt:52)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at com.facebook.jni.NativeRunnable.run(Native Method)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadHandler.dispatchMessage(MessageQueueThreadHandler.kt:21)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.startNewBackgroundThread$lambda$1(MessageQueueThreadImpl.kt:175)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.$r8$lambda$ldnZnqelhYFctGaUKkOKYj5rxo4(Unknown Source:0)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at java.lang.Thread.run(Thread.java:1564)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: FATAL EXCEPTION: mqt_v_native
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: Process: com.slnlogistics.app, PID: 15435
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: com.facebook.react.common.JavascriptException: Error: No routes found
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: This error is located at:
+06-04 20:29:45.115 15435 15471 E AndroidRuntime:     at ContextNavigator (address at index.android.bundle:1:790046)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime:     at ExpoRoot (address at index.android.bundle:1:789689)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime:     at App (<anonymous>)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime:     at RCTView (<anonymous>)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime:     at View (address at index.android.bundle:1:459795)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime:     at AppContainer (address at index.android.bundle:1:459123), stack:
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: useStore@1:921184
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: ContextNavigator@1:790203
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: renderWithHooks@1:219127
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: updateFunctionComponent@1:237877
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: beginWork@1:245700
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: performUnitOfWork@1:264296
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: workLoopSync@1:263304
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: renderRootSync@1:263136
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: performWorkOnRoot@1:260783
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: performWorkOnRootViaSchedulerTask@1:214614
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at com.facebook.react.modules.core.ExceptionsManagerModule.reportException(ExceptionsManagerModule.kt:52)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at com.facebook.jni.NativeRunnable.run(Native Method)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadHandler.dispatchMessage(MessageQueueThreadHandler.kt:21)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.startNewBackgroundThread$lambda$1(MessageQueueThreadImpl.kt:175)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.$r8$lambda$ldnZnqelhYFctGaUKkOKYj5rxo4(Unknown Source:0)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at java.lang.Thread.run(Thread.java:1564)
+--------- beginning of system
+06-04 20:29:45.303  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'INTERFACE' not found
+06-04 20:29:45.303  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'STATE' not found
+06-04 20:29:45.303  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'TIME_NS' not found
+06-04 20:29:45.303  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'UID' not found
+06-04 20:29:46.116  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'INTERFACE' not found
+06-04 20:29:46.116  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'STATE' not found
+06-04 20:29:46.116  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'TIME_NS' not found
+06-04 20:29:46.116  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'UID' not found
+06-04 20:29:48.247  3234  7561 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+06-04 20:29:59.803  3234  3529 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:29:59.848  3234  4280 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:29:59.858  3234  3946 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:29:59.859  3234  3946 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:29:59.859  3234  3946 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:29:59.860  3234  5026 E Biometrics/FingerprintProvider/FingerprintServiceProviderExtImpl: current client is null.
+06-04 20:29:59.861  3234  5026 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:29:59.877  3234  3349 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:60
+06-04 20:29:59.881  3234  3348 E OplusStorageManagerFeature: clear Ae Be key
+06-04 20:29:59.913  3234  3999 E UAH-Framework: invalid window type -1
+06-04 20:29:59.937  3234  3876 E HandwritingModeController: Cannot get requestId: Handwriting was not initialized.
+06-04 20:30:00.012  3234  5659 E AdbDebuggingManager: Caught an exception opening the socket: java.io.IOException: Connection refused
+06-04 20:30:00.048  3234  5213 E OCvtSystemService: Cannot get map: android.system.ErrnoException: nativeBpfFdGet failed: ENOENT (No such file or directory)
+06-04 20:30:00.054  7825 15612 E ActivityThread: Failed to find provider info for subscribedfeeds
+06-04 20:30:00.055  7825 15612 E ActivityThread: Failed to find provider info for subscribedfeeds
+06-04 20:30:00.255  3234  3529 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:30:00.830  3234  3348 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:61
+06-04 20:30:07.080  3234  3529 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:30:29.855  3234  5195 E OCvtSystemService: Cannot get map: android.system.ErrnoException: nativeBpfFdGet failed: ENOENT (No such file or directory)
+06-04 20:31:10.809  3234  3860 E Orms_ManagerInner: cannot connect to orms core service!
+06-04 20:31:10.811  3234  3860 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:31:10.812  3234  3860 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:31:10.956  3234  4128 E CommSceneService: modem stationary state=0 not update, cancel notify!
+06-04 20:31:10.973  3234  4569 E OCvtSystemService: Cannot get map: android.system.ErrnoException: nativeBpfFdGet failed: ENOENT (No such file or directory)
+06-04 20:31:11.056  3234  3529 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:31:11.373  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'INTERFACE' not found
+06-04 20:31:11.374  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'STATE' not found
+06-04 20:31:11.374  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'TIME_NS' not found
+06-04 20:31:11.374  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'UID' not found
+06-04 20:31:12.190  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'INTERFACE' not found
+06-04 20:31:12.190  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'STATE' not found
+06-04 20:31:12.190  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'TIME_NS' not found
+06-04 20:31:12.190  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'UID' not found
+06-04 20:31:13.004  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'INTERFACE' not found
+06-04 20:31:13.004  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'STATE' not found
+06-04 20:31:13.004  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'TIME_NS' not found
+06-04 20:31:13.004  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'UID' not found
+06-04 20:31:15.456  3234  5213 E OCvtSystemService: Cannot get map: android.system.ErrnoException: nativeBpfFdGet failed: ENOENT (No such file or directory)
+06-04 20:31:15.460  7825 16369 E ActivityThread: Failed to find provider info for subscribedfeeds
+06-04 20:31:15.461  7825 16369 E ActivityThread: Failed to find provider info for subscribedfeeds
+06-04 20:31:15.606  3234  3379 E BatteryStatsImplExtImpl: get RefreshCounts failed
+06-04 20:31:15.697  3234  4509 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:31:15.701  3234  5213 E Biometrics/FingerprintProvider/FingerprintServiceProviderExtImpl: current client is null.
+06-04 20:31:15.702  3234  5213 E Biometrics/FingerprintProvider/FingerprintServiceProviderExtImpl: current client is null.
+06-04 20:31:15.703  3234  5213 E Biometrics/FingerprintProvider/FingerprintServiceProviderExtImpl: current client is null.
+06-04 20:31:15.863 16408 16408 E OplusCustomizePackageManager: mIOplusCustomizePackageManagerService is null
+06-04 20:31:15.863 16408 16408 E OplusCustomizePackageManager: mIOplusCustomizePackageManagerService is null
+06-04 20:31:15.864 16408 16408 E OplusCustomizePackageManager: isOplusCertificatePackage Errorjava.lang.NullPointerException: Attempt to invoke interface method 'boolean android.os.customize.IOplusCustomizePackageManagerService.isOplusCertificatePackage(java.lang.String)' on a null object reference
+06-04 20:31:16.003 16452 16452 E OplusCustomizePackageManager: mIOplusCustomizePackageManagerService is null
+06-04 20:31:16.004 16452 16452 E OplusCustomizePackageManager: mIOplusCustomizePackageManagerService is null
+06-04 20:31:16.004 16452 16452 E OplusCustomizePackageManager: isOplusCertificatePackage Errorjava.lang.NullPointerException: Attempt to invoke interface method 'boolean android.os.customize.IOplusCustomizePackageManagerService.isOplusCertificatePackage(java.lang.String)' on a null object reference
+06-04 20:31:16.055 16452 16452 E OplusCustomizePackageManager: mIOplusCustomizePackageManagerService is null
+06-04 20:31:16.055 16452 16452 E OplusCustomizePackageManager: isOplusCertificatePackage Errorjava.lang.NullPointerException: Attempt to invoke interface method 'boolean android.os.customize.IOplusCustomizePackageManagerService.isOplusCertificatePackage(java.lang.String)' on a null object reference
+06-04 20:31:16.306  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:31:16.312  3234  3379 E OplusThermalStats: Error getting package info: com.android.systemui
+06-04 20:31:16.338  3234  5024 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:62
+06-04 20:31:16.356  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:31:17.451  3234  4509 E Biometrics/FingerprintProvider/FingerprintServiceProviderExtImpl: current client is null.
+06-04 20:31:17.452  3234  4509 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:31:18.554  3234 16673 E StorageManagerService: unlockSensitiveKey fail!
+06-04 20:31:18.558  3234  4509 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:31:18.558  3234  4509 E Biometrics/FingerprintProvider/FingerprintServiceProviderExtImpl: Current client is null
+06-04 20:31:18.560  3234  3678 E Biometrics/FingerprintProvider/FingerprintServiceProviderExtImpl: current client is null.
+06-04 20:31:18.564  3234  5213 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:31:18.635  3234  3349 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:63
+06-04 20:31:18.644  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:31:18.645  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:31:18.959  3234  5659 E AdbDebuggingManager: Caught an exception opening the socket: java.io.IOException: Connection refused
+06-04 20:31:18.983  3234  4569 E BiometricScheduler: Current operation is null,no need to start watchdog
+06-04 20:31:19.131  1321  1344 E keystore2: system/security/keystore2/src/error.rs:183 - system/security/keystore2/src/security_level.rs:332
+06-04 20:31:19.131  1321  1344 E keystore2: 
+06-04 20:31:19.131  1321  1344 E keystore2: Caused by:
+06-04 20:31:19.131  1321  1344 E keystore2:     0: system/security/keystore2/src/enforcements.rs:599: matching auth token (challenge=0, userId=6013047149382568919, authId=0, authType=0x1, timestamp=355838ms) rcved=BootTime(349439) for sids [6013047149382568919] type Some(r#PASSWORD) is expired (2099s old > timeout=5s)
+06-04 20:31:19.131  1321  1344 E keystore2:     1: Error::Km(r#KEY_USER_NOT_AUTHENTICATED)
+06-04 20:31:20.566  3234  5247 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:31:20.566  3234  3379 E OplusThermalStats: Error getting package info: com.android.launcher
+06-04 20:31:20.566  3234  5247 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:31:20.566  3234  5247 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:64
+06-04 20:31:20.984  3234  5247 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:31:20.986  3234  3379 E OplusThermalStats: Error getting package info: com.android.systemui
+06-04 20:31:21.018  3234  3349 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:65
+06-04 20:31:21.023  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:31:21.069  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:31:30.282  3234  3678 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:31:30.282  3234  3678 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:31:30.282  3234  3678 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:66
+06-04 20:31:30.291  3234  3379 E OplusThermalStats: Error getting package info: com.android.launcher
+06-04 20:31:30.799  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:31:45.308  3234  3529 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:31:45.338  3234  4509 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:31:45.342  3234  3946 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:31:45.344  3234  5247 E Biometrics/FingerprintProvider/FingerprintServiceProviderExtImpl: current client is null.
+06-04 20:31:45.345  3234  5161 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:31:45.346  3234  3946 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:31:45.354  3234  3946 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+--------- beginning of main
+06-04 20:31:45.358  4362  4463 E FromGoneTransitionInteractor: Ignoring startTransition: This interactor asked to transition from GONE -> LOCKSCREEN, but we last transitioned to DOZING, not GONE. This should never happen - check currentTransitionInfoInternal or use filterRelevantKeyguardState before starting transitions.
+06-04 20:31:45.361  1649  1704 E statsd  : Stats puller failed for tag: 150134 at 2475593663001
+06-04 20:31:45.364  1265  1271 E QC-time-services: Receive Passed == base = 13, unit = 1, operation = 2, result = 0
+06-04 20:31:45.364  1606  1615 E QC-time-services: Daemon: Time-services: Waiting to acceptconnection
+06-04 20:31:45.366  1606  1615 E QC-time-services: Daemon: Time-services: Waiting to acceptconnection
+06-04 20:31:45.368  3234  3348 E AppStateEventMonitor: mTaskInfoChangeListener onVisibleTasksInfoChange param is illegal.
+06-04 20:31:45.369  3234  3348 E OplusStorageManagerFeature: clear Ae Be key
+06-04 20:31:45.371  4362  5037 E ServiceManager: error in isDeclared
+06-04 20:31:45.371  4362  5037 E ServiceManager: java.lang.SecurityException: SELinux denied for service.
+06-04 20:31:45.371  4362  5037 E ServiceManager: 	at android.os.Parcel.createExceptionOrNull(Parcel.java:3369)
+06-04 20:31:45.371  4362  5037 E ServiceManager: 	at android.os.Parcel.createException(Parcel.java:3353)
+06-04 20:31:45.371  4362  5037 E ServiceManager: 	at android.os.Parcel.readException(Parcel.java:3336)
+06-04 20:31:45.371  4362  5037 E ServiceManager: 	at android.os.Parcel.readException(Parcel.java:3278)
+06-04 20:31:45.371  4362  5037 E ServiceManager: 	at android.os.IServiceManager$Stub$Proxy.isDeclared(IServiceManager.java:656)
+06-04 20:31:45.371  4362  5037 E ServiceManager: 	at android.os.ServiceManagerProxy.isDeclared(ServiceManagerNative.java:104)
+06-04 20:31:45.371  4362  5037 E ServiceManager: 	at android.os.ServiceManager.isDeclared(ServiceManager.java:297)
+06-04 20:31:45.371  4362  5037 E ServiceManager: 	at com.pixelworks.hardware.IrisHal.<init>(go/retraceme 34ed87b5e9d8e492b7dc66c2d015cbcff445f9fd3fdc3a9624d8ce004c3ec26f:14)
+06-04 20:31:45.371  4362  5037 E ServiceManager: 	at com.oplus.systemui.biometrics.finger.udfps.OnScreenHighLightControl$Companion.access$enableDisplayIRIS(go/retraceme 34ed87b5e9d8e492b7dc66c2d015cbcff445f9fd3fdc3a9624d8ce004c3ec26f:10)
+06-04 20:31:45.371  4362  5037 E ServiceManager: 	at com.oplus.systemui.biometrics.finger.udfps.OnScreenHighLightControl.updateDisplayIRISAndColorMode(go/retraceme 34ed87b5e9d8e492b7dc66c2d015cbcff445f9fd3fdc3a9624d8ce004c3ec26f:57)
+06-04 20:31:45.371  4362  5037 E ServiceManager: 	at com.oplus.systemui.biometrics.finger.udfps.OnScreenHighLightControl.highlightControl(go/retraceme 34ed87b5e9d8e492b7dc66c2d015cbcff445f9fd3fdc3a9624d8ce004c3ec26f:155)
+06-04 20:31:45.371  4362  5037 E ServiceManager: 	at com.oplus.systemui.biometrics.finger.udfps.OnScreenHighLightControl.updateHighlightState(go/retraceme 34ed87b5e9d8e492b7dc66c2d015cbcff445f9fd3fdc3a9624d8ce004c3ec26f:37)
+06-04 20:31:45.371  4362  5037 E ServiceManager: 	at com.oplus.systemui.biometrics.finger.udfps.OnScreenFingerprintUiMech$touchEvent$2.run(go/retraceme 34ed87b5e9d8e492b7dc66c2d015cbcff445f9fd3fdc3a9624d8ce004c3ec26f:22)
+06-04 20:31:45.371  4362  5037 E ServiceManager: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:31:45.371  4362  5037 E ServiceManager: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:31:45.371  4362  5037 E ServiceManager: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:31:45.371  4362  5037 E ServiceManager: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:31:45.371  4362  5037 E ServiceManager: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+06-04 20:31:45.372  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=167, info=1, wrFlag=0, cbsize=2048, readlen=2048
+06-04 20:31:45.372  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:PALM_TO_SLEEP_IN_LOCK_NODE set to 1.
+06-04 20:31:45.373  3234  3349 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:67
+06-04 20:31:45.373  3234  3529 E SensorService: Required app com.android.server.policy.OplusScreenOffGestureManager, uid 1000, pid 3234
+06-04 20:31:45.383  4362  4362 E SystemUi--Notification: StackScroller-->changeViewPosition index = 5 mStatusBarState = 1
+06-04 20:31:45.383  4362  4362 E StackScroller: Attempting to re-position  view {com.android.systemui.statusbar.notification.emptyshade.ui.view.EmptyShadeView{be92341 GFE...C.. ......ID 56,0-1184,224 alpha=0.0 viewInfo = }}
+06-04 20:31:45.383  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:45.383  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5af0 went down
+06-04 20:31:45.383  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5af1 went down
+06-04 20:31:45.387  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5af2 went down
+06-04 20:31:45.388  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:45.392  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5af3 went down
+06-04 20:31:45.392  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:45.394  4362  4362 E LockScreenNotificationDispatcherImp: updateNotificationListOnKg size:1
+06-04 20:31:45.402  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=21, info=, wrFlag=1, cbsize=128, readlen=128
+06-04 20:31:45.402  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:DOUBLE_TAP_INDEP_NODE get gesture_type 10000
+06-04 20:31:45.402  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5a88 went down
+06-04 20:31:45.403  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:45.409  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=1, nodeFlag=21, info=, wrFlag=2, cbsize=2048, readlen=2048
+06-04 20:31:45.409  2820  2873 E OplusTouchDaemon: syna_touch_node_handle: Invalid deviceId
+06-04 20:31:45.410  2820  2873 E OplusTouchDaemon: 119118 is not over size!!
+06-04 20:31:45.410  3234  3999 E UAH-Framework: invalid window type -1
+06-04 20:31:45.411  2820  2873 E OplusTouchDaemon: update_value_count_list str=invalid_device_id_1, count=43
+06-04 20:31:45.411  3234  3365 E ColorTouchNodeManagerService: writeNodeFile failed, extradevice is not support touch node, extraDId:1
+06-04 20:31:45.412  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=21, info=2, wrFlag=0, cbsize=2048, readlen=2048
+06-04 20:31:45.412  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:DOUBLE_TAP_INDEP_NODE set gesture_type to 1
+06-04 20:31:45.413  2820  2873 E OplusTouchDaemon: ts_set_gesture_type: Successful to set 1
+06-04 20:31:45.419  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5a8d went down
+06-04 20:31:45.419  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:45.425  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5a97 went down
+06-04 20:31:45.426  1800  2047 E SDM     : DRMConnector::Perform: Connector Setting HBM_EN 58: hbm_en 9,prop_id=71
+06-04 20:31:45.426  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:45.427  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:45.427  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5a92 went down
+06-04 20:31:45.431  3234  4509 E SensorService: Required app com.oplus.gesture.server.ScreenOffGestureService, uid 10250, pid 4226
+06-04 20:31:45.431 10738 16004 E MIDASApplication: MIDASPullAtomManager: onPullAtom 150016
+06-04 20:31:45.431  2846  3222 E [FP_HAL][FPDevice]: [controlTp] open fp_enale fail, use touch hidl instead.
+06-04 20:31:45.432  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=31, info=, wrFlag=2, cbsize=2048, readlen=2048
+06-04 20:31:45.433  4362  4362 E [OPLUS_AFS_CONFIG]: Failed to open AFS config file: /proc/oplus_afs_config/afs_config
+06-04 20:31:45.433  4362  4362 E AFS_CONFIG: Failed to get scene config
+06-04 20:31:45.433  4362  4362 E OplusAfsManager: afsConfigSceneConfigGet sceneType is null
+06-04 20:31:45.434  4362  4362 E [OPLUS_AFS_CONFIG]: Failed to open AFS config file: /proc/oplus_afs_config/afs_config
+06-04 20:31:45.434  4362  4362 E AFS_CONFIG: Failed to get scene config
+06-04 20:31:45.434  4362  4362 E OplusAfsManager: afsConfigSceneConfigGet sceneType is null
+06-04 20:31:45.434  1800  3729 E SDM     : DRMConnector::Perform: Connector Setting HBM_EN 58: hbm_en 0,prop_id=71
+06-04 20:31:45.434  3234  3876 E HandwritingModeController: Cannot get requestId: Handwriting was not initialized.
+06-04 20:31:45.435  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=31, info=1, wrFlag=0, cbsize=2048, readlen=2048
+06-04 20:31:45.435  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:FP_ENABLE_NODE set fingerprint_enabled to 1
+06-04 20:31:45.435  2820  2873 E OplusTouchDaemon: ts_set_fingerprint_enable: dcValue.val = 3
+06-04 20:31:45.438  2820  2820 E OplusTouchDaemon: ts_suspend_application: +
+06-04 20:31:45.438  2820  2820 E OplusTouchDaemon: [prevent][oplus_reset_helper_points][4777]: screen state has changed. prevention reset points.
+06-04 20:31:45.438  2820  2820 E OplusTouchDaemon: ts_suspend_application: -
+06-04 20:31:45.438  3234  3234 E OplusGestureAnimationManagerPolicy: mScreenHeight:2772 mScreenWidth:1240 mRotation:0
+06-04 20:31:45.439  4362  4362 E [OPLUS_AFS_CONFIG]: Failed to open AFS config file: /proc/oplus_afs_config/afs_config
+06-04 20:31:45.439  4362  4362 E AFS_CONFIG: Failed to get scene config
+06-04 20:31:45.439  4362  4362 E OplusAfsManager: afsConfigSceneConfigGet sceneType is null
+06-04 20:31:45.439  4362  4362 E IJankManager: latencySceneEnd unknown scene 45 mScene:-1
+06-04 20:31:45.442  4362  4362 E LockScreenNotificationDispatcherImp: updateNotificationListOnKg size:1
+06-04 20:31:45.460  7808  7808 E SmartSidebar.SystemDialogReceiver: HLogµ£¬σê¥σºïσîû-->(main)onReceive() mHasRegister:true
+06-04 20:31:45.461  7808  7808 E SmartSidebar.SystemDialogSubject: HLogµ£¬σê¥σºïσîû-->(main)onReceive() action = android.intent.action.CLOSE_SYSTEM_DIALOGS
+06-04 20:31:45.461  7808  7808 E SmartSidebar.SystemDialogSubject: HLogµ£¬σê¥σºïσîû-->(main)handleCloseSystemDialog() reason = dream
+06-04 20:31:45.463  1649  1704 E statsd  : Stats puller failed for tag: 10011 at 2475666772063
+06-04 20:31:45.464  1846  1846 E android.hardware.power.stats-impl.oplus: HandleFactory::read open power_ddr_residency(/sys/power/ddr/residency) failed! fd: -1 errno: 2
+06-04 20:31:45.464  5837  5868 E ostats_pullerd: PullAtomCallback getContentByHandleKey read nodeKey: power_ddr_residency, len=0
+06-04 20:31:45.469  1846  1846 E android.hardware.power.stats-impl.oplus: HandleFactory::read open gpu_freq_table_qual(/sys/class/kgsl/kgsl-3d0/freq_table_mhz) failed! fd: -1 errno: 13
+06-04 20:31:45.470  5837  5868 E ostats_pullerd: getContentByHandleKey read nodeKey: gpu_freq_table_qual, len=0
+06-04 20:31:45.470  1846  1846 E android.hardware.power.stats-impl.oplus: HandleFactory::read open gpu_freq_time_qual(/sys/class/kgsl/kgsl-3d0/gpu_clock_stats) failed! fd: -1 errno: 13
+06-04 20:31:45.470  5837  5868 E ostats_pullerd: getContentByHandleKey read nodeKey: gpu_freq_time_qual, len=0
+06-04 20:31:45.486  2820  2873 E OplusTouchDaemon: ts_set_fingerprint_enable: Successful to set 3
+06-04 20:31:45.488 13674 13711 E WeatherS_PrivacyStatementExport: isSupportExportPrivacyVersion metaData -> true
+06-04 20:31:45.489 13674 13711 E WeatherS_PrivacyStatementExport: isAgreed-1
+06-04 20:31:45.489 10738 16004 E MIDASApplication: MIDASPullAtomManager: onPullAtom 150017
+06-04 20:31:45.491  1649  1704 E statsd  : Stats puller failed for tag: 150145 at 2475666772063
+06-04 20:31:45.491  1649  1704 E statsd  : Stats puller failed for tag: 150145 at 2475666772063
+06-04 20:31:45.491  1649  1704 E statsd  : Gauge Stats puller failed for tag: 150145 at 2475666772063
+06-04 20:31:45.491  1649  1704 E statsd  : Gauge Stats puller failed for tag: 150146 at 2475666772063
+06-04 20:31:45.497  1854  3329 E PerformanceService: storage_feature: open /sys/bus/scsi/devices/0:0:0:2/hpb_params//load_top_srgn fail
+06-04 20:31:45.754  4833  4971 E ScreenCapture: Failed to generate screen capture. Error code: -12
+06-04 20:31:45.754  4833  4971 E Blur_ScreenCapture: [captureScreenInternal] exceeds fail times limit=1
+06-04 20:31:45.759  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:31:45.760  4833  4971 E ScreenCapture: Failed to generate screen capture. Error code: -12
+06-04 20:31:45.760  4833  4971 E Blur_ScreenCapture: [captureScreenInternal] exceeds fail times limit=1
+06-04 20:31:45.766  1745  1745 E QTI PowerHAL: Failed to acquire lock for hint_id: 1040.
+06-04 20:31:45.783  3234  3529 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:31:45.798  7808 29190 E SmartSidebar.KeyguardSubject: HLogµ£¬σê¥σºïσîû-->(binder:7808_6)onScreenOff
+06-04 20:31:45.798  7808 29190 E SmartSidebar.DisplayDataManager: HLogµ£¬σê¥σºïσîû-->(binder:7808_6)toDismissExpandingPanel tag=KeyguardSubject
+06-04 20:31:45.799  1894  1894 E vendor.oplus.hardware.charger-V10-service: notifyScreenStatus: 0
+06-04 20:31:45.802  2534  3415 E RadioProxy: radioResponseCallback invalid user data or proxy
+06-04 20:31:45.803  2530  3395 E RadioProxy: radioResponseCallback invalid user data or proxy
+06-04 20:31:45.806  3234  4051 E SensorService: Required app com.oplus.systemui.aod.display.OplusWakeUpController$amdSensorListener$1, uid 10223, pid 4362
+06-04 20:31:45.807  2534  2684 E Proxy   : Unsupported message id 4001
+06-04 20:31:45.809  2530  2650 E Proxy   : Unsupported message id 4001
+06-04 20:31:45.811  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=21, info=, wrFlag=1, cbsize=128, readlen=128
+06-04 20:31:45.811  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:DOUBLE_TAP_INDEP_NODE get gesture_type 2
+06-04 20:31:45.812  4362  4362 E LockScreenNotificationDispatcherImp: updateNotificationListOnKg size:1
+06-04 20:31:45.813  3234  4051 E SensorService: Required app com.oplus.systemui.aod.display.OplusWakeUpController$amdSensorListener$1, uid 10223, pid 4362
+06-04 20:31:45.814  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=1, nodeFlag=21, info=, wrFlag=2, cbsize=2048, readlen=2048
+06-04 20:31:45.814  2820  2873 E OplusTouchDaemon: syna_touch_node_handle: Invalid deviceId
+06-04 20:31:45.814  2820  2873 E OplusTouchDaemon: 119184 is not over size!!
+06-04 20:31:45.815  2820  2873 E OplusTouchDaemon: update_value_count_list str=invalid_device_id_1, count=44
+06-04 20:31:45.816  3234  3365 E ColorTouchNodeManagerService: writeNodeFile failed, extradevice is not support touch node, extraDId:1
+06-04 20:31:45.816  3234  4011 E OplusSupplicantStaIfaceHalAidlImpl: Can't call doStringCommand, IOplusSupplicantStaIface is null
+06-04 20:31:45.817  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=21, info=65536, wrFlag=0, cbsize=2048, readlen=2048
+06-04 20:31:45.817  3234  4012 E OplusWifiPower_WakeupApp: updateCollectInfo finish
+06-04 20:31:45.822  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5af5 went down
+06-04 20:31:45.823  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:45.823  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:45.824  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5af6 went down
+06-04 20:31:45.825  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.825  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.826  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.827  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.827  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5af7 went down
+06-04 20:31:45.827  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5af8 went down
+06-04 20:31:45.827  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.827  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.830  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:45.836  3234  4051 E SensorService: Required app android.view.OrientationEventListener, uid 10223, pid 4362
+06-04 20:31:45.837  3234  5031 E OplusInputManagerService_jni: updateInvalidRegion start!!!
+06-04 20:31:45.837  3234  5031 E InputDispatcherExtImpl: rectF left: 0.000000, top: 2695.000000, right: 1240.000000, bottom: 2772.000000 offset_left: 0.000000, offset_top: 0.000000, offset_right: 0.000000, offset_bottom: 0.000000, isClosedRegion:0
+06-04 20:31:45.837  3234  5031 E OplusInputManagerService_jni: updateInvalidRegion start!!!
+06-04 20:31:45.838  3234  5031 E OplusInputManagerService_jni: updateInvalidRegion start!!!
+06-04 20:31:45.840  3234  3678 E SensorService: Required app com.oplus.systemui.keyguard.gesture.OplusDoubleClickSleep$3, uid 10223, pid 4362
+06-04 20:31:45.846  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.846  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.847  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.846  4633  4633 E DPMJ    : |SERVICE| sendScreenState state  falseand int value 0
+06-04 20:31:45.847  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.847  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.847  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.848  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.848  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.848  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.849  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.850  4833  4971 E ScreenCapture: Failed to generate screen capture. Error code: -12
+06-04 20:31:45.850  4833  4971 E Blur_ScreenCapture: [captureScreenInternal] exceeds fail times limit=1
+06-04 20:31:45.850  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.850  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.850  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.851  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.851  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.852  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.859  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.860  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.860  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.861  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.861  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.862  1745  1745 E QTI PowerHAL: Failed to acquire lock for hint_id: 1041.
+06-04 20:31:45.862  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.864  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.864  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.864  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.866  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.866  3234  4010 E OplusWifiPowerMcsTrxInfor:  no mcs information
+06-04 20:31:45.868  3234  3234 E OplusGestureAnimationManagerPolicy: mScreenHeight:2772 mScreenWidth:1240 mRotation:0
+06-04 20:31:45.869  3234  4010 E OplusWifiPowerMcsTrxInfor:  no mcs information
+06-04 20:31:45.877  3234  3678 E SensorService: Required app com.oplus.systemui.aod.sensor.backlight.OplusAODLightController$aodLuxSensorEventListener$1, uid 10223, pid 4362
+06-04 20:31:45.877  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.878  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.878  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.878  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.878  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.878  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.881  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5afa went down
+06-04 20:31:45.882  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5afb went down
+06-04 20:31:45.882  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:45.883  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:45.883  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:45.883  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5afc went down
+06-04 20:31:45.883  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5afd went down
+06-04 20:31:45.887  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.887  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.887  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.888  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.888  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.888  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.888  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.889  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.889  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:31:45.889  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:31:45.895  3234  4128 E LinkPower: [JudgeMonitorProcess] failed to deleteLastRecord, mMonitorRecordAccumulate is empty!
+06-04 20:31:45.909  1854  3329 E PerformanceService: storage_feature: open /sys/bus/scsi/devices/0:0:0:2/hpb_params//load_top_srgn fail
+06-04 20:31:45.946  7783 11494 E PTC.DEVICEMGR.DeviceInfoCollectUtil: getNetworkStatus except!;getDataNetworkTypeForSubscriber
+06-04 20:31:46.087  1746 16979 E sensors-hal: handle_sns_client_event:69, oplus lux_aod: report_ts=16, state=0.000000, ts=2476247476653
+06-04 20:31:46.150  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:31:46.154  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:31:46.156  1800  2047 E SDM     : DRMConnector::Perform: Connector Setting HBM_EN 58: hbm_en 8,prop_id=71
+06-04 20:31:46.158  4833  4971 E ScreenCapture: Failed to generate screen capture. Error code: -12
+06-04 20:31:46.158  4833  4971 E Blur_ScreenCapture: [captureScreenInternal] exceeds fail times limit=1
+06-04 20:31:46.219 10738 16003 E MIDASApplication: MIDASPullAtomManager: onPullAtom 150122
+06-04 20:31:46.320  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:wait for state switch 500ms, TIMEOUT continue...
+06-04 20:31:46.320  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:DOUBLE_TAP_INDEP_NODE set gesture_type to 8192
+06-04 20:31:46.322  2820  2873 E OplusTouchDaemon: ts_set_gesture_type: Successful to set 8192
+06-04 20:31:46.323  2820  2820 E OplusTouchDaemon: syna_hbp_main: STATE_SCREEN_OFF
+06-04 20:31:46.323  2820  2820 E OplusTouchDaemon: syna_hbp_main: in_suspend +
+06-04 20:31:46.326  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=167, info=0, wrFlag=0, cbsize=2048, readlen=2048
+06-04 20:31:46.326  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:PALM_TO_SLEEP_IN_LOCK_NODE set to 0.
+06-04 20:31:46.329  3234  3348 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:68
+06-04 20:31:46.376  4543  5743 E OplusNetlinkConnect: parse rsp msg failed!Protocol message contained an invalid tag (zero).
+06-04 20:31:46.403  3234  5213 E SensorService: Required app com.oplus.systemui.keyguard.gesture.OplusBlackScreenGestureControllExImpl$initInConstructor$2, uid 10223, pid 4362
+06-04 20:31:46.497  1647  1701 E TetherController: property_get sys.radio.data.modem_share_flag return 0, 1!
+06-04 20:31:46.514  1800  2047 E SDM     : DRMConnector::Perform: Connector Setting HBM_EN 58: hbm_en c,prop_id=71
+06-04 20:31:46.643  1854  3329 E PerformanceService: storage_feature: open /sys/devices/platform/soc/112b0000.ufshci//virtualtlcbuff fail
+06-04 20:31:47.001  2846  3282 E [FP_HAL][FingerprintMessage]: [interruptProcessFpEvent], module:0, event:4
+06-04 20:31:47.001  2846  3282 E [FP_HAL][FingerprintMessage]: [handleNetlinkMessage] event accepted,last status:3 current event: 4
+06-04 20:31:47.003  2846  3282 E [FP_HAL][FingerprintMessage]: start wait event
+06-04 20:31:47.004  2820  2820 E OplusTouchDaemon: ts_finger_down_application: +
+06-04 20:31:47.004  2820  2820 E OplusTouchDaemon: ts_finger_down_application: -
+06-04 20:31:47.004  2820  2820 E OplusTouchDaemon: syna_hbp_main: in_suspend -
+06-04 20:31:47.004  2820  2820 E OplusTouchDaemon: syna_hbp_main: in_suspend +
+06-04 20:31:47.004  2846  3222 E [FP_HAL][FactoryTest]: Brightness path index 1, path:/sys/class/backlight/panel0-backlight/brightness
+06-04 20:31:47.004  2846  3222 E [FP_HAL][FactoryTest]: get mBrightValue = 20
+06-04 20:31:47.004  2846  3222 E [FP_HAL][FactoryTest]:   length = 3 
+06-04 20:31:47.015  3234  3892 E Orms_ManagerInner: cannot connect to orms core service!
+06-04 20:31:47.017  3234  3892 E DpcExtImpl[display=0]: execuce mBlockReasonList.add reason: android.service.fingerprint:WAKEUP
+06-04 20:31:47.020  3234  3892 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:31:47.042  1800  2047 E SDM     : DRMConnector::Perform: Connector Setting HBM_EN 58: hbm_en 6,prop_id=71
+06-04 20:31:47.046 10738 16003 E MIDASApplication: MIDASPullAtomManager: onPullAtom 150016
+06-04 20:31:47.054  3234  4509 E SensorService: Required app com.oplus.systemui.preventmode.ProximitySensorEventListener, uid 10223, pid 4362
+06-04 20:31:47.056  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5aff went down
+06-04 20:31:47.056  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b00 went down
+06-04 20:31:47.056  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.058  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b01 went down
+06-04 20:31:47.058  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b02 went down
+06-04 20:31:47.058  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.064  1649  1704 E statsd  : Stats puller failed for tag: 10011 at 2477295002427
+06-04 20:31:47.065  1846  1846 E android.hardware.power.stats-impl.oplus: HandleFactory::read open power_ddr_residency(/sys/power/ddr/residency) failed! fd: -1 errno: 2
+06-04 20:31:47.065  5837  5868 E ostats_pullerd: PullAtomCallback getContentByHandleKey read nodeKey: power_ddr_residency, len=0
+06-04 20:31:47.065  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=199, info=0, wrFlag=0, cbsize=2048, readlen=2048
+06-04 20:31:47.065  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:node 199 is not supported
+06-04 20:31:47.065  2820  2873 E OplusTouchDaemon: 119250 is not over size!!
+06-04 20:31:47.065  2820  2873 E OplusTouchDaemon: update_value_count_list str=write_199_NODE_not_support, count=18
+06-04 20:31:47.065  1864  1864 E OplusTouch: some errors happened
+06-04 20:31:47.066  3234  3365 E ColorTouchNodeManagerService: IOplusTouch touchWriteNodeFile failed, dId:0
+06-04 20:31:47.066  1846  1846 E android.hardware.power.stats-impl.oplus: HandleFactory::read open gpu_freq_table_qual(/sys/class/kgsl/kgsl-3d0/freq_table_mhz) failed! fd: -1 errno: 13
+06-04 20:31:47.067  3234  3234 E OplusGestureAnimationManagerPolicy: mScreenHeight:2772 mScreenWidth:1240 mRotation:0
+06-04 20:31:47.068  5837  5868 E ostats_pullerd: getContentByHandleKey read nodeKey: gpu_freq_table_qual, len=0
+06-04 20:31:47.068  1846  1846 E android.hardware.power.stats-impl.oplus: HandleFactory::read open gpu_freq_time_qual(/sys/class/kgsl/kgsl-3d0/gpu_clock_stats) failed! fd: -1 errno: 13
+06-04 20:31:47.069  5837  5868 E ostats_pullerd: getContentByHandleKey read nodeKey: gpu_freq_time_qual, len=0
+06-04 20:31:47.074  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5afe went down
+06-04 20:31:47.075  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.076  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=1, info=, wrFlag=1, cbsize=128, readlen=128
+06-04 20:31:47.076  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:DOUBLE_TAP_ENABLE_NODE get gesture_enabled 1
+06-04 20:31:47.079 10738 16003 E MIDASApplication: MIDASPullAtomManager: onPullAtom 150017
+06-04 20:31:47.079  1649  1704 E statsd  : Stats puller failed for tag: 150145 at 2477295002427
+06-04 20:31:47.079  1649  1704 E statsd  : Stats puller failed for tag: 150145 at 2477295002427
+06-04 20:31:47.079  1649  1704 E statsd  : Gauge Stats puller failed for tag: 150145 at 2477295002427
+06-04 20:31:47.079  1649  1704 E statsd  : Gauge Stats puller failed for tag: 150146 at 2477295002427
+06-04 20:31:47.082  1746  1873 E sensors-hal: send_brightness:869, light_iface: qmi connection closed
+06-04 20:31:47.083  7781 12972 E SG::IntentProviderHelper: getPendingIntentFromIntentData succeed: null
+06-04 20:31:47.084  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=1, info=, wrFlag=1, cbsize=128, readlen=128
+06-04 20:31:47.084  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:DOUBLE_TAP_ENABLE_NODE get gesture_enabled 1
+06-04 20:31:47.089  2846  3282 E [FP_HAL][FingerprintMessage]: [interruptProcessFpEvent], module:1, event:6
+06-04 20:31:47.090  2846  3282 E [FP_HAL][FingerprintMessage]: [handleNetlinkMessage] event accepted,last status:1 current event: 6
+06-04 20:31:47.090  2846  3282 E [FP_HAL][FingerprintMessage]: start wait event
+06-04 20:31:47.091  1746 17021 E sensors-hal: handle_sns_client_event:75, pocket_event: distance = 5, up_state = 0.000000, count = 17, ts = 2477341606445
+06-04 20:31:47.116  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=194, info=0, wrFlag=0, cbsize=2048, readlen=2048
+06-04 20:31:47.116  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:node 194 is not supported
+06-04 20:31:47.116  2820  2873 E OplusTouchDaemon: 119323 is not over size!!
+06-04 20:31:47.116  2820  2873 E OplusTouchDaemon: update_value_count_list str=write_194_NODE_not_support, count=19
+06-04 20:31:47.116  1864  1864 E OplusTouch: some errors happened
+06-04 20:31:47.117  3234  3365 E ColorTouchNodeManagerService: IOplusTouch touchWriteNodeFile failed, dId:0
+06-04 20:31:47.118  3234  3346 E SensorService: Required app com.android.server.wm.WindowOrientationListener, uid 1000, pid 3234
+06-04 20:31:47.119  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b04 went down
+06-04 20:31:47.120  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.120  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.120  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b05 went down
+06-04 20:31:47.120  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b06 went down
+06-04 20:31:47.120  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.121  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.121  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b07 went down
+06-04 20:31:47.142  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=41 not supported
+06-04 20:31:47.143  1800  2047 E SDM     : DRMConnector::Perform: Connector Setting HBM_EN 58: hbm_en 7,prop_id=71
+06-04 20:31:47.147  3234  3234 E OplusGestureAnimationManagerPolicy: mScreenHeight:2772 mScreenWidth:1240 mRotation:0
+06-04 20:31:47.158  1746  1873 E sensors-hal: send_brightness:869, light_iface: qmi connection closed
+06-04 20:31:47.160  2846  3282 E [FP_HAL][FingerprintMessage]: [interruptProcessFpEvent], module:3, event:1
+06-04 20:31:47.160  2846  3282 E [FP_HAL][FingerprintMessage]: [handleNetlinkMessage] event reject,last status:3 current event: 1
+06-04 20:31:47.160  2846  3282 E [FP_HAL][FingerprintMessage]: start wait event
+06-04 20:31:47.161  4493  4493 E SatelliteController: registerForSatelliteModemStateChanged: mSatelliteSessionController is not initialized yet
+06-04 20:31:47.164  4493  4493 E SatelliteController: registerForSatelliteModemStateChanged: mSatelliteSessionController is not initialized yet
+06-04 20:31:47.178  4362  4362 E UdfpsController: Null request when onAcquired for sensorId: 1 acquiredInfo=0
+06-04 20:31:47.187  4493  4493 E SatelliteController: registerForSatelliteModemStateChanged: mSatelliteSessionController is not initialized yet
+06-04 20:31:47.190  4493  4493 E SatelliteController: registerForSatelliteModemStateChanged: mSatelliteSessionController is not initialized yet
+06-04 20:31:47.195  3234  3546 E SensorService: Required app com.oplus.vrr.OPlusAmbientBrightness, uid 1000, pid 3234
+06-04 20:31:47.197  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b09 went down
+06-04 20:31:47.197  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.197  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b0a went down
+06-04 20:31:47.197  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.197  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b0b went down
+06-04 20:31:47.197  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.198  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b0c went down
+06-04 20:31:47.198  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.201  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b0e went down
+06-04 20:31:47.201  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.201  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b0f went down
+06-04 20:31:47.201  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.202  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.202  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b10 went down
+06-04 20:31:47.202  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b11 went down
+06-04 20:31:47.202  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.205  3234  3546 E SensorService: Required app com.oplus.vrr.OPlusColorTemperature, uid 1000, pid 3234
+06-04 20:31:47.206  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b13 went down
+06-04 20:31:47.206  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.207  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b14 went down
+06-04 20:31:47.207  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.207  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.207  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b15 went down
+06-04 20:31:47.208  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b16 went down
+06-04 20:31:47.208  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.215  1800  2007 E SDM     : HWCDisplay::GetReadbackBufferFence: Failed to retrieve readback buffer fence: readback_configured_ 0, output_buffer_.release_fence for client 3 on tappoint 1 
+06-04 20:31:47.215  1800  2007 E CwbService: CWB Error
+06-04 20:31:47.215  1746  3725 E CwbClient: Failed to get rgb value.
+06-04 20:31:47.229  2846  3222 E [FP_HAL][FPDevice]: [controlTp] open fp_enale fail, use touch hidl instead.
+06-04 20:31:47.230  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=31, info=, wrFlag=2, cbsize=2048, readlen=2048
+06-04 20:31:47.230  3234  3359 E SensorService: Required app com.android.server.biometrics.log.ALSProbe, uid 1000, pid 3234
+06-04 20:31:47.230  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=31, info=0, wrFlag=0, cbsize=2048, readlen=2048
+06-04 20:31:47.230  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:FP_ENABLE_NODE set fingerprint_enabled to 0
+06-04 20:31:47.231  2820  2873 E OplusTouchDaemon: ts_set_fingerprint_enable: dcValue.val = 0
+06-04 20:31:47.231  2840  2840 E face_aidl.FaceSession: resetLockout   0
+06-04 20:31:47.231  2840  2840 E face_aidl.FaceSession: resetLockout   1
+06-04 20:31:47.231  3234  3892 E Biometrics_DEBUG: execute mBlockReasonList.clear
+06-04 20:31:47.232  3234 17051 E StorageManagerService: unlockSensitiveKey fail!
+06-04 20:31:47.233  3234  3963 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:31:47.237  7808 29190 E SmartSidebar.KeyguardSubject: HLogµ£¬σê¥σºïσîû-->(binder:7808_6)onScreenOn
+06-04 20:31:47.240  1800  2047 E SDM     : DRMConnector::Perform: Connector Setting HBM_EN 58: hbm_en 5,prop_id=71
+06-04 20:31:47.246  2534  3415 E RadioProxy: radioResponseCallback invalid user data or proxy
+06-04 20:31:47.246  2530  3395 E RadioProxy: radioResponseCallback invalid user data or proxy
+06-04 20:31:47.246  2534  2684 E Proxy   : Unsupported message id 4001
+06-04 20:31:47.246  2530  2650 E Proxy   : Unsupported message id 4001
+06-04 20:31:47.248  2846  3282 E [FP_HAL][FingerprintMessage]: [interruptProcessFpEvent], module:1, event:7
+06-04 20:31:47.248  2846  3282 E [FP_HAL][FingerprintMessage]: [handleNetlinkMessage] event reject,last status:3 current event: 7
+06-04 20:31:47.248  2846  3282 E [FP_HAL][FingerprintMessage]: start wait event
+06-04 20:31:47.257  4362  4362 E SystemUi--Keyguard: OplusKeyguardUpdateMonitorExImpl-->OlockStateUtil.safeModeEnable = false
+06-04 20:31:47.258  1649  1704 E statsd  : Stats puller failed for tag: 150134 at 2477505504667
+06-04 20:31:47.260  4362  4362 E LockScreenNotificationDispatcherImp: updateNotificationListOnKg size:1
+06-04 20:31:47.265  1800  2047 E SDM     : DRMConnector::Perform: Connector Setting HBM_EN 58: hbm_en 4,prop_id=71
+06-04 20:31:47.267  1649  1704 E statsd  : Gauge Stats puller failed for tag: 150119 at 2477505504667
+06-04 20:31:47.273  2820  2820 E OplusTouchDaemon: ts_resume_application: +
+06-04 20:31:47.273  2820  2820 E OplusTouchDaemon: [prevent][oplus_reset_helper_points][4777]: screen state has changed. prevention reset points.
+06-04 20:31:47.273  2820  2820 E OplusTouchDaemon: ts_resume_application: -
+06-04 20:31:47.273  2820  2820 E OplusTouchDaemon: syna_hbp_main: in_suspend -
+06-04 20:31:47.273  2820  2820 E OplusTouchDaemon: syna_hbp_main: STATE_SCREEN_ON
+06-04 20:31:47.273  4362  5037 E ServiceManager: error in isDeclared
+06-04 20:31:47.273  4362  5037 E ServiceManager: java.lang.SecurityException: SELinux denied for service.
+06-04 20:31:47.273  4362  5037 E ServiceManager: 	at android.os.Parcel.createExceptionOrNull(Parcel.java:3369)
+06-04 20:31:47.273  4362  5037 E ServiceManager: 	at android.os.Parcel.createException(Parcel.java:3353)
+06-04 20:31:47.273  4362  5037 E ServiceManager: 	at android.os.Parcel.readException(Parcel.java:3336)
+06-04 20:31:47.273  4362  5037 E ServiceManager: 	at android.os.Parcel.readException(Parcel.java:3278)
+06-04 20:31:47.273  4362  5037 E ServiceManager: 	at android.os.IServiceManager$Stub$Proxy.isDeclared(IServiceManager.java:656)
+06-04 20:31:47.273  4362  5037 E ServiceManager: 	at android.os.ServiceManagerProxy.isDeclared(ServiceManagerNative.java:104)
+06-04 20:31:47.273  4362  5037 E ServiceManager: 	at android.os.ServiceManager.isDeclared(ServiceManager.java:297)
+06-04 20:31:47.273  4362  5037 E ServiceManager: 	at com.pixelworks.hardware.IrisHal.<init>(go/retraceme 34ed87b5e9d8e492b7dc66c2d015cbcff445f9fd3fdc3a9624d8ce004c3ec26f:14)
+06-04 20:31:47.273  4362  5037 E ServiceManager: 	at com.oplus.systemui.biometrics.finger.udfps.OnScreenHighLightControl$Companion.access$enableDisplayIRIS(go/retraceme 34ed87b5e9d8e492b7dc66c2d015cbcff445f9fd3fdc3a9624d8ce004c3ec26f:10)
+06-04 20:31:47.273  4362  5037 E ServiceManager: 	at com.oplus.systemui.biometrics.finger.udfps.OnScreenHighLightControl.updateDisplayIRISAndColorMode(go/retraceme 34ed87b5e9d8e492b7dc66c2d015cbcff445f9fd3fdc3a9624d8ce004c3ec26f:57)
+06-04 20:31:47.273  4362  5037 E ServiceManager: 	at com.oplus.systemui.biometrics.finger.udfps.OnScreenHighLightControl.highlightControl(go/retraceme 34ed87b5e9d8e492b7dc66c2d015cbcff445f9fd3fdc3a9624d8ce004c3ec26f:155)
+06-04 20:31:47.273  4362  5037 E ServiceManager: 	at com.oplus.systemui.biometrics.finger.udfps.OnScreenHighLightControl.updateHighlightState(go/retraceme 34ed87b5e9d8e492b7dc66c2d015cbcff445f9fd3fdc3a9624d8ce004c3ec26f:37)
+06-04 20:31:47.273  4362  5037 E ServiceManager: 	at com.oplus.systemui.biometrics.finger.udfps.OnScreenFingerprintUiMech$updateHighlightState$1.run(go/retraceme 34ed87b5e9d8e492b7dc66c2d015cbcff445f9fd3fdc3a9624d8ce004c3ec26f:13)
+06-04 20:31:47.273  4362  5037 E ServiceManager: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:31:47.273  4362  5037 E ServiceManager: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:31:47.273  4362  5037 E ServiceManager: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:31:47.273  4362  5037 E ServiceManager: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:31:47.273  4362  5037 E ServiceManager: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+06-04 20:31:47.276  4833  4971 E ScreenCapture: Failed to generate screen capture. Error code: -22
+06-04 20:31:47.277  2820  2873 E OplusTouchDaemon: ts_set_fingerprint_enable: Successful to set 0
+06-04 20:31:47.278  2846  3221 E [FP_HAL][Perf]: Allcores is not set in TA, use defaulCores!
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][oplus_prevention_handle][4911]: screen state has changed. reset thr last points.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][large_judge_pos][802]: large_judge_pos: index(0) Invalid coordinate point(0 0).
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][large_judge_pos][802]: large_judge_pos: index(1) Invalid coordinate point(0 0).
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][large_judge_pos][802]: large_judge_pos: index(2) Invalid coordinate point(0 0).
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][large_judge_pos][802]: large_judge_pos: index(3) Invalid coordinate point(0 0).
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][large_judge_pos][802]: large_judge_pos: index(4) Invalid coordinate point(0 0).
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][large_judge_pos][802]: large_judge_pos: index(5) Invalid coordinate point(0 0).
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][large_judge_pos][802]: large_judge_pos: index(6) Invalid coordinate point(0 0).
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][large_judge_pos][802]: large_judge_pos: index(7) Invalid coordinate point(0 0).
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][large_judge_pos][802]: large_judge_pos: index(8) Invalid coordinate point(0 0).
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][large_judge_pos][802]: large_judge_pos: index(9) Invalid coordinate point(0 0).
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [touchEvent][ts_report_touch_data][597]: first touch point id 0 [   0    0    0    0    0    0    0](ignore)
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [touchEvent][ts_report_touch_data][597]: first touch point id 1 [   0    0    0    0    0    0    0](ignore)
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [touchEvent][ts_report_touch_data][597]: first touch point id 2 [   0    0    0    0    0    0    0](ignore)
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [touchEvent][ts_report_touch_data][597]: first touch point id 3 [   0    0    0    0    0    0    0](ignore)
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [touchEvent][ts_report_touch_data][597]: first touch point id 4 [   0    0    0    0    0    0    0](ignore)
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [touchEvent][ts_report_touch_data][597]: first touch point id 5 [   0    0    0    0    0    0    0](ignore)
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [touchEvent][ts_report_touch_data][597]: first touch point id 6 [   0    0    0    0    0    0    0](ignore)
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [touchEvent][ts_report_touch_data][597]: first touch point id 7 [   0    0    0    0    0    0    0](ignore)
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [touchEvent][ts_report_touch_data][597]: first touch point id 8 [   0    0    0    0    0    0    0](ignore)
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [touchEvent][ts_report_touch_data][597]: first touch point id 9 [   0    0    0    0    0    0    0](ignore)
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2327]: up id(0) status: 8, 1, 0, 1.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][touchup_judged_V2][2159]: touchup_judged_V2: id(0) short click mistouch.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2362]: reject id:0 for accidental touch.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2327]: up id(1) status: 8, 1, 0, 1.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][touchup_judged_V2][2159]: touchup_judged_V2: id(1) short click mistouch.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2362]: reject id:1 for accidental touch.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2327]: up id(2) status: 8, 1, 0, 1.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][touchup_judged_V2][2159]: touchup_judged_V2: id(2) short click mistouch.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2362]: reject id:2 for accidental touch.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2327]: up id(3) status: 8, 1, 0, 1.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][touchup_judged_V2][2159]: touchup_judged_V2: id(3) short click mistouch.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2362]: reject id:3 for accidental touch.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2327]: up id(4) status: 8, 1, 0, 1.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][touchup_judged_V2][2159]: touchup_judged_V2: id(4) short click mistouch.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2362]: reject id:4 for accidental touch.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2327]: up id(5) status: 8, 1, 0, 1.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][touchup_judged_V2][2159]: touchup_judged_V2: id(5) short click mistouch.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2362]: reject id:5 for accidental touch.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2327]: up id(6) status: 8, 1, 0, 1.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][touchup_judged_V2][2159]: touchup_judged_V2: id(6) short click mistouch.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2362]: reject id:6 for accidental touch.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2327]: up id(7) status: 8, 1, 0, 1.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][touchup_judged_V2][2159]: touchup_judged_V2: id(7) short click mistouch.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2362]: reject id:7 for accidental touch.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2327]: up id(8) status: 8, 1, 0, 1.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][touchup_judged_V2][2159]: touchup_judged_V2: id(8) short click mistouch.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2362]: reject id:8 for accidental touch.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2327]: up id(9) status: 8, 1, 0, 1.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][touchup_judged_V2][2159]: touchup_judged_V2: id(9) short click mistouch.
+06-04 20:31:47.281  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2362]: reject id:9 for accidental touch.
+06-04 20:31:47.282  2820  2820 E OplusTouchDaemon: [touchEvent][ts_report_touch_data][587]: first touch point id 0 [6263 24396    0    0    0    0    0]
+06-04 20:31:47.285  3234  4048 E GestureLog_OplusScreenDirectManager: current screen is locked, so return
+06-04 20:31:47.289  3234  9247 E OplusStorageUFSBandwidth: storage_io_metrics_path is /proc/oplus_storage/io_metrics/forever/
+06-04 20:31:47.293  8070  8070 E NetworkErrorMessage: (REDACTED) Invalid connectivity state: %s
+06-04 20:31:47.293  3234  9247 E OplusStorageUFSBandwidth: Bandwidth - Read: 2.56 MB/s, Write: 2.98 MB/s
+06-04 20:31:47.293  3234  9247 E OplusStorageUFSBandwidth: Task time: 4ms
+06-04 20:31:47.300  3234  5250 E SensorService: Required app com.oplus.motionsense.MotionModule, uid 1000, pid 4679
+06-04 20:31:47.306  3234  3349 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:69
+06-04 20:31:47.312  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:31:47.317  3234  4011 E OplusSupplicantStaIfaceHalAidlImpl: Can't call doStringCommand, IOplusSupplicantStaIface is null
+06-04 20:31:47.318  4833  4971 E ScreenCapture: Failed to generate screen capture. Error code: -12
+06-04 20:31:47.318  4833  4971 E Blur_ScreenCapture: [captureScreenInternal] exceeds fail times limit=1
+06-04 20:31:47.319  3234  4011 E OplusSmartScanManager: Unexpected state, don't detected scene state
+06-04 20:31:47.319  3234  4011 E OplusSmartScanManager: Unexpected state, don't detected motion state
+06-04 20:31:47.320  4696  4696 E [OPLUS_AFS_CONFIG]: Failed to open AFS config file: /proc/oplus_afs_config/afs_config
+06-04 20:31:47.320  4696  4696 E AFS_CONFIG: Failed to get scene config
+06-04 20:31:47.320  4696  4696 E OplusAfsManager: afsConfigSceneConfigGet sceneType is null
+06-04 20:31:47.322  3234  3361 E SensorService: Required app com.android.server.power.FaceDownDetector, uid 1000, pid 3234
+06-04 20:31:47.323  3234  4569 E SensorService: Required app f.a, uid 1000, pid 4127
+06-04 20:31:47.323  3234  9247 E OplusStorageUFSBandwidth: Alarm set to trigger in 10 seconds
+06-04 20:31:47.325  4696  4696 E [OPLUS_AFS_CONFIG]: Failed to open AFS config file: /proc/oplus_afs_config/afs_config
+06-04 20:31:47.325  4696  4696 E AFS_CONFIG: Failed to get scene config
+06-04 20:31:47.325  4696  4696 E OplusAfsManager: afsConfigSceneConfigGet sceneType is null
+06-04 20:31:47.332  1894  1894 E vendor.oplus.hardware.charger-V10-service: notifyScreenStatus: 1
+06-04 20:31:47.356  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5af9 went down
+06-04 20:31:47.356  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.356  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=167, info=1, wrFlag=0, cbsize=2048, readlen=2048
+06-04 20:31:47.356  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:PALM_TO_SLEEP_IN_LOCK_NODE set to 1.
+06-04 20:31:47.364  4362  4362 E LockScreenNotificationDispatcherImp: updateNotificationListOnKg size:1
+06-04 20:31:47.366  3234  4280 E OplusInputManagerService_jni: updateInvalidRegion start!!!
+06-04 20:31:47.367  3234  4280 E InputDispatcherExtImpl: rectF left: 0.000000, top: 2695.000000, right: 1240.000000, bottom: 2772.000000 offset_left: 0.000000, offset_top: -91.000000, offset_right: 0.000000, offset_bottom: 0.000000, isClosedRegion:0
+06-04 20:31:47.367  3234  5247 E OplusInputManagerService_jni: updateInvalidRegion start!!!
+06-04 20:31:47.367  3234  5247 E OplusInputManagerService_jni: updateInvalidRegion start!!!
+06-04 20:31:47.373  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5af4 went down
+06-04 20:31:47.373  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.379  2820  2820 E OplusTouchDaemon: ts_set_charger_status: Successful to set 1
+06-04 20:31:47.380  2820  2820 E OplusTouchDaemon: ts_set_gesture_type: Successful to set 8192
+06-04 20:31:47.381  3234  4569 E system_server: No package ID ff found for resource ID 0xffffffff.
+06-04 20:31:47.386  2820  2820 E OplusTouchDaemon: ts_set_high_frame: tcmGetParam success ID: 213, value: 0
+06-04 20:31:47.386  2820  2820 E OplusTouchDaemon: synaptics disable high frame success lv to 0, time to 60
+06-04 20:31:47.387  2820  2820 E OplusTouchDaemon: syna_hbp_main: STATE_RUN
+06-04 20:31:47.387  4633  4633 E DPMJ    : |SERVICE| sendScreenState state  trueand int value 1
+06-04 20:31:47.400  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b03 went down
+06-04 20:31:47.402  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.423  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=167, info=0, wrFlag=0, cbsize=2048, readlen=2048
+06-04 20:31:47.423  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:PALM_TO_SLEEP_IN_LOCK_NODE set to 0.
+06-04 20:31:47.426  1800  2047 E SDM     : DRMConnector::Perform: Connector Setting HBM_EN 58: hbm_en 0,prop_id=71
+06-04 20:31:47.429  4362  4362 E LockScreenNotificationDispatcherImp: updateNotificationListOnKg size:0
+06-04 20:31:47.437  3234  4128 E CommSceneService: modem stationary state=0 not update, cancel notify!
+06-04 20:31:47.438  3234  4128 E LinkPower: [JudgeMonitorProcess] failed to deleteLastRecord, mMonitorRecordAccumulate is empty!
+06-04 20:31:47.471  4362  4362 E [OPLUS_AFS_CONFIG]: Failed to open AFS config file: /proc/oplus_afs_config/afs_config
+06-04 20:31:47.471  4362  4362 E AFS_CONFIG: Failed to get scene config
+06-04 20:31:47.471  4362  4362 E OplusAfsManager: afsConfigSceneConfigGet sceneType is null
+06-04 20:31:47.471  4362  4362 E IJankManager: latencySceneEnd unknown scene 45 mScene:-1
+06-04 20:31:47.477  3234  4012 E OplusWifiPower_WakeupApp: updateCollectInfo finish
+06-04 20:31:47.484  4362  4362 E KeyguardViewMediator: Keyguard exit without a corresponding app to show.
+06-04 20:31:47.485 13674 13711 E WeatherS_PrivacyStatementExport: isSupportExportPrivacyVersion metaData -> true
+06-04 20:31:47.486 13674 13711 E WeatherS_PrivacyStatementExport: isAgreed-1
+06-04 20:31:47.488  4223  4532 E MSP-LOG-SDK-RateLimitManager: not_allow_invoke because of time_window_not_allow queue = [1780584150703], config = RateLimitConfig{maxCalls=1, timeWindowSeconds=7200, callIntervalSeconds=0}, ipcInvokeTimeQueueMapKey = com.heytap.nearx.tangramconfig.kit.client.ICloudCtrlServiceModule?@?Push-Overseas?@?2?@?com.heytap.mcs, has already call 1 times in 7200 seconds before
+06-04 20:31:47.488  4223  4532 E MSP-LOG-SDK-: MspSdkException{code=3014,message=com.heytap.mspsdk.ratelimit.MspRateLimitExceededException: ipc rate limit exceeded in time window}
+06-04 20:31:47.488  4223  4532 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.ratelimit.d.a(SourceFile:5)
+06-04 20:31:47.488  4223  4532 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.interceptor.c.proceed(SourceFile:5)
+06-04 20:31:47.488  4223  4532 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.proxy.c.a(SourceFile:7)
+06-04 20:31:47.488  4223  4532 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.interceptor.c.proceed(SourceFile:5)
+06-04 20:31:47.488  4223  4532 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.proxy.g.invoke(SourceFile:22)
+06-04 20:31:47.488  4223  4532 E MSP-LOG-SDK-: 	at java.lang.reflect.Proxy.invoke(Proxy.java:1006)
+06-04 20:31:47.488  4223  4532 E MSP-LOG-SDK-: 	at $Proxy21.getConfigData(Unknown Source)
+06-04 20:31:47.488  4223  4532 E MSP-LOG-SDK-: 	at com.heytap.nearx.tangramconfig.kit.client.KitProxy.getConfigData$lambda$1(SourceFile:3)
+06-04 20:31:47.488  4223  4532 E MSP-LOG-SDK-: 	at com.heytap.nearx.tangramconfig.kit.client.KitProxy.d(Unknown Source:0)
+06-04 20:31:47.488  4223  4532 E MSP-LOG-SDK-: 	at com.heytap.nearx.tangramconfig.kit.client.d.run(Unknown Source:8)
+06-04 20:31:47.488  4223  4532 E MSP-LOG-SDK-: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+06-04 20:31:47.488  4223  4532 E MSP-LOG-SDK-: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+06-04 20:31:47.488  4223  4532 E MSP-LOG-SDK-: 	at java.lang.Thread.run(Thread.java:1564)
+06-04 20:31:47.489  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=171, info=, wrFlag=2, cbsize=2048, readlen=2048
+06-04 20:31:47.492 13674 13711 E WeatherS_WeatherCommonServiceProxy: getLocationCityInfo
+06-04 20:31:47.492  4362  4362 E LockScreenNotificationDispatcherImp: updateNotificationListOnKg size:0
+06-04 20:31:47.493  4223  4472 E MSP-LOG-SDK-RateLimitManager: not_allow_invoke because of time_window_not_allow queue = [1780578405352], config = RateLimitConfig{maxCalls=1, timeWindowSeconds=21600, callIntervalSeconds=0}, ipcInvokeTimeQueueMapKey = com.heytap.nearx.tangramconfig.kit.client.ICloudCtrlServiceModule?@?Push-Overseas?@?1?@?com.heytap.mcs, has already call 1 times in 21600 seconds before
+06-04 20:31:47.493  4223  4472 E MSP-LOG-SDK-: MspSdkException{code=3014,message=com.heytap.mspsdk.ratelimit.MspRateLimitExceededException: ipc rate limit exceeded in time window}
+06-04 20:31:47.493  4223  4472 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.ratelimit.d.a(SourceFile:5)
+06-04 20:31:47.493  4223  4472 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.interceptor.c.proceed(SourceFile:5)
+06-04 20:31:47.493  4223  4472 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.proxy.c.a(SourceFile:7)
+06-04 20:31:47.493  4223  4472 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.interceptor.c.proceed(SourceFile:5)
+06-04 20:31:47.493  4223  4472 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.proxy.g.invoke(SourceFile:22)
+06-04 20:31:47.493  4223  4472 E MSP-LOG-SDK-: 	at java.lang.reflect.Proxy.invoke(Proxy.java:1006)
+06-04 20:31:47.493  4223  4472 E MSP-LOG-SDK-: 	at $Proxy21.getDynamicCondition(Unknown Source)
+06-04 20:31:47.493  4223  4472 E MSP-LOG-SDK-: 	at com.heytap.nearx.tangramconfig.kit.client.KitProxy.getDynamicCondition$lambda$0(SourceFile:3)
+06-04 20:31:47.493  4223  4472 E MSP-LOG-SDK-: 	at com.heytap.nearx.tangramconfig.kit.client.KitProxy.b(Unknown Source:0)
+06-04 20:31:47.493  4223  4472 E MSP-LOG-SDK-: 	at com.heytap.nearx.tangramconfig.kit.client.b.run(Unknown Source:8)
+06-04 20:31:47.493  4223  4472 E MSP-LOG-SDK-: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+06-04 20:31:47.493  4223  4472 E MSP-LOG-SDK-: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+06-04 20:31:47.493  4223  4472 E MSP-LOG-SDK-: 	at java.lang.Thread.run(Thread.java:1564)
+06-04 20:31:47.494  4223  4450 E MSP-LOG-SDK-RateLimitManager: not_allow_invoke because of time_window_not_allow queue = [1780584150749], config = RateLimitConfig{maxCalls=1, timeWindowSeconds=7200, callIntervalSeconds=0}, ipcInvokeTimeQueueMapKey = com.heytap.nearx.tangramconfig.kit.client.ICloudCtrlServiceModule?@?Push-Overseas?@?4?@?com.heytap.mcs, has already call 1 times in 7200 seconds before
+06-04 20:31:47.494  4223  4450 E MSP-LOG-SDK-: MspSdkException{code=3014,message=com.heytap.mspsdk.ratelimit.MspRateLimitExceededException: ipc rate limit exceeded in time window}
+06-04 20:31:47.494  4223  4450 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.ratelimit.d.a(SourceFile:5)
+06-04 20:31:47.494  4223  4450 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.interceptor.c.proceed(SourceFile:5)
+06-04 20:31:47.494  4223  4450 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.proxy.c.a(SourceFile:7)
+06-04 20:31:47.494  4223  4450 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.interceptor.c.proceed(SourceFile:5)
+06-04 20:31:47.494  4223  4450 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.proxy.g.invoke(SourceFile:22)
+06-04 20:31:47.494  4223  4450 E MSP-LOG-SDK-: 	at java.lang.reflect.Proxy.invoke(Proxy.java:1006)
+06-04 20:31:47.494  4223  4450 E MSP-LOG-SDK-: 	at $Proxy21.checkUpdateConfig(Unknown Source)
+06-04 20:31:47.494  4223  4450 E MSP-LOG-SDK-: 	at com.heytap.nearx.tangramconfig.kit.client.KitProxy.checkUpdateConfig$lambda$3(SourceFile:3)
+06-04 20:31:47.494  4223  4450 E MSP-LOG-SDK-: 	at com.heytap.nearx.tangramconfig.kit.client.KitProxy.c(Unknown Source:0)
+06-04 20:31:47.494  4223  4450 E MSP-LOG-SDK-: 	at com.heytap.nearx.tangramconfig.kit.client.c.run(Unknown Source:8)
+06-04 20:31:47.494  4223  4450 E MSP-LOG-SDK-: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+06-04 20:31:47.494  4223  4450 E MSP-LOG-SDK-: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+06-04 20:31:47.494  4223  4450 E MSP-LOG-SDK-: 	at java.lang.Thread.run(Thread.java:1564)
+06-04 20:31:47.495 13674 13711 E WeatherS_WeatherCommonServiceProxy: getTimeZoneOfAttendCity
+06-04 20:31:47.495 13674 13711 E WeatherS_WeatherCommonServiceProxy: getOneAttentCityWeatherInfoList
+06-04 20:31:47.498  4223  4468 E MSP-LOG-SDK-RateLimitManager: not_allow_invoke because of time_window_not_allow queue = [1780578405352], config = RateLimitConfig{maxCalls=1, timeWindowSeconds=21600, callIntervalSeconds=0}, ipcInvokeTimeQueueMapKey = com.heytap.nearx.tangramconfig.kit.client.ICloudCtrlServiceModule?@?Push-Overseas?@?1?@?com.heytap.mcs, has already call 1 times in 21600 seconds before
+06-04 20:31:47.498  4223  4468 E MSP-LOG-SDK-: MspSdkException{code=3014,message=com.heytap.mspsdk.ratelimit.MspRateLimitExceededException: ipc rate limit exceeded in time window}
+06-04 20:31:47.498  4223  4468 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.ratelimit.d.a(SourceFile:5)
+06-04 20:31:47.498  4223  4468 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.interceptor.c.proceed(SourceFile:5)
+06-04 20:31:47.498  4223  4468 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.proxy.c.a(SourceFile:7)
+06-04 20:31:47.498  4223  4468 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.interceptor.c.proceed(SourceFile:5)
+06-04 20:31:47.498  4223  4468 E MSP-LOG-SDK-: 	at com.heytap.mspsdk.proxy.g.invoke(SourceFile:22)
+06-04 20:31:47.498  4223  4468 E MSP-LOG-SDK-: 	at java.lang.reflect.Proxy.invoke(Proxy.java:1006)
+06-04 20:31:47.498  4223  4468 E MSP-LOG-SDK-: 	at $Proxy21.getDynamicCondition(Unknown Source)
+06-04 20:31:47.498  4223  4468 E MSP-LOG-SDK-: 	at com.heytap.nearx.tangramconfig.kit.client.KitProxy.getDynamicCondition$lambda$0(SourceFile:3)
+06-04 20:31:47.498  4223  4468 E MSP-LOG-SDK-: 	at com.heytap.nearx.tangramconfig.kit.client.KitProxy.b(Unknown Source:0)
+06-04 20:31:47.498  4223  4468 E MSP-LOG-SDK-: 	at com.heytap.nearx.tangramconfig.kit.client.b.run(Unknown Source:8)
+06-04 20:31:47.498  4223  4468 E MSP-LOG-SDK-: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+06-04 20:31:47.498  4223  4468 E MSP-LOG-SDK-: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+06-04 20:31:47.498  4223  4468 E MSP-LOG-SDK-: 	at java.lang.Thread.run(Thread.java:1564)
+06-04 20:31:47.502  3234  4841 E system_server: No package ID ff found for resource ID 0xffffffff.
+06-04 20:31:47.507  2846  2846 E [FP_HAL][HeartRate]: heartrate cmd_id :400004, app_state:0
+06-04 20:31:47.507  2846  2846 E [FP_HAL][HeartRate]: [start_heartrate] exit. errno=1
+06-04 20:31:47.511 13674 13711 E WeatherS_WeatherCommonServiceProxy: getLocationCityAndUpdate  needUpdateWeatherInfo = false, isCallFromWeatherApp = false
+06-04 20:31:47.514  3234  4569 E system_server: No package ID ff found for resource ID 0xffffffff.
+06-04 20:31:47.532  7783 11494 E PTC.DISC.AndroidMultiLanServer: wlanSocketGroup.get null
+06-04 20:31:47.533 13674 17067 E WeatherS_WeatherServiceVersionUtils: supportWeatherSendNotificationTime error
+06-04 20:31:47.533 13674 17067 E WeatherS_WeatherServiceVersionUtils: android.content.pm.PackageManager$NameNotFoundException: com.coloros.weather2
+06-04 20:31:47.533 13674 17067 E WeatherS_WeatherServiceVersionUtils: 	at android.app.ApplicationPackageManager.getApplicationInfoAsUser(ApplicationPackageManager.java:564)
+06-04 20:31:47.533 13674 17067 E WeatherS_WeatherServiceVersionUtils: 	at android.app.ApplicationPackageManager.getApplicationInfo(ApplicationPackageManager.java:547)
+06-04 20:31:47.533 13674 17067 E WeatherS_WeatherServiceVersionUtils: 	at android.app.ApplicationPackageManager.getApplicationInfo(ApplicationPackageManager.java:541)
+06-04 20:31:47.533 13674 17067 E WeatherS_WeatherServiceVersionUtils: 	at com.oplus.weatherservicesdk.Utils.WeatherServiceVersionUtils.supportWeatherSendNotificationTime(Unknown Source:13)
+06-04 20:31:47.533 13674 17067 E WeatherS_WeatherServiceVersionUtils: 	at com.oplus.weather.notification.WeatherServiceNotificationManager.C(Unknown Source:44)
+06-04 20:31:47.533 13674 17067 E WeatherS_WeatherServiceVersionUtils: 	at com.oplus.weather.notification.WeatherServiceNotificationManager.k(Unknown Source:21)
+06-04 20:31:47.533 13674 17067 E WeatherS_WeatherServiceVersionUtils: 	at com.oplus.weather.notification.WeatherServiceNotificationManager.l(Unknown Source:19)
+06-04 20:31:47.533 13674 17067 E WeatherS_WeatherServiceVersionUtils: 	at com.oplus.weather.datasource.database.dao.WeatherCommonServiceInnerImpl.lambda$getLocationCityAndUpdate$6(Unknown Source:17)
+06-04 20:31:47.533 13674 17067 E WeatherS_WeatherServiceVersionUtils: 	at com.oplus.weather.datasource.database.dao.WeatherCommonServiceInnerImpl.f(Unknown Source:0)
+06-04 20:31:47.533 13674 17067 E WeatherS_WeatherServiceVersionUtils: 	at com.oplus.weather.datasource.database.dao.a.run(Unknown Source:4)
+06-04 20:31:47.533 13674 17067 E WeatherS_WeatherServiceVersionUtils: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+06-04 20:31:47.533 13674 17067 E WeatherS_WeatherServiceVersionUtils: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+06-04 20:31:47.533 13674 17067 E WeatherS_WeatherServiceVersionUtils: 	at java.lang.Thread.run(Thread.java:1564)
+06-04 20:31:47.537  7783 11494 E PTC.PLUGINMGR.AdvancedProcessor: -- pluginV2Track -- isSupportHeythings is set false
+06-04 20:31:47.538  7783 13780 E AppFeatureProviderUtils: getInt: getStringForFeature return null
+06-04 20:31:47.540  7783 13780 E PTC.PLUGINMGR.HeythingsPluginManager: -- pluginV2Track -- isSupportHeythings is set false
+06-04 20:31:47.540  7783 13780 E PTC.DISC.ScanPluginFilter: Collect 0 normal plugins
+06-04 20:31:47.544  7783 16984 E PTC.DEVICEMGR.DeviceInfoCollectUtil: getNetworkStatus except!;getDataNetworkTypeForSubscriber
+06-04 20:31:47.628  7808  7808 E SmartSidebar.KeyguardSubject$mUserPresentReceiver$1: HLogµ£¬σê¥σºïσîû-->(main)onReceive() mHasRegister:true
+06-04 20:31:47.671  2846  3221 E [FP_HAL][Perf]: Allcores is not set in TA, use defaulCores!
+06-04 20:31:47.685  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.685  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b18 went down
+06-04 20:31:47.686  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b19 went down
+06-04 20:31:47.686  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.688  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.690  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b1a went down
+06-04 20:31:47.690  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5b1b went down
+06-04 20:31:47.691  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:31:47.711  1265  1271 E QC-time-services: Receive Passed == base = 13, unit = 1, operation = 2, result = 0
+06-04 20:31:47.711  1606  1615 E QC-time-services: Daemon: Time-services: Waiting to acceptconnection
+06-04 20:31:47.711  1606  1615 E QC-time-services: Daemon: Time-services: Waiting to acceptconnection
+06-04 20:31:47.738  1264  1264 E KeymasterUtils: rsp_header->status: -28
+06-04 20:31:47.738  1264  1264 E KeyMasterHalDevice: abort_operation
+06-04 20:31:47.738  1264  1264 E KeyMasterHalDevice: ret: -28
+06-04 20:31:47.743  1264  1264 E KeymasterUtils: rsp_header->status: -28
+06-04 20:31:47.743  1264  1264 E KeyMasterHalDevice: abort_operation
+06-04 20:31:47.743  1264  1264 E KeyMasterHalDevice: ret: -28
+06-04 20:31:47.748  7783 13781 E PTC.DEVICEMGR.DeviceInfoCollectUtil: getNetworkStatus except!;getDataNetworkTypeForSubscriber
+06-04 20:31:47.755  1264  1264 E KeymasterUtils: rsp_header->status: -28
+06-04 20:31:47.755  1264  1264 E KeyMasterHalDevice: abort_operation
+06-04 20:31:47.755  1264  1264 E KeyMasterHalDevice: ret: -28
+06-04 20:31:47.756  1321 10201 E keystore2: system/security/keystore2/src/error.rs:183 - system/security/keystore2/src/security_level.rs:332
+06-04 20:31:47.756  1321 10201 E keystore2: 
+06-04 20:31:47.756  1321 10201 E keystore2: Caused by:
+06-04 20:31:47.756  1321 10201 E keystore2:     0: system/security/keystore2/src/enforcements.rs:599: matching auth token (challenge=0, userId=6013047149382568919, authId=0, authType=0x1, timestamp=355838ms) rcved=BootTime(349439) for sids [6013047149382568919] type Some(r#PASSWORD) is expired (2128s old > timeout=5s)
+06-04 20:31:47.756  1321 10201 E keystore2:     1: Error::Km(r#KEY_USER_NOT_AUTHENTICATED)
+06-04 20:31:47.761  3234  5247 E BiometricScheduler: Current operation is null,no need to start watchdog
+06-04 20:31:47.808  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'INTERFACE' not found
+06-04 20:31:47.808  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'STATE' not found
+06-04 20:31:47.808  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'TIME_NS' not found
+06-04 20:31:47.808  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'UID' not found
+06-04 20:31:47.933  1028  1028 E lowmemorykiller: device memory 1933228 free 125146 file 1716520
+06-04 20:31:47.934  1028  1028 E lowmemorykiller: device memory 1933228 free 125016 file 1716520
+06-04 20:31:48.035  1028  1028 E lowmemorykiller: device memory 1932868 free 118449 file 1716449
+06-04 20:31:48.095  4700  5457 E BluetoothUtils: Permission denial: Need ACCESS_FINE_LOCATION permission to get scan results
+06-04 20:31:48.108  1647  1701 E TetherController: property_get sys.radio.data.modem_share_flag return 0, 1!
+06-04 20:31:48.136  1028  1028 E lowmemorykiller: device memory 1932431 free 118323 file 1716453
+06-04 20:31:48.356  2820  2820 E OplusTouchDaemon: [touchEvent][ts_report_touch_data][592]:Touchpanel id 0 :Down[12087 26216    0    4    1   37    1]K1029 A0 D94
+06-04 20:31:48.401  3234  3234 E OplusGestureAnimationManagerPolicy: mScreenHeight:2772 mScreenWidth:1240 mRotation:0
+06-04 20:31:48.413  2820  2820 E OplusTouchDaemon: Debug Info: baselineError-base_classifier_bl
+06-04 20:31:48.413  2820  2820 E OplusTouchDaemon: update_value_count_list str=BASE_V2_CLASSIFIER_BL, count=3
+06-04 20:31:48.413  2820  2820 E OplusTouchDaemon: Debug Info: bslnErr-0001, frqc-0000, nsmSt-0001, rxBrkn-0000, sheild-0000, rstRsn-0001
+06-04 20:31:48.413  2820  2820 E OplusTouchDaemon: [prevent][curved_large_handle_V2][2327]: up id(0) status: 1, 1, 1, 0.
+06-04 20:31:48.471  4561  4943 E ModemAci: [Main] failed to exit scene:LS due to not running!
+06-04 20:31:48.630  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'INTERFACE' not found
+06-04 20:31:48.630  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'STATE' not found
+06-04 20:31:48.630  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'TIME_NS' not found
+06-04 20:31:48.630  1647  1688 E NetlinkEvent: NetlinkEvent::FindParam(): Parameter 'UID' not found

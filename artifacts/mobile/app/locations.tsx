@@ -5,6 +5,8 @@ import React, { useCallback, useRef, useState } from "react";
 import {
   Animated,
   FlatList,
+  KeyboardAvoidingView,
+  Modal,
   Platform,
   StyleSheet,
   Text,
@@ -15,18 +17,20 @@ import {
 import { Swipeable } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import Toast from "@/components/Toast";
-import { Location, useDB } from "@/contexts/DatabaseContext";
-import { useColors } from "@/hooks/useColors";
+import Toast from "../components/Toast";
+import { Location, useDB } from "../contexts/DatabaseContext";
+import { useColors } from "../hooks/useColors";
 
 function LocationRow({
   item,
   colors,
   onDelete,
+  onEdit,
 }: {
   item: Location;
-  colors: ReturnType<typeof import("@/hooks/useColors").useColors>;
+  colors: ReturnType<typeof import("../hooks/useColors").useColors>;
   onDelete: (id: number, name: string) => void;
+  onEdit: (item: Location) => void;
 }) {
   const swipeRef = useRef<Swipeable>(null);
 
@@ -64,15 +68,19 @@ function LocationRow({
       friction={2}
       rightThreshold={40}
     >
-      <View style={[styles.row, { backgroundColor: colors.card, borderBottomColor: colors.border }]}>
+      <TouchableOpacity
+        style={[styles.row, { backgroundColor: colors.card, borderBottomColor: colors.border }]}
+        onPress={() => onEdit(item)}
+        activeOpacity={0.7}
+      >
         <View style={[styles.rowIcon, { backgroundColor: colors.secondary }]}>
           <Feather name="map-pin" size={15} color={colors.primary} />
         </View>
         <Text style={[styles.rowText, { color: colors.foreground }]} numberOfLines={1}>
           {item.name}
         </Text>
-        <Feather name="chevrons-left" size={14} color={colors.border} />
-      </View>
+        <Feather name="edit-2" size={14} color={colors.mutedForeground} />
+      </TouchableOpacity>
     </Swipeable>
   );
 }
@@ -80,7 +88,7 @@ function LocationRow({
 export default function LocationsScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
-  const { getLocations, addLocation, deleteLocation } = useDB();
+  const { getLocations, addLocation, updateLocation, deleteLocation } = useDB();
   const [locations, setLocations] = useState<Location[]>([]);
   const [newName, setNewName] = useState("");
   const [toast, setToast] = useState<{
@@ -88,6 +96,12 @@ export default function LocationsScreen() {
     message: string;
     type: "success" | "error" | "info";
   }>({ visible: false, message: "", type: "success" });
+
+  // Edit modal state
+  const [editModalVisible, setEditModalVisible] = useState(false);
+  const [editingLocation, setEditingLocation] = useState<Location | null>(null);
+  const [editName, setEditName] = useState("");
+  const [editError, setEditError] = useState("");
 
   const load = useCallback(() => setLocations(getLocations()), [getLocations]);
 
@@ -123,6 +137,47 @@ export default function LocationsScreen() {
     },
     [deleteLocation, load, showToast]
   );
+
+  const openEditModal = useCallback((item: Location) => {
+    setEditingLocation(item);
+    setEditName(item.name);
+    setEditError("");
+    setEditModalVisible(true);
+  }, []);
+
+  const handleEditSave = useCallback(() => {
+    if (!editingLocation) return;
+    const trimmed = editName.trim();
+
+    if (!trimmed) {
+      setEditError("Location name cannot be empty.");
+      return;
+    }
+
+    // Check for duplicate (excluding the current location)
+    const duplicate = locations.find(
+      (l) => l.id !== editingLocation.id && l.name.toLowerCase() === trimmed.toLowerCase()
+    );
+    if (duplicate) {
+      setEditError("A location with this name already exists.");
+      return;
+    }
+
+    // If name hasn't changed, just close
+    if (trimmed === editingLocation.name) {
+      setEditModalVisible(false);
+      return;
+    }
+
+    updateLocation(editingLocation.id, trimmed);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    setEditModalVisible(false);
+    load();
+    showToast(
+      `"${editingLocation.name}" renamed to "${trimmed}". All trips & rates updated.`,
+      "success"
+    );
+  }, [editingLocation, editName, locations, updateLocation, load, showToast]);
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
@@ -164,9 +219,9 @@ export default function LocationsScreen() {
 
       {locations.length > 0 && (
         <View style={[styles.hintRow, { backgroundColor: colors.muted }]}>
-          <Feather name="chevrons-left" size={13} color={colors.mutedForeground} />
+          <Feather name="edit-2" size={13} color={colors.mutedForeground} />
           <Text style={[styles.hintText, { color: colors.mutedForeground }]}>
-            Swipe left to remove a location
+            Tap to edit • Swipe left to remove
           </Text>
         </View>
       )}
@@ -176,7 +231,7 @@ export default function LocationsScreen() {
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={{ paddingBottom: (Platform.OS === "web" ? 34 : insets.bottom) + 20 }}
         renderItem={({ item }) => (
-          <LocationRow item={item} colors={colors} onDelete={handleDelete} />
+          <LocationRow item={item} colors={colors} onDelete={handleDelete} onEdit={openEditModal} />
         )}
         ListEmptyComponent={
           <View style={styles.empty}>
@@ -191,6 +246,118 @@ export default function LocationsScreen() {
         }
         keyboardShouldPersistTaps="handled"
       />
+
+      {/* EDIT MODAL */}
+      <Modal
+        visible={editModalVisible}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setEditModalVisible(false)}
+      >
+        <KeyboardAvoidingView
+          style={styles.modalOverlay}
+          behavior={Platform.OS === "ios" ? "padding" : undefined}
+        >
+          <TouchableOpacity
+            style={styles.modalBackdrop}
+            activeOpacity={1}
+            onPress={() => setEditModalVisible(false)}
+          />
+          <View style={[styles.modalContent, { backgroundColor: colors.card }]}>
+            {/* Modal Header */}
+            <View style={styles.modalHeader}>
+              <View style={[styles.modalIconWrap, { backgroundColor: colors.secondary }]}>
+                <Feather name="edit-3" size={22} color={colors.primary} />
+              </View>
+              <Text style={[styles.modalTitle, { color: colors.foreground }]}>Edit Location</Text>
+              <TouchableOpacity
+                onPress={() => setEditModalVisible(false)}
+                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              >
+                <Feather name="x" size={22} color={colors.mutedForeground} />
+              </TouchableOpacity>
+            </View>
+
+            {/* Current Name */}
+            {editingLocation && (
+              <View style={[styles.currentNameRow, { backgroundColor: colors.muted }]}>
+                <Text style={[styles.currentNameLabel, { color: colors.mutedForeground }]}>Current name:</Text>
+                <Text style={[styles.currentNameValue, { color: colors.foreground }]}>{editingLocation.name}</Text>
+              </View>
+            )}
+
+            {/* Edit Input */}
+            <Text style={[styles.modalInputLabel, { color: colors.mutedForeground }]}>New Name</Text>
+            <TextInput
+              style={[
+                styles.modalInput,
+                {
+                  color: colors.foreground,
+                  borderColor: editError ? "#C62828" : colors.border,
+                  backgroundColor: colors.background,
+                },
+              ]}
+              value={editName}
+              onChangeText={(text) => {
+                setEditName(text);
+                setEditError("");
+              }}
+              placeholder="Enter new location name"
+              placeholderTextColor={colors.mutedForeground}
+              autoFocus
+              returnKeyType="done"
+              onSubmitEditing={handleEditSave}
+            />
+
+            {/* Error */}
+            {editError ? (
+              <View style={styles.errorRow}>
+                <Feather name="alert-circle" size={14} color="#C62828" />
+                <Text style={styles.errorText}>{editError}</Text>
+              </View>
+            ) : (
+              <Text style={[styles.modalHint, { color: colors.mutedForeground }]}>
+                All trips and rate entries referencing this location will be updated automatically.
+              </Text>
+            )}
+
+            {/* Buttons */}
+            <View style={styles.modalButtons}>
+              <TouchableOpacity
+                style={[styles.modalBtn, styles.cancelBtn, { borderColor: colors.border }]}
+                onPress={() => setEditModalVisible(false)}
+                activeOpacity={0.7}
+              >
+                <Text style={[styles.cancelBtnText, { color: colors.foreground }]}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[
+                  styles.modalBtn,
+                  styles.saveBtn,
+                  { backgroundColor: editName.trim() && editName.trim() !== editingLocation?.name ? colors.primary : colors.muted },
+                ]}
+                onPress={handleEditSave}
+                activeOpacity={0.8}
+                disabled={!editName.trim() || editName.trim() === editingLocation?.name}
+              >
+                <Feather
+                  name="check"
+                  size={18}
+                  color={editName.trim() && editName.trim() !== editingLocation?.name ? "#FFF" : colors.mutedForeground}
+                />
+                <Text
+                  style={[
+                    styles.saveBtnText,
+                    { color: editName.trim() && editName.trim() !== editingLocation?.name ? "#FFF" : colors.mutedForeground },
+                  ]}
+                >
+                  Save
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </KeyboardAvoidingView>
+      </Modal>
     </View>
   );
 }
@@ -219,4 +386,42 @@ const styles = StyleSheet.create({
   emptyIconWrap: { width: 72, height: 72, borderRadius: 36, alignItems: "center", justifyContent: "center" },
   emptyTitle: { fontSize: 17, fontWeight: "600", fontFamily: "Inter_600SemiBold" },
   emptySub: { fontSize: 14, textAlign: "center", fontFamily: "Inter_400Regular", lineHeight: 20 },
+
+  // Modal styles
+  modalOverlay: { flex: 1, justifyContent: "center", alignItems: "center" },
+  modalBackdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.5)" },
+  modalContent: {
+    width: "88%",
+    maxWidth: 400,
+    borderRadius: 20,
+    padding: 24,
+    gap: 16,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.15,
+    shadowRadius: 24,
+    elevation: 10,
+  },
+  modalHeader: { flexDirection: "row", alignItems: "center", gap: 12 },
+  modalIconWrap: { width: 42, height: 42, borderRadius: 12, alignItems: "center", justifyContent: "center" },
+  modalTitle: { flex: 1, fontSize: 18, fontWeight: "700", fontFamily: "Inter_700Bold" },
+
+  currentNameRow: { flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 14, paddingVertical: 10, borderRadius: 10 },
+  currentNameLabel: { fontSize: 12, fontFamily: "Inter_400Regular" },
+  currentNameValue: { fontSize: 14, fontWeight: "600", fontFamily: "Inter_600SemiBold" },
+
+  modalInputLabel: { fontSize: 12, fontFamily: "Inter_500Medium", fontWeight: "500", letterSpacing: 0.3, marginBottom: -8 },
+  modalInput: { paddingHorizontal: 14, paddingVertical: 14, borderRadius: 12, borderWidth: 1, fontSize: 15, fontFamily: "Inter_400Regular" },
+
+  errorRow: { flexDirection: "row", alignItems: "center", gap: 6, marginTop: -8 },
+  errorText: { color: "#C62828", fontSize: 13, fontFamily: "Inter_400Regular" },
+
+  modalHint: { fontSize: 12, fontFamily: "Inter_400Regular", lineHeight: 17, marginTop: -8 },
+
+  modalButtons: { flexDirection: "row", gap: 12, marginTop: 4 },
+  modalBtn: { flex: 1, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8, paddingVertical: 14, borderRadius: 14 },
+  cancelBtn: { borderWidth: 1 },
+  cancelBtnText: { fontSize: 15, fontWeight: "600", fontFamily: "Inter_600SemiBold" },
+  saveBtn: {},
+  saveBtnText: { fontSize: 15, fontWeight: "600", fontFamily: "Inter_600SemiBold" },
 });

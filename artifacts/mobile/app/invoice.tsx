@@ -1,7 +1,7 @@
 import { Feather } from "@expo/vector-icons";
 import * as FileSystem from "expo-file-system/legacy";
 import * as Haptics from "expo-haptics";
-import { useFocusEffect } from "expo-router";
+import { useFocusEffect, Link } from "expo-router";
 import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
 import React, { useCallback, useState } from "react";
@@ -9,10 +9,10 @@ import { ActivityIndicator, Platform, ScrollView, StyleSheet, Text, TextInput, T
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as XLSX from "xlsx";
 
-import DatePickerField from "@/components/DatePickerField";
-import Toast from "@/components/Toast";
-import { Trip, useDB } from "@/contexts/DatabaseContext";
-import { useColors } from "@/hooks/useColors";
+import DatePickerField from "../components/DatePickerField";
+import Toast from "../components/Toast";
+import { Trip, useDB } from "../contexts/DatabaseContext";
+import { useColors } from "../hooks/useColors";
 
 type QuickFilter = "this_month" | "last_month" | "first_half" | "second_half" | "custom";
 
@@ -41,23 +41,40 @@ const CLIENT = {
   place: "Telangana",
   code: "IIL",
 };
-const REMARKS = "The recipient is liable to pay GST under reverse charge mechanism as per notification no.13/2017 – Central Tax ( Rate) dated 28th June 2017";
 const MIME_XLSX = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 
 export default function InvoiceScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
-  const { getTrips, getNextInvoiceNo } = useDB();
+  const { getTrips, getNextInvoiceNo, peekNextInvoiceNo, addInvoice } = useDB();
   const [allTrips, setAllTrips] = useState<Trip[]>([]);
   const [generating, setGenerating] = useState(false);
   const [filter, setFilter] = useState<QuickFilter>("this_month");
   const [fromDate, setFromDate] = useState<Date>(() => { const n = new Date(); return new Date(n.getFullYear(), n.getMonth(), 1); });
   const [toDate, setToDate] = useState<Date>(new Date());
-  const [gstPct, setGstPct] = useState("0");
+  const [manualInvNo, setManualInvNo] = useState("");
+  const [invNoLocked, setInvNoLocked] = useState(false); // once user edits manually, stop auto-updating
   const [invDate, setInvDate] = useState<Date>(new Date());
   const [toast, setToast] = useState<{ visible: boolean; message: string; type: "success" | "error" | "info" }>({ visible: false, message: "", type: "success" });
 
-  useFocusEffect(useCallback(() => { setAllTrips(getTrips()); }, [getTrips]));
+  // Compute the month key for the currently selected period's START date
+  const getPeriodMonthKey = useCallback((): string => {
+    const now = new Date();
+    let d: Date;
+    if (filter === "this_month" || filter === "first_half" || filter === "second_half") d = new Date(now.getFullYear(), now.getMonth(), 1);
+    else if (filter === "last_month") d = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+    else d = fromDate;
+    return `${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getFullYear())}`;
+  }, [filter, fromDate]);
+
+  const peekInvNo = useCallback(async () => {
+    const monthKey = getPeriodMonthKey();
+    const no = await peekNextInvoiceNo(monthKey);
+    setManualInvNo(no);
+    setInvNoLocked(false);
+  }, [getPeriodMonthKey, peekNextInvoiceNo]);
+
+  useFocusEffect(useCallback(() => { setAllTrips(getTrips()); peekInvNo(); }, [getTrips, peekInvNo]));
   const showToast = (msg: string, type: "success" | "error" | "info" = "success") => setToast({ visible: true, message: msg, type });
 
   const getRange = useCallback((): [Date, Date] => {
@@ -77,13 +94,12 @@ export default function InvoiceScreen() {
 
   const trips = filteredTrips();
   const amount = trips.reduce((s, t) => s + t.total_freight, 0);
-  const gstAmt = Math.round(amount * (parseFloat(gstPct) || 0) / 100);
-  const totalAmt = amount + gstAmt;
+  const cgst = Math.round(amount * 0.09);
+  const sgst = Math.round(amount * 0.09);
+  const totalAmt = amount + cgst + sgst;
   const [start, end] = getRange();
 
-  // buildHtml() and buildXlsx() are defined fresh inside handleGenerate to avoid stale closures
   const handleGenerate = useCallback(async () => {
-    // Re-compute fresh at call time to avoid stale-closure issues
     const [freshStart, freshEnd] = getRange();
     const freshTrips = allTrips
       .filter((t) => { const d = parseDMY(t.trip_date); return d >= freshStart && d <= freshEnd; })
@@ -92,18 +108,16 @@ export default function InvoiceScreen() {
     if (freshTrips.length === 0) { showToast("No trips in this date range.", "error"); return; }
 
     const freshAmount = freshTrips.reduce((s, t) => s + t.total_freight, 0);
-    const freshGst = Math.round(freshAmount * (parseFloat(gstPct) || 0) / 100);
-    const freshTotal = freshAmount + freshGst;
+    const freshCgst = Math.round(freshAmount * 0.09);
+    const freshSgst = Math.round(freshAmount * 0.09);
+    const freshTotal = freshAmount + freshCgst + freshSgst;
 
     setGenerating(true);
     try {
-      const mm = String(freshStart.getMonth() + 1).padStart(2, "0");
-      const yyyy = String(freshStart.getFullYear());
-      const monthKey = `${mm}${yyyy}`;
-      const invNo = getNextInvoiceNo(monthKey);
-
+      // Consume the next invoice number (increments DB counter) only now at generation time
+      const monthKey = `${String(freshStart.getMonth() + 1).padStart(2, "0")}${String(freshStart.getFullYear())}`;
+      const invNo = manualInvNo.trim() && !manualInvNo.endsWith("/") ? manualInvNo.trim() : await getNextInvoiceNo(monthKey);
       const period = `${fmtDot(freshStart)} to ${fmtDot(freshEnd)}`;
-      const gstDisplay = `${gstPct || "0"}%`;
 
       const buildHtml = (): string => {
         const tripRows = freshTrips.map(t => `
@@ -146,20 +160,27 @@ export default function InvoiceScreen() {
             <tr><td>Inv. Dt</td><td>${fmtDot(invDate)}</td></tr></table>
           </td>
         </tr>
-        <tr><th>Bill particulars</th><th class="right">Amount</th><th class="center">GST</th><th class="right">Total Amount</th></tr>
+        <tr><th>Bill particulars</th><th class="right">Amount</th><th class="right">Total Amount</th></tr>
         <tr style="height:120px;">
           <td style="vertical-align:top;padding:15px 10px;">Transportation service for the period of <b>${period}</b><br/><br/><i>as per the particulars attached</i></td>
           <td class="right bold" style="vertical-align:top;padding-top:15px;">${freshAmount.toLocaleString("en-IN")}</td>
-          <td class="center" style="vertical-align:top;padding-top:15px;">${gstDisplay}</td>
-          <td class="right bold" style="vertical-align:top;padding-top:15px;">${freshTotal.toLocaleString("en-IN")}</td>
+          <td class="right bold" style="vertical-align:top;padding-top:15px;">${freshAmount.toLocaleString("en-IN")}</td>
         </tr>
         <tr>
-          <td class="right bold">Total</td>
-          <td class="right bold">${freshAmount.toLocaleString("en-IN")}</td>
-          <td class="center">${freshGst > 0 ? freshGst.toLocaleString("en-IN") : "-"}</td>
+          <td class="right bold">Add: CGST @ 9%</td>
+          <td class="right bold"></td>
+          <td class="right bold">${freshCgst.toLocaleString("en-IN")}</td>
+        </tr>
+        <tr>
+          <td class="right bold">Add: SGST @ 9%</td>
+          <td class="right bold"></td>
+          <td class="right bold">${freshSgst.toLocaleString("en-IN")}</td>
+        </tr>
+        <tr>
+          <td class="right bold">Grand Total</td>
+          <td class="right bold"></td>
           <td class="right bold">${freshTotal.toLocaleString("en-IN")}</td>
         </tr>
-        <tr><td colspan="4" style="padding:10px 8px;"><b>Remarks:</b>&nbsp;${REMARKS}</td></tr>
         <tr><td colspan="4" style="height:80px;text-align:right;padding:10px 20px;vertical-align:bottom;">
           <b>for SLN Logistics</b><br/><br/><br/>Authorised Signatory
         </td></tr>
@@ -181,26 +202,26 @@ export default function InvoiceScreen() {
         const wb = XLSX.utils.book_new();
         // Summary Sheet
         const summaryRows: any[][] = [
-          [COMPANY.name, "", "", ""],
-          [`${COMPANY.address}  GST NO. ${COMPANY.gst}  Mobile: ${COMPANY.mobile}`, "", "", ""],
-          ["TAX INVOICE", "", "", ""],
-          ["To", "", "Inv. No.", invNo],
-          [CLIENT.name, "", "Inv. Dt", fmtDot(invDate)],
-          [CLIENT.address1, "", "", ""],
-          [CLIENT.address2, "", "", ""],
-          [`GST No.  ${CLIENT.gst}`, "", "", ""],
-          [`Place of Supply: ${CLIENT.place}`, "", "", ""],
-          ["Bill particulars", "Amount", "GST", "Total Amount"],
-          [`Transportation service for the period of ${period}\nas per the particulars attached`, freshAmount, gstDisplay, freshTotal],
-          ["Total", freshAmount, freshGst > 0 ? freshGst : "-", freshTotal],
-          ["", "", "", ""],
-          [`Remarks: ${REMARKS}`, "", "", ""],
-          ["", "", "", ""],
-          ["", "", "for SLN Logistics", ""],
-          ["", "", "Authorised Signatory", ""],
+          [COMPANY.name, "", ""],
+          [`${COMPANY.address}  GST NO. ${COMPANY.gst}  Mobile: ${COMPANY.mobile}`, "", ""],
+          ["TAX INVOICE", "", ""],
+          ["To", "Inv. No.", invNo],
+          [CLIENT.name, "Inv. Dt", fmtDot(invDate)],
+          [CLIENT.address1, "", ""],
+          [CLIENT.address2, "", ""],
+          [`GST No.  ${CLIENT.gst}`, "", ""],
+          [`Place of Supply: ${CLIENT.place}`, "", ""],
+          ["Bill particulars", "Amount", "Total Amount"],
+          [`Transportation service for the period of ${period}\nas per the particulars attached`, freshAmount, freshAmount],
+          ["Add: CGST @ 9%", "", freshCgst],
+          ["Add: SGST @ 9%", "", freshSgst],
+          ["Grand Total", "", freshTotal],
+          ["", "", ""],
+          ["", "for SLN Logistics", ""],
+          ["", "Authorised Signatory", ""],
         ];
         const wsSummary = XLSX.utils.aoa_to_sheet(summaryRows);
-        wsSummary["!cols"] = [{ wch: 50 }, { wch: 14 }, { wch: 10 }, { wch: 16 }];
+        wsSummary["!cols"] = [{ wch: 50 }, { wch: 14 }, { wch: 16 }];
         XLSX.utils.book_append_sheet(wb, wsSummary, "Invoice Summary");
 
         // Particulars Sheet
@@ -234,8 +255,31 @@ export default function InvoiceScreen() {
       const xlsxDest = `${FileSystem.cacheDirectory}${invNo.replace(/\//g, "-")}.xlsx`;
       await FileSystem.writeAsStringAsync(xlsxDest, b64, { encoding: FileSystem.EncodingType.Base64 });
 
+      // Read PDF as base64 for saving
+      const pdfB64 = await FileSystem.readAsStringAsync(pdfDest, { encoding: FileSystem.EncodingType.Base64 });
+
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       showToast(`Invoice ${invNo} created with ${freshTrips.length} trips!`, "success");
+
+      // Save to database
+      addInvoice({
+        invoice_no: invNo,
+        invoice_date: fmtDot(invDate),
+        period: period,
+        amount: freshAmount,
+        cgst: freshCgst,
+        sgst: freshSgst,
+        total_amount: freshTotal,
+        trip_count: freshTrips.length,
+        pdf_base64: pdfB64,
+        excel_base64: b64,
+      });
+
+      // Reset the input to the NEXT unused number after successful generation
+      const nextMonthKey = `${String(freshStart.getMonth() + 1).padStart(2, "0")}${String(freshStart.getFullYear())}`;
+      const nextNo = await peekNextInvoiceNo(nextMonthKey);
+      setManualInvNo(nextNo);
+      setInvNoLocked(false);
 
       if (await Sharing.isAvailableAsync()) {
         await Sharing.shareAsync(pdfDest, { mimeType: "application/pdf", dialogTitle: `Share Invoice ${invNo} (PDF)` });
@@ -248,7 +292,14 @@ export default function InvoiceScreen() {
     } finally {
       setGenerating(false);
     }
-  }, [allTrips, gstPct, getRange, invDate, getNextInvoiceNo]);
+  }, [allTrips, manualInvNo, getRange, invDate]);
+
+  const handleFilterChange = (newFilter: QuickFilter) => {
+    setFilter(newFilter);
+    // Re-peek the invoice number based on the new period's month (only if not manually locked)
+    setInvNoLocked(false);
+    setTimeout(() => peekInvNo(), 50);
+  };
 
   const quickBtns: { key: QuickFilter; label: string }[] = [
     { key: "this_month", label: "This Month" },
@@ -279,13 +330,22 @@ export default function InvoiceScreen() {
         </View>
       </View>
 
+      <Link href="/past-invoices" asChild>
+        <TouchableOpacity style={[styles.pastBtn, { backgroundColor: colors.secondary }]} activeOpacity={0.8}>
+          <Feather name="file-text" size={16} color={colors.primary} />
+          <Text style={[styles.pastBtnTxt, { color: colors.primary }]}>View Past Invoices</Text>
+          <View style={{ flex: 1 }} />
+          <Feather name="chevron-right" size={16} color={colors.primary} />
+        </TouchableOpacity>
+      </Link>
+
       {/* Date Filter */}
       <View style={[styles.card, { backgroundColor: colors.card, borderColor: colors.border }]}>
         <Text style={[styles.sec, { color: colors.foreground }]}><Feather name="filter" size={14} color={colors.primary} />{"  "}Billing Period</Text>
         <View style={styles.row}>
           {quickBtns.map(b => (
             <TouchableOpacity key={b.key} style={[styles.qBtn, { backgroundColor: filter === b.key ? colors.primary : colors.background, borderColor: filter === b.key ? colors.primary : colors.border }]}
-              onPress={() => setFilter(b.key)} activeOpacity={0.75}>
+          onPress={() => handleFilterChange(b.key)} activeOpacity={0.75}>
               <Text style={[styles.qBtnTxt, { color: filter === b.key ? "#FFF" : colors.mutedForeground }]} numberOfLines={1}>{b.label}</Text>
             </TouchableOpacity>
           ))}
@@ -294,7 +354,7 @@ export default function InvoiceScreen() {
           <View style={{ flexDirection: "row", gap: 12 }}>
             <View style={{ flex: 1 }}>
               <Text style={[styles.lbl, { color: colors.mutedForeground }]}>From</Text>
-              <DatePickerField date={fromDate} onChange={setFromDate} />
+              <DatePickerField date={fromDate} onChange={(d) => { setFromDate(d); loadDefaultInvNo(); }} />
             </View>
             <View style={{ flex: 1 }}>
               <Text style={[styles.lbl, { color: colors.mutedForeground }]}>To</Text>
@@ -304,74 +364,64 @@ export default function InvoiceScreen() {
         )}
       </View>
 
-      {/* Invoice Details */}
+      {/* Settings */}
       <View style={[styles.card, { backgroundColor: colors.card, borderColor: colors.border }]}>
-        <Text style={[styles.sec, { color: colors.foreground }]}><Feather name="file-text" size={14} color={colors.primary} />{"  "}Invoice Details</Text>
-        <Text style={[styles.lbl, { color: colors.mutedForeground }]}>Invoice Date</Text>
-        <DatePickerField date={invDate} onChange={setInvDate} />
-        <Text style={[styles.lbl, { color: colors.mutedForeground }]}>GST % (enter 0 for reverse charge)</Text>
-        <TextInput style={[styles.inp, { backgroundColor: colors.background, borderColor: colors.border, color: colors.foreground }]}
-          value={gstPct} onChangeText={setGstPct} keyboardType="decimal-pad" placeholder="0" placeholderTextColor={colors.mutedForeground} />
-        <View style={[styles.summary, { backgroundColor: colors.primary + "10", borderColor: colors.primary + "25" }]}>
-          <View style={styles.summaryRow}><Text style={[styles.summaryLbl, { color: colors.mutedForeground }]}>Amount</Text><Text style={[styles.summaryVal, { color: colors.foreground }]}>₹{amount.toLocaleString("en-IN")}</Text></View>
-          <View style={styles.summaryRow}><Text style={[styles.summaryLbl, { color: colors.mutedForeground }]}>GST ({gstPct || "0"}%)</Text><Text style={[styles.summaryVal, { color: colors.foreground }]}>₹{gstAmt.toLocaleString("en-IN")}</Text></View>
-          <View style={[styles.summaryRow, { borderTopWidth: 1, borderTopColor: colors.border, paddingTop: 8, marginTop: 4 }]}>
-            <Text style={[styles.summaryLbl, { color: colors.foreground, fontFamily: "Inter_700Bold", fontWeight: "700" }]}>Total Amount</Text>
-            <Text style={[styles.summaryVal, { color: colors.primary, fontSize: 18, fontFamily: "Inter_700Bold", fontWeight: "700" }]}>₹{totalAmt.toLocaleString("en-IN")}</Text>
+        <Text style={[styles.sec, { color: colors.foreground }]}><Feather name="settings" size={14} color={colors.primary} />{"  "}Invoice Details</Text>
+
+        <View style={{ gap: 16 }}>
+          <View>
+            <Text style={[styles.lbl, { color: colors.mutedForeground }]}>Invoice Date</Text>
+            <DatePickerField date={invDate} onChange={setInvDate} />
+          </View>
+          <View>
+            <Text style={[styles.lbl, { color: colors.mutedForeground }]}>Invoice Number (Editable)</Text>
+              <TextInput
+              style={[styles.input, { backgroundColor: colors.background, color: colors.foreground, borderColor: colors.border }]}
+              value={manualInvNo}
+              onChangeText={(t) => { setManualInvNo(t); setInvNoLocked(true); }}
+              placeholder="e.g. IIL/06/2026/001"
+              placeholderTextColor={colors.mutedForeground}
+            />
+            {invNoLocked && (
+              <TouchableOpacity onPress={peekInvNo} style={{ position: "absolute", right: 12, top: 38 }}>
+                <Feather name="refresh-cw" size={16} color={colors.mutedForeground} />
+              </TouchableOpacity>
+            )}
           </View>
         </View>
       </View>
 
-      {/* Client preview */}
-      <View style={[styles.card, { backgroundColor: colors.card, borderColor: colors.border }]}>
-        <Text style={[styles.sec, { color: colors.foreground }]}><Feather name="user" size={14} color={colors.primary} />{"  "}Client Details (Fixed)</Text>
-        <Text style={[styles.clientLine, { color: colors.foreground }]}>{CLIENT.name}</Text>
-        <Text style={[styles.clientLine, { color: colors.mutedForeground }]}>{CLIENT.address1}, {CLIENT.address2}</Text>
-        <Text style={[styles.clientLine, { color: colors.mutedForeground }]}>GST: {CLIENT.gst}</Text>
-      </View>
-
-      {trips.length === 0 && (
-        <View style={[styles.empty, { borderColor: colors.border }]}>
-          <Feather name="alert-circle" size={16} color={colors.mutedForeground} />
-          <Text style={[styles.emptyTxt, { color: colors.mutedForeground }]}>No trips in this period. Change the date filter.</Text>
-        </View>
-      )}
-
-      <TouchableOpacity style={[styles.btn, { backgroundColor: trips.length === 0 ? "#999" : "#1565C0", opacity: generating ? 0.7 : 1 }]}
-        onPress={handleGenerate} disabled={generating || trips.length === 0} activeOpacity={0.85}>
-        {generating ? <ActivityIndicator color="#FFF" /> : <Feather name="file-text" size={22} color="#FFF" />}
-        <Text style={styles.btnTxt}>{generating ? "Generating…" : `Generate Invoice (${trips.length} trips)`}</Text>
+      <TouchableOpacity
+        style={[styles.btn, { backgroundColor: generating ? colors.mutedForeground : colors.primary, opacity: generating ? 0.7 : 1 }]}
+        onPress={handleGenerate} disabled={generating} activeOpacity={0.8}
+      >
+        {generating ? <ActivityIndicator color="#FFF" /> : <Feather name="file-text" size={18} color="#FFF" />}
+        <Text style={styles.genBtnTxt}>{generating ? "Generating..." : "Generate Invoice"}</Text>
       </TouchableOpacity>
-
       <Text style={[styles.hint, { color: colors.mutedForeground }]}>
-        Generates both PDF + Excel. Invoice number auto-increments monthly (IIL/MM/YYYY/NNN).
+        This will generate a PDF invoice and Excel annexure for sharing.
       </Text>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { padding: 16, gap: 14 },
-  statsCard: { flexDirection: "row", borderRadius: 16, padding: 22 },
+  container: { padding: 12, gap: 16 },
+  statsCard: { flexDirection: "row", borderRadius: 16, padding: 16 },
   statItem: { flex: 1, alignItems: "center", gap: 4 },
-  statVal: { color: "#FFF", fontSize: 15, fontWeight: "700", fontFamily: "Inter_700Bold" },
-  statLbl: { color: "rgba(255,255,255,0.75)", fontSize: 11, fontFamily: "Inter_400Regular" },
+  statVal: { color: "#FFF", fontSize: 20, fontWeight: "700", fontFamily: "Inter_700Bold" },
+  statLbl: { color: "rgba(255,255,255,0.8)", fontSize: 12, fontFamily: "Inter_400Regular" },
   statDiv: { width: 1, marginHorizontal: 8 },
-  card: { borderRadius: 14, borderWidth: 1, padding: 14, gap: 8 },
-  sec: { fontSize: 14, fontWeight: "600", fontFamily: "Inter_600SemiBold", marginBottom: 4 },
+  card: { padding: 16, borderRadius: 16, borderWidth: 1, gap: 16, shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.04, shadowRadius: 6, elevation: 2 },
+  sec: { fontSize: 13, fontWeight: "600", fontFamily: "Inter_600SemiBold", letterSpacing: 0.5, textTransform: "uppercase" },
   row: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
-  qBtn: { paddingHorizontal: 12, paddingVertical: 8, borderRadius: 20, borderWidth: 1 },
-  qBtnTxt: { fontSize: 12, fontFamily: "Inter_500Medium", fontWeight: "500" },
-  lbl: { fontSize: 13, fontFamily: "Inter_500Medium", fontWeight: "500" },
-  inp: { borderWidth: 1, borderRadius: 10, paddingHorizontal: 14, paddingVertical: 12, fontSize: 15, fontFamily: "Inter_400Regular" },
-  summary: { borderRadius: 12, borderWidth: 1, padding: 14, gap: 8 },
-  summaryRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
-  summaryLbl: { fontSize: 13, fontFamily: "Inter_500Medium", fontWeight: "500" },
-  summaryVal: { fontSize: 15, fontFamily: "Inter_600SemiBold", fontWeight: "600" },
-  clientLine: { fontSize: 13, fontFamily: "Inter_400Regular" },
-  empty: { flexDirection: "row", alignItems: "center", gap: 10, padding: 12, borderRadius: 10, borderWidth: 1, borderStyle: "dashed" },
-  emptyTxt: { flex: 1, fontSize: 13, fontFamily: "Inter_400Regular" },
+  qBtn: { paddingVertical: 8, paddingHorizontal: 12, borderRadius: 20, borderWidth: 1 },
+  qBtnTxt: { fontSize: 12, fontFamily: "Inter_500Medium" },
+  lbl: { fontSize: 12, fontFamily: "Inter_500Medium", marginBottom: 6 },
+  input: { borderWidth: 1, borderRadius: 10, padding: 12, fontSize: 15, fontFamily: "Inter_400Regular" },
   btn: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 10, paddingVertical: 18, borderRadius: 14 },
-  btnTxt: { color: "#FFF", fontSize: 16, fontWeight: "700", fontFamily: "Inter_700Bold" },
+  genBtnTxt: { color: "#FFF", fontSize: 16, fontWeight: "600", fontFamily: "Inter_600SemiBold", letterSpacing: 0.5 },
+  pastBtn: { flexDirection: "row", alignItems: "center", padding: 16, borderRadius: 12, gap: 10 },
+  pastBtnTxt: { fontSize: 15, fontWeight: "600", fontFamily: "Inter_600SemiBold" },
   hint: { fontSize: 12, fontFamily: "Inter_400Regular", textAlign: "center", lineHeight: 18 },
 });

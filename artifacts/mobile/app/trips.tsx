@@ -14,19 +14,29 @@ import {
 import { Swipeable } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import Toast from "@/components/Toast";
-import { Trip, useDB } from "@/contexts/DatabaseContext";
-import { useColors } from "@/hooks/useColors";
+import Toast from "../components/Toast";
+import { Trip, useDB } from "../contexts/DatabaseContext";
+import { useColors } from "../hooks/useColors";
 
-type Colors = ReturnType<typeof import("@/hooks/useColors").useColors>;
+type Colors = ReturnType<typeof import("../hooks/useColors").useColors>;
+
+function parseDMY(str: string): Date {
+  const p = str.split("/");
+  if (p.length === 3) return new Date(parseInt(p[2]), parseInt(p[1]) - 1, parseInt(p[0]));
+  return new Date(str);
+}
+
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function TripCard({
   item,
+  monthlyNo,
   colors,
   onDelete,
   onEdit,
 }: {
   item: Trip;
+  monthlyNo: number;
   colors: Colors;
   onDelete: (id: number) => void;
   onEdit: (id: number) => void;
@@ -77,7 +87,7 @@ function TripCard({
           {/* Row 1: serial, vehicle, date, edit icon */}
           <View style={styles.cardTop}>
             <View style={[styles.snBadge, { backgroundColor: colors.secondary }]}>
-              <Text style={[styles.snText, { color: colors.primary }]}>#{item.serial_no}</Text>
+              <Text style={[styles.snText, { color: colors.primary }]}>#{monthlyNo}</Text>
             </View>
             <View style={styles.vehicleChip}>
               <Feather name="truck" size={12} color={colors.mutedForeground} />
@@ -119,6 +129,12 @@ function TripCard({
                   <Text style={[styles.chipText, { color: colors.mutedForeground }]}>H ₹{item.hamali}</Text>
                 </View>
               )}
+              {item.added_by && (
+                <View style={[styles.chip, { backgroundColor: colors.muted }]}>
+                  <Feather name="user" size={11} color={colors.mutedForeground} />
+                  <Text style={[styles.chipText, { color: colors.mutedForeground }]} numberOfLines={1}>{item.added_by}</Text>
+                </View>
+              )}
             </View>
             <Text style={[styles.freightAmt, { color: colors.primary }]}>₹{item.total_freight.toLocaleString("en-IN")}</Text>
           </View>
@@ -132,15 +148,19 @@ export default function TripsScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
   const { getTrips, deleteTrip } = useDB();
-  const [trips, setTrips] = useState<Trip[]>([]);
+  const [allTrips, setAllTrips] = useState<Trip[]>([]);
   const [toast, setToast] = useState<{
     visible: boolean;
     message: string;
     type: "success" | "error" | "info";
   }>({ visible: false, message: "", type: "info" });
 
-  const load = useCallback(() => setTrips(getTrips()), [getTrips]);
+  // Current month navigation state
+  const now = new Date();
+  const [viewYear, setViewYear] = useState(now.getFullYear());
+  const [viewMonth, setViewMonth] = useState(now.getMonth()); // 0-indexed
 
+  const load = useCallback(() => setAllTrips(getTrips()), [getTrips]);
   useFocusEffect(useCallback(() => { load(); }, [load]));
 
   const handleDelete = useCallback(
@@ -153,8 +173,34 @@ export default function TripsScreen() {
     [deleteTrip, load]
   );
 
-  const totalFreight = trips.reduce((s, t) => s + t.total_freight, 0);
-  const totalWeight = trips.reduce((s, t) => s + t.chargeable_weight, 0);
+  const goToPrevMonth = () => {
+    if (viewMonth === 0) { setViewMonth(11); setViewYear(y => y - 1); }
+    else setViewMonth(m => m - 1);
+  };
+  const goToNextMonth = () => {
+    const isCurrentMonth = viewYear === now.getFullYear() && viewMonth === now.getMonth();
+    if (isCurrentMonth) return; // don't go into the future
+    if (viewMonth === 11) { setViewMonth(0); setViewYear(y => y + 1); }
+    else setViewMonth(m => m + 1);
+  };
+
+  const isCurrentMonth = viewYear === now.getFullYear() && viewMonth === now.getMonth();
+
+  // Filter trips to the selected month, sorted by date then by id (order of entry)
+  const monthTrips = allTrips
+    .filter(t => {
+      const d = parseDMY(t.trip_date);
+      return d.getFullYear() === viewYear && d.getMonth() === viewMonth;
+    })
+    .sort((a, b) => {
+      const da = parseDMY(a.trip_date).getTime();
+      const db = parseDMY(b.trip_date).getTime();
+      if (da !== db) return da - db;
+      return a.id - b.id;
+    });
+
+  const totalFreight = monthTrips.reduce((s, t) => s + t.total_freight, 0);
+  const totalWeight = monthTrips.reduce((s, t) => s + t.chargeable_weight, 0);
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
@@ -165,25 +211,39 @@ export default function TripsScreen() {
         onHide={() => setToast((p) => ({ ...p, visible: false }))}
       />
 
+      {/* Month Navigator */}
+      <View style={[styles.monthNav, { backgroundColor: colors.primary }]}>
+        <TouchableOpacity onPress={goToPrevMonth} style={styles.navBtn} activeOpacity={0.7}>
+          <Feather name="chevron-left" size={22} color="#FFF" />
+        </TouchableOpacity>
+        <View style={styles.monthLabel}>
+          <Text style={styles.monthText}>{MONTHS[viewMonth]} {viewYear}</Text>
+          {isCurrentMonth && <Text style={styles.currentBadge}>Current</Text>}
+        </View>
+        <TouchableOpacity onPress={goToNextMonth} style={[styles.navBtn, { opacity: isCurrentMonth ? 0.3 : 1 }]} activeOpacity={0.7} disabled={isCurrentMonth}>
+          <Feather name="chevron-right" size={22} color="#FFF" />
+        </TouchableOpacity>
+      </View>
+
       {/* Stats strip */}
-      <View style={[styles.strip, { backgroundColor: colors.primary }]}>
+      <View style={[styles.strip, { backgroundColor: colors.card, borderBottomColor: colors.border }]}>
         <View style={styles.stripItem}>
-          <Text style={styles.stripVal}>{trips.length}</Text>
-          <Text style={styles.stripLbl}>Trips</Text>
+          <Text style={[styles.stripVal, { color: colors.foreground }]}>{monthTrips.length}</Text>
+          <Text style={[styles.stripLbl, { color: colors.mutedForeground }]}>Trips</Text>
         </View>
-        <View style={[styles.stripDiv, { backgroundColor: "rgba(255,255,255,0.25)" }]} />
+        <View style={[styles.stripDiv, { backgroundColor: colors.border }]} />
         <View style={styles.stripItem}>
-          <Text style={styles.stripVal}>{totalWeight.toFixed(1)} MT</Text>
-          <Text style={styles.stripLbl}>Total Weight</Text>
+          <Text style={[styles.stripVal, { color: colors.foreground }]}>{totalWeight.toFixed(1)} MT</Text>
+          <Text style={[styles.stripLbl, { color: colors.mutedForeground }]}>Weight</Text>
         </View>
-        <View style={[styles.stripDiv, { backgroundColor: "rgba(255,255,255,0.25)" }]} />
+        <View style={[styles.stripDiv, { backgroundColor: colors.border }]} />
         <View style={styles.stripItem}>
-          <Text style={styles.stripVal}>₹{totalFreight.toLocaleString("en-IN")}</Text>
-          <Text style={styles.stripLbl}>Total Freight</Text>
+          <Text style={[styles.stripVal, { color: colors.primary }]}>₹{totalFreight.toLocaleString("en-IN")}</Text>
+          <Text style={[styles.stripLbl, { color: colors.mutedForeground }]}>Freight</Text>
         </View>
       </View>
 
-      {trips.length > 0 && (
+      {monthTrips.length > 0 && (
         <View style={[styles.hintRow, { backgroundColor: colors.muted }]}>
           <Feather name="edit-2" size={13} color={colors.mutedForeground} />
           <Text style={[styles.hintText, { color: colors.mutedForeground }]}>
@@ -193,24 +253,30 @@ export default function TripsScreen() {
       )}
 
       <FlatList
-        data={trips}
+        data={monthTrips}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={{
           padding: 12,
           gap: 10,
           paddingBottom: (Platform.OS === "web" ? 34 : insets.bottom) + 24,
         }}
-        renderItem={({ item }) => (
-          <TripCard item={item} colors={colors} onDelete={handleDelete} onEdit={(id) => router.push(`/edit-trip?id=${id}` as never)} />
+        renderItem={({ item, index }) => (
+          <TripCard
+            item={item}
+            monthlyNo={index + 1}
+            colors={colors}
+            onDelete={handleDelete}
+            onEdit={(id) => router.push(`/edit-trip?id=${id}` as never)}
+          />
         )}
         ListEmptyComponent={
           <View style={styles.empty}>
             <View style={[styles.emptyIconWrap, { backgroundColor: colors.secondary }]}>
               <Feather name="inbox" size={38} color={colors.primary} />
             </View>
-            <Text style={[styles.emptyTitle, { color: colors.foreground }]}>No Trips Yet</Text>
+            <Text style={[styles.emptyTitle, { color: colors.foreground }]}>No Trips in {MONTHS[viewMonth]}</Text>
             <Text style={[styles.emptySub, { color: colors.mutedForeground }]}>
-              Add a new trip entry from the home screen to get started
+              No trip entries found for {MONTHS[viewMonth]} {viewYear}
             </Text>
           </View>
         }
@@ -222,10 +288,16 @@ export default function TripsScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
 
-  strip: { flexDirection: "row", paddingVertical: 16, paddingHorizontal: 12 },
+  monthNav: { flexDirection: "row", alignItems: "center", paddingVertical: 12, paddingHorizontal: 8 },
+  navBtn: { padding: 8 },
+  monthLabel: { flex: 1, alignItems: "center", gap: 4 },
+  monthText: { color: "#FFF", fontSize: 17, fontWeight: "700", fontFamily: "Inter_700Bold" },
+  currentBadge: { color: "rgba(255,255,255,0.75)", fontSize: 11, fontFamily: "Inter_500Medium", letterSpacing: 0.5 },
+
+  strip: { flexDirection: "row", paddingVertical: 14, paddingHorizontal: 12, borderBottomWidth: StyleSheet.hairlineWidth },
   stripItem: { flex: 1, alignItems: "center" },
-  stripVal: { color: "#FFF", fontSize: 17, fontWeight: "700", fontFamily: "Inter_700Bold" },
-  stripLbl: { color: "rgba(255,255,255,0.72)", fontSize: 11, marginTop: 2, fontFamily: "Inter_400Regular" },
+  stripVal: { fontSize: 16, fontWeight: "700", fontFamily: "Inter_700Bold" },
+  stripLbl: { fontSize: 11, marginTop: 2, fontFamily: "Inter_400Regular" },
   stripDiv: { width: 1, marginHorizontal: 8 },
 
   hintRow: { flexDirection: "row", alignItems: "center", gap: 6, paddingHorizontal: 14, paddingVertical: 8 },

@@ -16,10 +16,10 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as XLSX from "xlsx";
 
-import DatePickerField from "@/components/DatePickerField";
-import Toast from "@/components/Toast";
-import { Trip, useDB } from "@/contexts/DatabaseContext";
-import { useColors } from "@/hooks/useColors";
+import DatePickerField from "../components/DatePickerField";
+import Toast from "../components/Toast";
+import { Trip, useDB } from "../contexts/DatabaseContext";
+import { useColors } from "../hooks/useColors";
 
 type QuickFilter = "all" | "this_month" | "last_month" | "custom";
 

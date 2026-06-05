@@ -1,0 +1,5 @@
+artifacts/mobile
+node_modules
+.git
+.expo
+.gradle

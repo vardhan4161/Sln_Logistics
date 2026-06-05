@@ -8,10 +8,10 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import SearchableDropdown from "@/components/SearchableDropdown";
-import Toast from "@/components/Toast";
-import { Route, useDB } from "@/contexts/DatabaseContext";
-import { useColors } from "@/hooks/useColors";
+import SearchableDropdown from "../components/SearchableDropdown";
+import Toast from "../components/Toast";
+import { Route, useDB } from "../contexts/DatabaseContext";
+import { useColors } from "../hooks/useColors";
 
 export default function RatesScreen() {
   const colors = useColors();

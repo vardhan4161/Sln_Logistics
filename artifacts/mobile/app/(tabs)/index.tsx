@@ -1,8 +1,10 @@
 import { Feather } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { router, useFocusEffect } from "expo-router";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
+  Animated,
+  Easing,
   Platform,
   ScrollView,
   StyleSheet,
@@ -12,13 +14,42 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { useDB } from "@/contexts/DatabaseContext";
-import { useColors } from "@/hooks/useColors";
+import { useDB } from "../../contexts/DatabaseContext";
+import { useColors } from "../../hooks/useColors";
 
 export default function HomeScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
-  const { getTrips } = useDB();
+  const { getTrips, isConnected, refresh, isLoading } = useDB();
+
+  // Spinning animation for refresh icon
+  const spinAnim = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    if (isLoading) {
+      spinAnim.setValue(0);
+      Animated.loop(
+        Animated.timing(spinAnim, {
+          toValue: 1,
+          duration: 800,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        })
+      ).start();
+    } else {
+      spinAnim.stopAnimation();
+      spinAnim.setValue(0);
+    }
+  }, [isLoading, spinAnim]);
+
+  const spinInterpolate = spinAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["0deg", "360deg"],
+  });
+
+  const handleRefresh = useCallback(async () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    await refresh();
+  }, [refresh]);
 
   const [stats, setStats] = useState({
     totalTrips: 0,
@@ -26,6 +57,17 @@ export default function HomeScreen() {
     totalFreight: 0,
     todayTrips: 0,
   });
+
+  const [monthOffset, setMonthOffset] = useState(0);
+
+  const getMonthRange = useCallback((offset: number) => {
+    const d = new Date();
+    d.setMonth(d.getMonth() + offset);
+    const start = new Date(d.getFullYear(), d.getMonth(), 1);
+    const end = new Date(d.getFullYear(), d.getMonth() + 1, 0, 23, 59, 59);
+    const label = d.toLocaleString('default', { month: 'long', year: 'numeric' });
+    return { start, end, label };
+  }, []);
 
   useFocusEffect(
     useCallback(() => {
@@ -35,13 +77,22 @@ export default function HomeScreen() {
       const mm = String(today.getMonth() + 1).padStart(2, "0");
       const yyyy = today.getFullYear();
       const todayStr = `${dd}/${mm}/${yyyy}`;
+
+      const { start, end } = getMonthRange(monthOffset);
+      
+      const monthTrips = trips.filter(t => {
+        const parts = t.trip_date.split('/');
+        const tDate = new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
+        return tDate >= start && tDate <= end;
+      });
+
       setStats({
-        totalTrips: trips.length,
-        totalWeight: trips.reduce((s, t) => s + t.chargeable_weight, 0),
-        totalFreight: trips.reduce((s, t) => s + t.total_freight, 0),
+        totalTrips: monthTrips.length,
+        totalWeight: monthTrips.reduce((s, t) => s + t.chargeable_weight, 0),
+        totalFreight: monthTrips.reduce((s, t) => s + t.total_freight, 0),
         todayTrips: trips.filter((t) => t.trip_date === todayStr).length,
       });
-    }, [getTrips])
+    }, [getTrips, monthOffset, getMonthRange])
   );
 
   const topPad = Platform.OS === "web" ? 20 : insets.top + 8;
@@ -69,13 +120,38 @@ export default function HomeScreen() {
             <Text style={styles.todayPillText}>{stats.todayTrips} today</Text>
           </View>
         )}
+        <TouchableOpacity
+          style={[styles.refreshBtn, { backgroundColor: colors.secondary }]}
+          onPress={handleRefresh}
+          activeOpacity={0.7}
+          disabled={isLoading}
+        >
+          <Animated.View style={{ transform: [{ rotate: spinInterpolate }] }}>
+            <Feather name="refresh-cw" size={20} color={colors.primary} />
+          </Animated.View>
+        </TouchableOpacity>
       </View>
 
       {/* STATS BANNER */}
+      <View style={{ paddingHorizontal: 16, marginBottom: 8, flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+        <Text style={{ fontSize: 15, fontWeight: "600", fontFamily: "Inter_600SemiBold", color: colors.foreground }}>Report Summary</Text>
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 14 }}>
+          <TouchableOpacity onPress={() => setMonthOffset(o => o - 1)} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+            <Feather name="chevron-left" size={20} color={colors.primary} />
+          </TouchableOpacity>
+          <Text style={{ fontSize: 13, fontFamily: "Inter_500Medium", color: colors.foreground, minWidth: 110, textAlign: "center" }}>
+            {getMonthRange(monthOffset).label}
+          </Text>
+          <TouchableOpacity onPress={() => setMonthOffset(o => o + 1)} disabled={monthOffset >= 0} style={{ opacity: monthOffset >= 0 ? 0.3 : 1 }} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+            <Feather name="chevron-right" size={20} color={colors.primary} />
+          </TouchableOpacity>
+        </View>
+      </View>
+
       <View style={[styles.statsBanner, { backgroundColor: colors.primary }]}>
         <View style={styles.statItem}>
           <Text style={styles.statVal}>{stats.totalTrips}</Text>
-          <Text style={styles.statLbl}>Total Trips</Text>
+          <Text style={styles.statLbl}>Trips</Text>
         </View>
         <View style={[styles.statDiv, { backgroundColor: "rgba(255,255,255,0.22)" }]} />
         <View style={styles.statItem}>
@@ -147,11 +223,11 @@ export default function HomeScreen() {
         </View>
       </View>
 
-      {/* OFFLINE PILL */}
-      <View style={[styles.offlinePill, { backgroundColor: colors.secondary, borderColor: colors.border }]}>
-        <Feather name="wifi-off" size={13} color={colors.primary} />
-        <Text style={[styles.offlineText, { color: colors.primary }]}>
-          Fully offline — no internet required
+      {/* CONNECTION STATUS PILL */}
+      <View style={[styles.offlinePill, { backgroundColor: isConnected ? 'rgba(76, 175, 80, 0.1)' : 'rgba(244, 67, 54, 0.1)', borderColor: isConnected ? 'rgba(76, 175, 80, 0.3)' : 'rgba(244, 67, 54, 0.3)' }]}>
+        <Feather name={isConnected ? "cloud" : "cloud-off"} size={13} color={isConnected ? "#4CAF50" : "#F44336"} />
+        <Text style={[styles.offlineText, { color: isConnected ? "#4CAF50" : "#F44336" }]}>
+          {isConnected ? "Connected to MongoDB Cloud" : "Database Offline - Local Mode"}
         </Text>
       </View>
     </ScrollView>
@@ -167,6 +243,7 @@ const styles = StyleSheet.create({
   appSub: { fontSize: 12, marginTop: 1, fontFamily: "Inter_400Regular" },
   todayPill: { paddingHorizontal: 10, paddingVertical: 5, borderRadius: 20 },
   todayPillText: { color: "#FFF", fontSize: 12, fontFamily: "Inter_600SemiBold", fontWeight: "600" },
+  refreshBtn: { width: 42, height: 42, borderRadius: 12, alignItems: "center", justifyContent: "center", marginLeft: 4 },
 
   statsBanner: { flexDirection: "row", marginHorizontal: 16, borderRadius: 20, paddingVertical: 22, paddingHorizontal: 8, marginBottom: 20 },
   statItem: { flex: 1, alignItems: "center" },

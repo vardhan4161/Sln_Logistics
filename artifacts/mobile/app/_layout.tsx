@@ -12,8 +12,10 @@ import React, { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { DatabaseProvider } from "@/contexts/DatabaseContext";
+import { ErrorBoundary } from "../components/ErrorBoundary";
+import { DatabaseProvider } from "../contexts/DatabaseContext";
+import { AuthProvider, useAuth } from "../contexts/AuthContext";
+import { SetupScreen, LockScreen } from "../components/AuthScreens";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -49,6 +51,22 @@ function RootLayoutNav() {
   );
 }
 
+function MainApp() {
+  const { isAuthenticated, isFirstLaunch, isLoading } = useAuth();
+
+  if (isLoading) return null;
+
+  if (isFirstLaunch) {
+    return <SetupScreen />;
+  }
+
+  if (!isAuthenticated) {
+    return <LockScreen />;
+  }
+
+  return <RootLayoutNav />;
+}
+
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({
     Inter_400Regular,
@@ -68,13 +86,15 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <ErrorBoundary>
-        <DatabaseProvider>
-          <QueryClientProvider client={queryClient}>
-            <GestureHandlerRootView>
-              <RootLayoutNav />
-            </GestureHandlerRootView>
-          </QueryClientProvider>
-        </DatabaseProvider>
+        <AuthProvider>
+          <DatabaseProvider>
+            <QueryClientProvider client={queryClient}>
+              <GestureHandlerRootView>
+                <MainApp />
+              </GestureHandlerRootView>
+            </QueryClientProvider>
+          </DatabaseProvider>
+        </AuthProvider>
       </ErrorBoundary>
     </SafeAreaProvider>
   );

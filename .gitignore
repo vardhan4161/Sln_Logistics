@@ -37,6 +37,9 @@ yarn-error.log
 testem.log
 /typings
 
+# Environment files
+.env
+
 # System Files
 .DS_Store
 Thumbs.db
@@ -47,3 +50,4 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+.vercel

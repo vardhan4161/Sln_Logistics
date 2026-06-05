@@ -1,25 +1,12 @@
-import app from "./app";
-import { logger } from "./lib/logger";
+import app from "./app.js";
+import { logger } from "./lib/logger.js";
+import { connectMongo } from "./lib/mongo.js";
 
-const rawPort = process.env["PORT"];
-
-if (!rawPort) {
-  throw new Error(
-    "PORT environment variable is required but was not provided.",
-  );
+if (process.env["NODE_ENV"] !== "production" && !process.env["VERCEL"]) {
+  const port = process.env["PORT"] ? Number(process.env["PORT"]) : 8080;
+  app.listen(port, () => {
+    logger.info(`Server listening on port ${port}`);
+  });
 }
 
-const port = Number(rawPort);
-
-if (Number.isNaN(port) || port <= 0) {
-  throw new Error(`Invalid PORT value: "${rawPort}"`);
-}
-
-app.listen(port, (err) => {
-  if (err) {
-    logger.error({ err }, "Error listening on port");
-    process.exit(1);
-  }
-
-  logger.info({ port }, "Server listening");
-});
+export default app;

@@ -1,0 +1,1279 @@
+﻿--------- beginning of crash
+11-08 09:40:19.735  1042  1042 F libc    : Fatal signal 6 (SIGABRT), code -1 (SI_QUEUE) in tid 1042 (init), pid 1042 (init)
+11-08 09:40:19.760  1042  1042 F libc    : Crash due to signal: crash_dump helper failed to exec, or was killed
+06-04 19:50:51.970  5742  5742 F libc    : Fatal signal 6 (SIGABRT), code -1 (SI_QUEUE) in tid 5742 (init), pid 5742 (init)
+06-04 19:50:52.043  5742  5742 F libc    : Crash due to signal: crash_dump helper failed to exec, or was killed
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: FATAL EXCEPTION: mqt_v_native
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: Process: com.slnlogistics.app, PID: 14990
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: com.facebook.react.common.JavascriptException: Error: No routes found
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: This error is located at:
+06-04 20:29:38.924 14990 15022 E AndroidRuntime:     at ContextNavigator (address at index.android.bundle:1:790046)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime:     at ExpoRoot (address at index.android.bundle:1:789689)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime:     at App (<anonymous>)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime:     at RCTView (<anonymous>)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime:     at View (address at index.android.bundle:1:459795)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime:     at AppContainer (address at index.android.bundle:1:459123), stack:
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: useStore@1:921184
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: ContextNavigator@1:790203
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: renderWithHooks@1:219127
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: updateFunctionComponent@1:237877
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: beginWork@1:245700
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: performUnitOfWork@1:264296
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: workLoopSync@1:263304
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: renderRootSync@1:263136
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: performWorkOnRoot@1:260783
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: performWorkOnRootViaSchedulerTask@1:214614
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at com.facebook.react.modules.core.ExceptionsManagerModule.reportException(ExceptionsManagerModule.kt:52)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at com.facebook.jni.NativeRunnable.run(Native Method)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadHandler.dispatchMessage(MessageQueueThreadHandler.kt:21)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.startNewBackgroundThread$lambda$1(MessageQueueThreadImpl.kt:175)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.$r8$lambda$ldnZnqelhYFctGaUKkOKYj5rxo4(Unknown Source:0)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+06-04 20:29:38.924 14990 15022 E AndroidRuntime: 	at java.lang.Thread.run(Thread.java:1564)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: FATAL EXCEPTION: mqt_v_native
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: Process: com.slnlogistics.app, PID: 15156
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: com.facebook.react.common.JavascriptException: Error: No routes found
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: This error is located at:
+06-04 20:29:40.180 15156 15188 E AndroidRuntime:     at ContextNavigator (address at index.android.bundle:1:790046)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime:     at ExpoRoot (address at index.android.bundle:1:789689)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime:     at App (<anonymous>)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime:     at RCTView (<anonymous>)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime:     at View (address at index.android.bundle:1:459795)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime:     at AppContainer (address at index.android.bundle:1:459123), stack:
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: useStore@1:921184
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: ContextNavigator@1:790203
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: renderWithHooks@1:219127
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: updateFunctionComponent@1:237877
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: beginWork@1:245700
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: performUnitOfWork@1:264296
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: workLoopSync@1:263304
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: renderRootSync@1:263136
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: performWorkOnRoot@1:260783
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: performWorkOnRootViaSchedulerTask@1:214614
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at com.facebook.react.modules.core.ExceptionsManagerModule.reportException(ExceptionsManagerModule.kt:52)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at com.facebook.jni.NativeRunnable.run(Native Method)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadHandler.dispatchMessage(MessageQueueThreadHandler.kt:21)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.startNewBackgroundThread$lambda$1(MessageQueueThreadImpl.kt:175)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.$r8$lambda$ldnZnqelhYFctGaUKkOKYj5rxo4(Unknown Source:0)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+06-04 20:29:40.180 15156 15188 E AndroidRuntime: 	at java.lang.Thread.run(Thread.java:1564)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: FATAL EXCEPTION: mqt_v_native
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: Process: com.slnlogistics.app, PID: 15435
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: com.facebook.react.common.JavascriptException: Error: No routes found
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: This error is located at:
+06-04 20:29:45.115 15435 15471 E AndroidRuntime:     at ContextNavigator (address at index.android.bundle:1:790046)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime:     at ExpoRoot (address at index.android.bundle:1:789689)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime:     at App (<anonymous>)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime:     at RCTView (<anonymous>)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime:     at View (address at index.android.bundle:1:459795)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime:     at AppContainer (address at index.android.bundle:1:459123), stack:
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: useStore@1:921184
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: ContextNavigator@1:790203
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: renderWithHooks@1:219127
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: updateFunctionComponent@1:237877
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: beginWork@1:245700
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: performUnitOfWork@1:264296
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: workLoopSync@1:263304
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: renderRootSync@1:263136
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: performWorkOnRoot@1:260783
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: performWorkOnRootViaSchedulerTask@1:214614
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at com.facebook.react.modules.core.ExceptionsManagerModule.reportException(ExceptionsManagerModule.kt:52)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at com.facebook.jni.NativeRunnable.run(Native Method)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadHandler.dispatchMessage(MessageQueueThreadHandler.kt:21)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.startNewBackgroundThread$lambda$1(MessageQueueThreadImpl.kt:175)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.$r8$lambda$ldnZnqelhYFctGaUKkOKYj5rxo4(Unknown Source:0)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+06-04 20:29:45.115 15435 15471 E AndroidRuntime: 	at java.lang.Thread.run(Thread.java:1564)
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: FATAL EXCEPTION: mqt_v_native
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: Process: com.slnlogistics.app, PID: 20845
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: com.facebook.react.common.JavascriptException: Error: No routes found
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: 
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: This error is located at:
+06-04 20:34:38.753 20845 20882 E AndroidRuntime:     at ContextNavigator (address at index.android.bundle:1:790046)
+06-04 20:34:38.753 20845 20882 E AndroidRuntime:     at ExpoRoot (address at index.android.bundle:1:789689)
+06-04 20:34:38.753 20845 20882 E AndroidRuntime:     at App (<anonymous>)
+06-04 20:34:38.753 20845 20882 E AndroidRuntime:     at RCTView (<anonymous>)
+06-04 20:34:38.753 20845 20882 E AndroidRuntime:     at View (address at index.android.bundle:1:459795)
+06-04 20:34:38.753 20845 20882 E AndroidRuntime:     at AppContainer (address at index.android.bundle:1:459123), stack:
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: useStore@1:921184
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: ContextNavigator@1:790203
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: renderWithHooks@1:219127
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: updateFunctionComponent@1:237877
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: beginWork@1:245700
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: performUnitOfWork@1:264296
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: workLoopSync@1:263304
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: renderRootSync@1:263136
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: performWorkOnRoot@1:260783
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: performWorkOnRootViaSchedulerTask@1:214614
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: 
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: 	at com.facebook.react.modules.core.ExceptionsManagerModule.reportException(ExceptionsManagerModule.kt:52)
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: 	at com.facebook.jni.NativeRunnable.run(Native Method)
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadHandler.dispatchMessage(MessageQueueThreadHandler.kt:21)
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.startNewBackgroundThread$lambda$1(MessageQueueThreadImpl.kt:175)
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.$r8$lambda$ldnZnqelhYFctGaUKkOKYj5rxo4(Unknown Source:0)
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+06-04 20:34:38.753 20845 20882 E AndroidRuntime: 	at java.lang.Thread.run(Thread.java:1564)
+--------- beginning of system
+06-04 20:36:09.979  3234  3613 E OplusAppQuickStart_AppQuickStartController: Delete all capture files when pkg ratio changed, pkgs: [com.slnlogistics.app]
+06-04 20:36:09.989  3234  7158 E AppOpService: Blocked setUidMode call for runtime permission app op: uid = 10273, code = COARSE_LOCATION, mode = foreground, callingUid = 1000, oldMode = allow
+06-04 20:36:09.989  3234  7158 E AppOpService: java.lang.RuntimeException
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at com.android.server.permission.access.appop.AppOpService.setUidMode(AppOpService.kt:272)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsCheckingServiceTracingDecorator.setUidMode(AppOpsCheckingServiceTracingDecorator.java:120)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2300)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2244)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at android.app.AppOpsManager.setUidMode(AppOpsManager.java:8766)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpModeAsUser(Permissions.java:908)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpUidModeAsUser(Permissions.java:885)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantPermissionAndAppOpAsUser(Permissions.java:373)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantSingleAsUser(Permissions.java:247)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantAsUser(Permissions.java:205)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at com.android.role.controller.model.Role.grantAsUser(Role.java:941)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.addRoleHolderInternal(RoleControllerServiceImpl.java:380)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.onGrantDefaultRoles(RoleControllerServiceImpl.java:163)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.lambda$grantDefaultRoles$1(LocalRoleController.java:56)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.$r8$lambda$ye-flP7Mf14AbTzwSmiTgndT6Cg(LocalRoleController.java:0)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController$$ExternalSyntheticLambda1.run(R8$$SyntheticClass:0)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:36:09.989  3234  7158 E AppOpService: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+06-04 20:36:10.002  3234  7158 E AppOpService: Blocked setUidMode call for runtime permission app op: uid = 10275, code = CAMERA, mode = foreground, callingUid = 1000, oldMode = allow
+06-04 20:36:10.002  3234  7158 E AppOpService: java.lang.RuntimeException
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at com.android.server.permission.access.appop.AppOpService.setUidMode(AppOpService.kt:272)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsCheckingServiceTracingDecorator.setUidMode(AppOpsCheckingServiceTracingDecorator.java:120)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2300)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2244)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at android.app.AppOpsManager.setUidMode(AppOpsManager.java:8766)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpModeAsUser(Permissions.java:908)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpUidModeAsUser(Permissions.java:885)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantPermissionAndAppOpAsUser(Permissions.java:373)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantSingleAsUser(Permissions.java:247)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantAsUser(Permissions.java:205)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at com.android.role.controller.model.Role.grantAsUser(Role.java:941)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.addRoleHolderInternal(RoleControllerServiceImpl.java:380)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.onGrantDefaultRoles(RoleControllerServiceImpl.java:163)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.lambda$grantDefaultRoles$1(LocalRoleController.java:56)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.$r8$lambda$ye-flP7Mf14AbTzwSmiTgndT6Cg(LocalRoleController.java:0)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController$$ExternalSyntheticLambda1.run(R8$$SyntheticClass:0)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:36:10.002  3234  7158 E AppOpService: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+06-04 20:36:10.183  3234  7158 E AppOpService: Blocked setUidMode call for runtime permission app op: uid = 10160, code = FINE_LOCATION, mode = foreground, callingUid = 1000, oldMode = allow
+06-04 20:36:10.183  3234  7158 E AppOpService: java.lang.RuntimeException
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.server.permission.access.appop.AppOpService.setUidMode(AppOpService.kt:272)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsCheckingServiceTracingDecorator.setUidMode(AppOpsCheckingServiceTracingDecorator.java:120)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2300)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2244)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at android.app.AppOpsManager.setUidMode(AppOpsManager.java:8766)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpModeAsUser(Permissions.java:908)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpUidModeAsUser(Permissions.java:885)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantPermissionAndAppOpAsUser(Permissions.java:373)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantSingleAsUser(Permissions.java:247)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantAsUser(Permissions.java:205)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.controller.behavior.BrowserRoleBehavior.grantAsUser(BrowserRoleBehavior.java:142)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.controller.model.Role.grantAsUser(Role.java:967)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.addRoleHolderInternal(RoleControllerServiceImpl.java:380)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.onGrantDefaultRoles(RoleControllerServiceImpl.java:163)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.lambda$grantDefaultRoles$1(LocalRoleController.java:56)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.$r8$lambda$ye-flP7Mf14AbTzwSmiTgndT6Cg(LocalRoleController.java:0)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController$$ExternalSyntheticLambda1.run(R8$$SyntheticClass:0)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+06-04 20:36:10.183  3234  7158 E AppOpService: Blocked setUidMode call for runtime permission app op: uid = 10160, code = COARSE_LOCATION, mode = foreground, callingUid = 1000, oldMode = allow
+06-04 20:36:10.183  3234  7158 E AppOpService: java.lang.RuntimeException
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.server.permission.access.appop.AppOpService.setUidMode(AppOpService.kt:272)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsCheckingServiceTracingDecorator.setUidMode(AppOpsCheckingServiceTracingDecorator.java:120)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2300)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2244)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at android.app.AppOpsManager.setUidMode(AppOpsManager.java:8766)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpModeAsUser(Permissions.java:908)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpUidModeAsUser(Permissions.java:885)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantPermissionAndAppOpAsUser(Permissions.java:373)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantSingleAsUser(Permissions.java:247)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantAsUser(Permissions.java:205)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.controller.behavior.BrowserRoleBehavior.grantAsUser(BrowserRoleBehavior.java:142)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.controller.model.Role.grantAsUser(Role.java:967)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.addRoleHolderInternal(RoleControllerServiceImpl.java:380)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.onGrantDefaultRoles(RoleControllerServiceImpl.java:163)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.lambda$grantDefaultRoles$1(LocalRoleController.java:56)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.$r8$lambda$ye-flP7Mf14AbTzwSmiTgndT6Cg(LocalRoleController.java:0)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController$$ExternalSyntheticLambda1.run(R8$$SyntheticClass:0)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:36:10.183  3234  7158 E AppOpService: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+06-04 20:36:10.511  3234  4841 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:36:10.522  3234  5213 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:36:10.618 22846 22846 E OplusCustomizePackageManager: mIOplusCustomizePackageManagerService is null
+06-04 20:36:10.625 22846 22846 E OplusCustomizePackageManager: mIOplusCustomizePackageManagerService is null
+06-04 20:36:10.625 22846 22846 E OplusCustomizePackageManager: isOplusCertificatePackage Errorjava.lang.NullPointerException: Attempt to invoke interface method 'boolean android.os.customize.IOplusCustomizePackageManagerService.isOplusCertificatePackage(java.lang.String)' on a null object reference
+06-04 20:36:11.243 22678 23094 E ActivityThread: Failed to find provider info for com.oplus.phonemanager.RiskDetectDataProvider
+06-04 20:36:14.819 22678 22820 E ActivityThread: Failed to find provider info for com.nearme.romupdate.provider.db
+06-04 20:36:14.826 22678 22820 E ActivityThread: Failed to find provider info for com.nearme.romupdate.provider.db
+06-04 20:36:14.857 22678 22820 E ActivityThread: Failed to find provider info for com.nearme.romupdate.provider.db
+06-04 20:36:15.519  3234  5195 E OplusAppQuickStart_AppQuickStartController: notifyStartActivity intent:Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 xflg=0x4 cmp=com.slnlogistics.app/.MainActivity bnds=[904,552][1186,862] (has extras) }
+06-04 20:36:15.541  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:15.593  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:15.603  3234  3349 E OplusAppQuickStart_AppQuickStartController: scheduleHideStartingSurface addAfterPrepareSurface for:ActivityRecord{4647460 u0 com.slnlogistics.app/.MainActivity
+06-04 20:36:15.615  3234  4051 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:15.620  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:15.620  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:15.623  3234  3379 E OplusThermalStats: Error getting package info: com.slnlogistics.app
+06-04 20:36:15.745  3234  5026 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:15.836 23431 23475 E OplusCustomizeRestrictionManager: sInstance is null, start a new sInstance
+06-04 20:36:15.869 23346 23447 E ActivityThread: Failed to find provider info for com.facebook.appmanager.nekodirect
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: FATAL EXCEPTION: mqt_v_native
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: Process: com.slnlogistics.app, PID: 23431
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: com.facebook.react.common.JavascriptException: Error: No routes found
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: 
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: This error is located at:
+06-04 20:36:15.976 23431 23476 E AndroidRuntime:     at ContextNavigator (address at index.android.bundle:1:789993)
+06-04 20:36:15.976 23431 23476 E AndroidRuntime:     at ExpoRoot (address at index.android.bundle:1:789636)
+06-04 20:36:15.976 23431 23476 E AndroidRuntime:     at App (<anonymous>)
+06-04 20:36:15.976 23431 23476 E AndroidRuntime:     at RCTView (<anonymous>)
+06-04 20:36:15.976 23431 23476 E AndroidRuntime:     at View (address at index.android.bundle:1:459742)
+06-04 20:36:15.976 23431 23476 E AndroidRuntime:     at AppContainer (address at index.android.bundle:1:459070), stack:
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: useStore@1:921131
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: ContextNavigator@1:790150
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: renderWithHooks@1:219074
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: updateFunctionComponent@1:237824
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: beginWork@1:245647
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: performUnitOfWork@1:264243
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: workLoopSync@1:263251
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: renderRootSync@1:263083
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: performWorkOnRoot@1:260730
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: performWorkOnRootViaSchedulerTask@1:214561
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: 
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: 	at com.facebook.react.modules.core.ExceptionsManagerModule.reportException(ExceptionsManagerModule.kt:52)
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: 	at com.facebook.jni.NativeRunnable.run(Native Method)
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadHandler.dispatchMessage(MessageQueueThreadHandler.kt:21)
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.startNewBackgroundThread$lambda$1(MessageQueueThreadImpl.kt:175)
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.$r8$lambda$ldnZnqelhYFctGaUKkOKYj5rxo4(Unknown Source:0)
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+06-04 20:36:15.976 23431 23476 E AndroidRuntime: 	at java.lang.Thread.run(Thread.java:1564)
+06-04 20:36:15.992  3234  5073 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:15.993  3234  5073 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:15.994  3234  3379 E OplusThermalStats: Error getting package info: com.android.launcher
+06-04 20:36:15.994  3234  3349 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:82
+06-04 20:36:16.036  4127 21024 E ActivityThread: Failed to find provider info for com.oplus.thirdkit
+06-04 20:36:16.048  3234  5026 E OCvtSystemService: Cannot get map: android.system.ErrnoException: nativeBpfFdGet failed: ENOENT (No such file or directory)
+06-04 20:36:16.171  3234  5044 E ThermalManagerService: No threshold found for shell_skin
+06-04 20:36:16.171  3234  5044 E ThermalManagerService: No threshold found for shell_skin
+06-04 20:36:16.733  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:17.014  3234  7158 E AppOpService: Blocked setUidMode call for runtime permission app op: uid = 10156, code = CAMERA, mode = foreground, callingUid = 1000, oldMode = allow
+06-04 20:36:17.014  3234  7158 E AppOpService: java.lang.RuntimeException
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at com.android.server.permission.access.appop.AppOpService.setUidMode(AppOpService.kt:272)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsCheckingServiceTracingDecorator.setUidMode(AppOpsCheckingServiceTracingDecorator.java:120)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2300)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2244)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at android.app.AppOpsManager.setUidMode(AppOpsManager.java:8766)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpModeAsUser(Permissions.java:908)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpUidModeAsUser(Permissions.java:885)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantPermissionAndAppOpAsUser(Permissions.java:373)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantSingleAsUser(Permissions.java:247)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantAsUser(Permissions.java:205)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at com.android.role.controller.model.Role.grantAsUser(Role.java:941)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.addRoleHolderInternal(RoleControllerServiceImpl.java:380)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.onGrantDefaultRoles(RoleControllerServiceImpl.java:163)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.lambda$grantDefaultRoles$1(LocalRoleController.java:56)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.$r8$lambda$ye-flP7Mf14AbTzwSmiTgndT6Cg(LocalRoleController.java:0)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController$$ExternalSyntheticLambda1.run(R8$$SyntheticClass:0)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:36:17.014  3234  7158 E AppOpService: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+06-04 20:36:17.015  3234  7158 E AppOpService: Blocked setUidMode call for runtime permission app op: uid = 10273, code = COARSE_LOCATION, mode = foreground, callingUid = 1000, oldMode = allow
+06-04 20:36:17.015  3234  7158 E AppOpService: java.lang.RuntimeException
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at com.android.server.permission.access.appop.AppOpService.setUidMode(AppOpService.kt:272)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsCheckingServiceTracingDecorator.setUidMode(AppOpsCheckingServiceTracingDecorator.java:120)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2300)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2244)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at android.app.AppOpsManager.setUidMode(AppOpsManager.java:8766)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpModeAsUser(Permissions.java:908)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpUidModeAsUser(Permissions.java:885)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantPermissionAndAppOpAsUser(Permissions.java:373)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantSingleAsUser(Permissions.java:247)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantAsUser(Permissions.java:205)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at com.android.role.controller.model.Role.grantAsUser(Role.java:941)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.addRoleHolderInternal(RoleControllerServiceImpl.java:380)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.onGrantDefaultRoles(RoleControllerServiceImpl.java:163)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.lambda$grantDefaultRoles$1(LocalRoleController.java:56)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.$r8$lambda$ye-flP7Mf14AbTzwSmiTgndT6Cg(LocalRoleController.java:0)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController$$ExternalSyntheticLambda1.run(R8$$SyntheticClass:0)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:36:17.015  3234  7158 E AppOpService: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+06-04 20:36:17.016  3234  7158 E AppOpService: Blocked setUidMode call for runtime permission app op: uid = 10104, code = FINE_LOCATION, mode = foreground, callingUid = 1000, oldMode = allow
+06-04 20:36:17.016  3234  7158 E AppOpService: java.lang.RuntimeException
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at com.android.server.permission.access.appop.AppOpService.setUidMode(AppOpService.kt:272)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsCheckingServiceTracingDecorator.setUidMode(AppOpsCheckingServiceTracingDecorator.java:120)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2300)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2244)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at android.app.AppOpsManager.setUidMode(AppOpsManager.java:8766)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpModeAsUser(Permissions.java:908)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpUidModeAsUser(Permissions.java:885)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantPermissionAndAppOpAsUser(Permissions.java:373)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantSingleAsUser(Permissions.java:247)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantAsUser(Permissions.java:205)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at com.android.role.controller.model.Role.grantAsUser(Role.java:941)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.addRoleHolderInternal(RoleControllerServiceImpl.java:380)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.onGrantDefaultRoles(RoleControllerServiceImpl.java:163)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.lambda$grantDefaultRoles$1(LocalRoleController.java:56)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.$r8$lambda$ye-flP7Mf14AbTzwSmiTgndT6Cg(LocalRoleController.java:0)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController$$ExternalSyntheticLambda1.run(R8$$SyntheticClass:0)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:36:17.016  3234  7158 E AppOpService: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+06-04 20:36:17.017  3234  7158 E AppOpService: Blocked setUidMode call for runtime permission app op: uid = 10104, code = COARSE_LOCATION, mode = foreground, callingUid = 1000, oldMode = allow
+06-04 20:36:17.017  3234  7158 E AppOpService: java.lang.RuntimeException
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at com.android.server.permission.access.appop.AppOpService.setUidMode(AppOpService.kt:272)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsCheckingServiceTracingDecorator.setUidMode(AppOpsCheckingServiceTracingDecorator.java:120)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2300)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2244)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at android.app.AppOpsManager.setUidMode(AppOpsManager.java:8766)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpModeAsUser(Permissions.java:908)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpUidModeAsUser(Permissions.java:885)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantPermissionAndAppOpAsUser(Permissions.java:373)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantSingleAsUser(Permissions.java:247)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantAsUser(Permissions.java:205)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at com.android.role.controller.model.Role.grantAsUser(Role.java:941)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.addRoleHolderInternal(RoleControllerServiceImpl.java:380)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.onGrantDefaultRoles(RoleControllerServiceImpl.java:163)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.lambda$grantDefaultRoles$1(LocalRoleController.java:56)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.$r8$lambda$ye-flP7Mf14AbTzwSmiTgndT6Cg(LocalRoleController.java:0)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController$$ExternalSyntheticLambda1.run(R8$$SyntheticClass:0)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:36:17.017  3234  7158 E AppOpService: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+06-04 20:36:17.021  3234  7158 E AppOpService: Blocked setUidMode call for runtime permission app op: uid = 10276, code = CAMERA, mode = foreground, callingUid = 1000, oldMode = allow
+06-04 20:36:17.021  3234  7158 E AppOpService: java.lang.RuntimeException
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at com.android.server.permission.access.appop.AppOpService.setUidMode(AppOpService.kt:272)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsCheckingServiceTracingDecorator.setUidMode(AppOpsCheckingServiceTracingDecorator.java:120)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2300)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2244)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at android.app.AppOpsManager.setUidMode(AppOpsManager.java:8766)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpModeAsUser(Permissions.java:908)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpUidModeAsUser(Permissions.java:885)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantPermissionAndAppOpAsUser(Permissions.java:373)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantSingleAsUser(Permissions.java:247)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantAsUser(Permissions.java:205)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at com.android.role.controller.model.Role.grantAsUser(Role.java:941)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.addRoleHolderInternal(RoleControllerServiceImpl.java:380)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.onGrantDefaultRoles(RoleControllerServiceImpl.java:163)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.lambda$grantDefaultRoles$1(LocalRoleController.java:56)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.$r8$lambda$ye-flP7Mf14AbTzwSmiTgndT6Cg(LocalRoleController.java:0)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController$$ExternalSyntheticLambda1.run(R8$$SyntheticClass:0)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:36:17.021  3234  7158 E AppOpService: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+06-04 20:36:17.024  3234  7158 E AppOpService: Blocked setUidMode call for runtime permission app op: uid = 10273, code = COARSE_LOCATION, mode = foreground, callingUid = 1000, oldMode = allow
+06-04 20:36:17.024  3234  7158 E AppOpService: java.lang.RuntimeException
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at com.android.server.permission.access.appop.AppOpService.setUidMode(AppOpService.kt:272)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsCheckingServiceTracingDecorator.setUidMode(AppOpsCheckingServiceTracingDecorator.java:120)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2300)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2244)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at android.app.AppOpsManager.setUidMode(AppOpsManager.java:8766)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpModeAsUser(Permissions.java:908)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpUidModeAsUser(Permissions.java:885)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantPermissionAndAppOpAsUser(Permissions.java:373)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantSingleAsUser(Permissions.java:247)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantAsUser(Permissions.java:205)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at com.android.role.controller.model.Role.grantAsUser(Role.java:941)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.addRoleHolderInternal(RoleControllerServiceImpl.java:380)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.onGrantDefaultRoles(RoleControllerServiceImpl.java:163)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.lambda$grantDefaultRoles$1(LocalRoleController.java:56)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.$r8$lambda$ye-flP7Mf14AbTzwSmiTgndT6Cg(LocalRoleController.java:0)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController$$ExternalSyntheticLambda1.run(R8$$SyntheticClass:0)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:36:17.024  3234  7158 E AppOpService: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+06-04 20:36:17.026  3234  7158 E AppOpService: Blocked setUidMode call for runtime permission app op: uid = 10275, code = CAMERA, mode = foreground, callingUid = 1000, oldMode = allow
+06-04 20:36:17.026  3234  7158 E AppOpService: java.lang.RuntimeException
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at com.android.server.permission.access.appop.AppOpService.setUidMode(AppOpService.kt:272)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsCheckingServiceTracingDecorator.setUidMode(AppOpsCheckingServiceTracingDecorator.java:120)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2300)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2244)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at android.app.AppOpsManager.setUidMode(AppOpsManager.java:8766)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpModeAsUser(Permissions.java:908)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpUidModeAsUser(Permissions.java:885)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantPermissionAndAppOpAsUser(Permissions.java:373)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantSingleAsUser(Permissions.java:247)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantAsUser(Permissions.java:205)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at com.android.role.controller.model.Role.grantAsUser(Role.java:941)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.addRoleHolderInternal(RoleControllerServiceImpl.java:380)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.onGrantDefaultRoles(RoleControllerServiceImpl.java:163)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.lambda$grantDefaultRoles$1(LocalRoleController.java:56)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.$r8$lambda$ye-flP7Mf14AbTzwSmiTgndT6Cg(LocalRoleController.java:0)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController$$ExternalSyntheticLambda1.run(R8$$SyntheticClass:0)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:36:17.026  3234  7158 E AppOpService: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+06-04 20:36:17.039  3234  7158 E AppOpService: Blocked setUidMode call for runtime permission app op: uid = 10160, code = FINE_LOCATION, mode = foreground, callingUid = 1000, oldMode = allow
+06-04 20:36:17.039  3234  7158 E AppOpService: java.lang.RuntimeException
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.server.permission.access.appop.AppOpService.setUidMode(AppOpService.kt:272)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsCheckingServiceTracingDecorator.setUidMode(AppOpsCheckingServiceTracingDecorator.java:120)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2300)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2244)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at android.app.AppOpsManager.setUidMode(AppOpsManager.java:8766)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpModeAsUser(Permissions.java:908)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpUidModeAsUser(Permissions.java:885)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantPermissionAndAppOpAsUser(Permissions.java:373)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantSingleAsUser(Permissions.java:247)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantAsUser(Permissions.java:205)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.controller.behavior.BrowserRoleBehavior.grantAsUser(BrowserRoleBehavior.java:142)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.controller.model.Role.grantAsUser(Role.java:967)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.addRoleHolderInternal(RoleControllerServiceImpl.java:380)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.onGrantDefaultRoles(RoleControllerServiceImpl.java:163)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.lambda$grantDefaultRoles$1(LocalRoleController.java:56)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.$r8$lambda$ye-flP7Mf14AbTzwSmiTgndT6Cg(LocalRoleController.java:0)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController$$ExternalSyntheticLambda1.run(R8$$SyntheticClass:0)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+06-04 20:36:17.039  3234  7158 E AppOpService: Blocked setUidMode call for runtime permission app op: uid = 10160, code = COARSE_LOCATION, mode = foreground, callingUid = 1000, oldMode = allow
+06-04 20:36:17.039  3234  7158 E AppOpService: java.lang.RuntimeException
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.server.permission.access.appop.AppOpService.setUidMode(AppOpService.kt:272)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsCheckingServiceTracingDecorator.setUidMode(AppOpsCheckingServiceTracingDecorator.java:120)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2300)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.server.appop.AppOpsService.setUidMode(AppOpsService.java:2244)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at android.app.AppOpsManager.setUidMode(AppOpsManager.java:8766)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpModeAsUser(Permissions.java:908)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.setAppOpUidModeAsUser(Permissions.java:885)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantPermissionAndAppOpAsUser(Permissions.java:373)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantSingleAsUser(Permissions.java:247)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.controller.model.Permissions.grantAsUser(Permissions.java:205)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.controller.behavior.BrowserRoleBehavior.grantAsUser(BrowserRoleBehavior.java:142)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.controller.model.Role.grantAsUser(Role.java:967)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.addRoleHolderInternal(RoleControllerServiceImpl.java:380)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.controller.service.RoleControllerServiceImpl.onGrantDefaultRoles(RoleControllerServiceImpl.java:163)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.lambda$grantDefaultRoles$1(LocalRoleController.java:56)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController.$r8$lambda$ye-flP7Mf14AbTzwSmiTgndT6Cg(LocalRoleController.java:0)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at com.android.role.LocalRoleController$$ExternalSyntheticLambda1.run(R8$$SyntheticClass:0)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:36:17.039  3234  7158 E AppOpService: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+06-04 20:36:17.543  3234  3860 E WindowManager: Display reconfigured outside of a transition: Display{#0 state=ON size=1240x2772 ROTATION_0}
+06-04 20:36:17.567  3234  3360 E QosSceneRecognizer[ActivityStartScene]: notifyActivityStart get launchedFromUid failed through AppManager! launchedFromPackage: com.android.shell, pkg: com.slnlogistics.app
+06-04 20:36:17.588  3234  5031 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:17.593  3234  3379 E OplusThermalStats: Error getting package info: com.slnlogistics.app
+06-04 20:36:17.606  3234  3349 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:83
+06-04 20:36:17.614  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:17.650  3234  3860 E WindowManager: Display reconfigured outside of a transition: Display{#0 state=ON size=1240x2772 ROTATION_0}
+06-04 20:36:17.930  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:18.084  3234  5188 E OCvtSystemService: Cannot get map: android.system.ErrnoException: nativeBpfFdGet failed: ENOENT (No such file or directory)
+06-04 20:36:19.541  3234  7561 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+06-04 20:36:21.011 23921 23921 E OplusCustomizePackageManager: mIOplusCustomizePackageManagerService is null
+06-04 20:36:21.012 23921 23921 E OplusCustomizePackageManager: mIOplusCustomizePackageManagerService is null
+06-04 20:36:21.012 23921 23921 E OplusCustomizePackageManager: isOplusCertificatePackage Errorjava.lang.NullPointerException: Attempt to invoke interface method 'boolean android.os.customize.IOplusCustomizePackageManagerService.isOplusCertificatePackage(java.lang.String)' on a null object reference
+06-04 20:36:21.108  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:21.135  3234  3349 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:84
+06-04 20:36:21.139  3234  3379 E OplusThermalStats: Error getting package info: com.android.settings
+06-04 20:36:21.149  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:21.166 22678 23078 E OplusCustomizeRestrictionManager: sInstance is null, start a new sInstance
+06-04 20:36:21.343  3234  4009 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:36:21.374 23945 23987 E OplusCustomizeRestrictionManager: sInstance is null, start a new sInstance
+06-04 20:36:21.474 23945 23992 E ActivityThread: Failed to find provider info for com.oplusos.provider.PermissionProvider
+06-04 20:36:21.503  3234  5213 E OplusCustomizePackageManagerInternal: getAppUninstallationPolicies:unknown mode!
+06-04 20:36:21.532  3234  5161 E OplusCustomizePackageManagerInternal: getAppUninstallationPolicies:unknown mode!
+06-04 20:36:21.537 24019 24019 E OplusCustomizePackageManager: mIOplusCustomizePackageManagerService is null
+06-04 20:36:21.539 24019 24019 E OplusCustomizePackageManager: mIOplusCustomizePackageManagerService is null
+06-04 20:36:21.540  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:21.540 24019 24019 E OplusCustomizePackageManager: isOplusCertificatePackage Errorjava.lang.NullPointerException: Attempt to invoke interface method 'boolean android.os.customize.IOplusCustomizePackageManagerService.isOplusCertificatePackage(java.lang.String)' on a null object reference
+06-04 20:36:21.562  3234  4754 E OplusCustomizePackageManagerInternal: getAppUninstallationPolicies:unknown mode!
+06-04 20:36:21.648 23945 24070 E ActivityThread: Failed to find provider info for com.oneplus.security.database.SafeProvider
+06-04 20:36:22.424 23921 23935 E OplusCustomizePackageManager: mIOplusCustomizePackageManagerService is null
+06-04 20:36:22.424 23921 23935 E OplusCustomizePackageManager: isOplusCertificatePackage Errorjava.lang.NullPointerException: Attempt to invoke interface method 'boolean android.os.customize.IOplusCustomizePackageManagerService.isOplusCertificatePackage(java.lang.String)' on a null object reference
+06-04 20:36:22.764  3234  4754 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:85
+06-04 20:36:22.767  3234  3379 E OplusThermalStats: Error getting package info: com.android.launcher
+06-04 20:36:22.773  3234  4754 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:22.802  3234  5213 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:22.802  3234  5213 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:23.474  3234  4509 E OplusSplitScreenManagerService: checkCallingFromSystemUI, caller is not SystemUI, callerUid=10219, SystemUI uid=10223
+06-04 20:36:23.476  3234  4509 E OplusAppQuickStart_AppQuickStartController: notifyStartActivityFromRecents, skip add starting surface when recents slide
+06-04 20:36:23.479  3234  3360 E QosSceneRecognizer[ActivityStartScene]: notifyActivityStart get launchedFromUid failed through AppManager! launchedFromPackage: com.android.shell, pkg: com.slnlogistics.app
+06-04 20:36:23.503  3234  4509 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:23.516  3234  3349 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:86
+06-04 20:36:23.521  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:23.530  3234  5188 E TransitionChain: Can't collect into a chain with no transition
+06-04 20:36:23.541  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:23.543  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:23.560  3234  5025 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:23.570  3234  3379 E OplusThermalStats: Error getting package info: com.slnlogistics.app
+06-04 20:36:23.578  3234  4009 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:23.579  3234  4009 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:23.668  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:23.700 24307 24341 E OplusCustomizeRestrictionManager: sInstance is null, start a new sInstance
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: FATAL EXCEPTION: mqt_v_native
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: Process: com.slnlogistics.app, PID: 24307
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: com.facebook.react.common.JavascriptException: Error: No routes found
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: 
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: This error is located at:
+06-04 20:36:23.799 24307 24342 E AndroidRuntime:     at ContextNavigator (address at index.android.bundle:1:789993)
+06-04 20:36:23.799 24307 24342 E AndroidRuntime:     at ExpoRoot (address at index.android.bundle:1:789636)
+06-04 20:36:23.799 24307 24342 E AndroidRuntime:     at App (<anonymous>)
+06-04 20:36:23.799 24307 24342 E AndroidRuntime:     at RCTView (<anonymous>)
+06-04 20:36:23.799 24307 24342 E AndroidRuntime:     at View (address at index.android.bundle:1:459742)
+06-04 20:36:23.799 24307 24342 E AndroidRuntime:     at AppContainer (address at index.android.bundle:1:459070), stack:
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: useStore@1:921131
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: ContextNavigator@1:790150
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: renderWithHooks@1:219074
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: updateFunctionComponent@1:237824
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: beginWork@1:245647
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: performUnitOfWork@1:264243
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: workLoopSync@1:263251
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: renderRootSync@1:263083
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: performWorkOnRoot@1:260730
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: performWorkOnRootViaSchedulerTask@1:214561
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: 
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: 	at com.facebook.react.modules.core.ExceptionsManagerModule.reportException(ExceptionsManagerModule.kt:52)
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: 	at com.facebook.jni.NativeRunnable.run(Native Method)
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadHandler.dispatchMessage(MessageQueueThreadHandler.kt:21)
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.startNewBackgroundThread$lambda$1(MessageQueueThreadImpl.kt:175)
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.$r8$lambda$ldnZnqelhYFctGaUKkOKYj5rxo4(Unknown Source:0)
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+06-04 20:36:23.799 24307 24342 E AndroidRuntime: 	at java.lang.Thread.run(Thread.java:1564)
+06-04 20:36:23.816  3234  4268 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:23.817  3234  4268 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:23.820  3234  3349 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:87
+06-04 20:36:23.827  3234  3379 E OplusThermalStats: Error getting package info: com.android.launcher
+06-04 20:36:23.862  3234  5250 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:23.910  3234  5195 E OCvtSystemService: Cannot get map: android.system.ErrnoException: nativeBpfFdGet failed: ENOENT (No such file or directory)
+06-04 20:36:25.068  3234  7561 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+06-04 20:36:25.275  3234  5044 E OplusAppQuickStart_AppQuickStartController: notifyStartActivity intent:Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 xflg=0x4 cmp=com.slnlogistics.app/.MainActivity bnds=[916,565][1198,875] (has extras) }
+06-04 20:36:25.291  3234  5044 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:25.303  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:25.352  3234  5250 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:25.365  3234  3379 E OplusThermalStats: Error getting package info: com.slnlogistics.app
+06-04 20:36:25.458  3234  4008 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:25.458  3234  4008 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:25.506 24721 24759 E OplusCustomizeRestrictionManager: sInstance is null, start a new sInstance
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: FATAL EXCEPTION: mqt_v_native
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: Process: com.slnlogistics.app, PID: 24721
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: com.facebook.react.common.JavascriptException: Error: No routes found
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: 
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: This error is located at:
+06-04 20:36:25.607 24721 24760 E AndroidRuntime:     at ContextNavigator (address at index.android.bundle:1:789993)
+06-04 20:36:25.607 24721 24760 E AndroidRuntime:     at ExpoRoot (address at index.android.bundle:1:789636)
+06-04 20:36:25.607 24721 24760 E AndroidRuntime:     at App (<anonymous>)
+06-04 20:36:25.607 24721 24760 E AndroidRuntime:     at RCTView (<anonymous>)
+06-04 20:36:25.607 24721 24760 E AndroidRuntime:     at View (address at index.android.bundle:1:459742)
+06-04 20:36:25.607 24721 24760 E AndroidRuntime:     at AppContainer (address at index.android.bundle:1:459070), stack:
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: useStore@1:921131
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: ContextNavigator@1:790150
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: renderWithHooks@1:219074
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: updateFunctionComponent@1:237824
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: beginWork@1:245647
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: performUnitOfWork@1:264243
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: workLoopSync@1:263251
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: renderRootSync@1:263083
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: performWorkOnRoot@1:260730
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: performWorkOnRootViaSchedulerTask@1:214561
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: 
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: 	at com.facebook.react.modules.core.ExceptionsManagerModule.reportException(ExceptionsManagerModule.kt:52)
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: 	at com.facebook.jni.NativeRunnable.run(Native Method)
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadHandler.dispatchMessage(MessageQueueThreadHandler.kt:21)
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.startNewBackgroundThread$lambda$1(MessageQueueThreadImpl.kt:175)
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.$r8$lambda$ldnZnqelhYFctGaUKkOKYj5rxo4(Unknown Source:0)
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+06-04 20:36:25.607 24721 24760 E AndroidRuntime: 	at java.lang.Thread.run(Thread.java:1564)
+06-04 20:36:25.624  3234  4841 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:25.625  3234  4841 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:25.626  3234  3349 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:89
+06-04 20:36:25.631  3234  3379 E OplusThermalStats: Error getting package info: com.android.launcher
+06-04 20:36:25.966  3234  5025 E OCvtSystemService: Cannot get map: android.system.ErrnoException: nativeBpfFdGet failed: ENOENT (No such file or directory)
+06-04 20:36:26.598  3234  5195 E OplusAppQuickStart_AppQuickStartController: notifyStartActivity intent:Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 xflg=0x4 cmp=com.slnlogistics.app/.MainActivity bnds=[907,556][1189,866] (has extras) }
+06-04 20:36:26.617  3234  5195 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:26.631  3234  5025 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:26.666  3234  5031 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:26.670  3234  3379 E OplusThermalStats: Error getting package info: com.slnlogistics.app
+--------- beginning of main
+06-04 20:36:26.683  1649  1704 E statsd  : Gauge Stats puller failed for tag: 150119 at 2756919711383
+06-04 20:36:26.683  1649  1704 E statsd  : Gauge Stats puller failed for tag: 150146 at 2756927509872
+06-04 20:36:26.687 10845 11264 E metis_v2_JenaHandlerManager: local thread match
+06-04 20:36:26.688 10845 11264 E metis_v2_JenaHandlerManager: local thread match
+06-04 20:36:26.794  4696  4696 E [OPLUS_AFS_CONFIG]: Failed to open AFS config file: /proc/oplus_afs_config/afs_config
+06-04 20:36:26.794  4696  4696 E AFS_CONFIG: Failed to get scene config
+06-04 20:36:26.794  4696  4696 E OplusAfsManager: afsConfigSceneConfigGet sceneType is null
+06-04 20:36:26.859 24832 24832 E [UAH_CLIENT]: uahInit enter
+06-04 20:36:26.886 24832 24832 E SchedAssist: open sharedFd failed with error=Permission denied
+06-04 20:36:26.886 24832 24832 E SchedAssist: open sharedFd failed with error=Permission denied
+06-04 20:36:26.886 24832 24832 E SchedAssist: open sharedFd failed with error=Permission denied
+06-04 20:36:26.886 24832 24832 E SchedAssist: open sharedFd failed with error=Permission denied
+06-04 20:36:26.903 24832 24832 E ashmem  : Pinning is deprecated since Android Q. Please use trim or other methods.
+06-04 20:36:26.908 24832 24832 E lnlogistics.app: Invalid resource ID 0x00000000.
+06-04 20:36:26.917 24832 24832 E OplusPredictiveBackController:  NoSuchMethodException 
+06-04 20:36:26.948 24832 24832 E OplusBracketLog: [OplusViewMirrorManager] updateHostViewRootIfNeeded, not support android.view.ViewRootImpl@3c530d
+06-04 20:36:26.953  3234  5025 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:26.953  3234  5025 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:27.054 24832 24856 E OplusCustomizeRestrictionManager: sInstance is null, start a new sInstance
+06-04 20:36:27.150  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:27.150  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e54 went down
+06-04 20:36:27.150  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e55 went down
+06-04 20:36:27.151  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:27.151  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:27.151  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e56 went down
+06-04 20:36:27.152  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e57 went down
+06-04 20:36:27.152  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:27.161  4696  4696 E [OPLUS_AFS_CONFIG]: Failed to open AFS config file: /proc/oplus_afs_config/afs_config
+06-04 20:36:27.161  4696  4696 E AFS_CONFIG: Failed to get scene config
+06-04 20:36:27.161  4696  4696 E OplusAfsManager: afsConfigSceneConfigGet sceneType is null
+06-04 20:36:27.172 24832 24856 E ReactNativeJS: { [Error: No routes found]
+06-04 20:36:27.172 24832 24856 E ReactNativeJS:   componentStack: '\n    at ContextNavigator (address at index.android.bundle:1:789993)\n    at ExpoRoot (address at index.android.bundle:1:789636)\n    at App (<anonymous>)\n    at RCTView (<anonymous>)\n    at View (address at index.android.bundle:1:459742)\n    at AppContainer (address at index.android.bundle:1:459070)',
+06-04 20:36:27.172 24832 24856 E ReactNativeJS:   isComponentError: true }
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: FATAL EXCEPTION: mqt_v_native
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: Process: com.slnlogistics.app, PID: 24832
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: com.facebook.react.common.JavascriptException: Error: No routes found
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: 
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: This error is located at:
+06-04 20:36:27.175 24832 24857 E AndroidRuntime:     at ContextNavigator (address at index.android.bundle:1:789993)
+06-04 20:36:27.175 24832 24857 E AndroidRuntime:     at ExpoRoot (address at index.android.bundle:1:789636)
+06-04 20:36:27.175 24832 24857 E AndroidRuntime:     at App (<anonymous>)
+06-04 20:36:27.175 24832 24857 E AndroidRuntime:     at RCTView (<anonymous>)
+06-04 20:36:27.175 24832 24857 E AndroidRuntime:     at View (address at index.android.bundle:1:459742)
+06-04 20:36:27.175 24832 24857 E AndroidRuntime:     at AppContainer (address at index.android.bundle:1:459070), stack:
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: useStore@1:921131
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: ContextNavigator@1:790150
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: renderWithHooks@1:219074
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: updateFunctionComponent@1:237824
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: beginWork@1:245647
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: performUnitOfWork@1:264243
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: workLoopSync@1:263251
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: renderRootSync@1:263083
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: performWorkOnRoot@1:260730
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: performWorkOnRootViaSchedulerTask@1:214561
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: 
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: 	at com.facebook.react.modules.core.ExceptionsManagerModule.reportException(ExceptionsManagerModule.kt:52)
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: 	at com.facebook.jni.NativeRunnable.run(Native Method)
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadHandler.dispatchMessage(MessageQueueThreadHandler.kt:21)
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.startNewBackgroundThread$lambda$1(MessageQueueThreadImpl.kt:175)
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.$r8$lambda$ldnZnqelhYFctGaUKkOKYj5rxo4(Unknown Source:0)
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+06-04 20:36:27.175 24832 24857 E AndroidRuntime: 	at java.lang.Thread.run(Thread.java:1564)
+06-04 20:36:27.178  3234  3349 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:27.193  4696  4696 E OplusDisplayModeManager: has been initialized.
+06-04 20:36:27.196  4833  4971 E ScreenCapture: Failed to generate screen capture. Error code: -12
+06-04 20:36:27.196  4833  4971 E Blur_ScreenCapture: [captureScreenInternal] exceeds fail times limit=1
+06-04 20:36:27.200  3234  5213 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:27.200  3234  5213 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:27.204  3234  3379 E OplusThermalStats: Error getting package info: com.android.launcher
+06-04 20:36:27.204  3234  5161 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:91
+06-04 20:36:27.218  3234  5250 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:27.219  4696  4696 E [OPLUS_AFS_CONFIG]: Failed to open AFS config file: /proc/oplus_afs_config/afs_config
+06-04 20:36:27.219  4696  4696 E AFS_CONFIG: Failed to get scene config
+06-04 20:36:27.219  4696  4696 E OplusAfsManager: afsConfigSceneConfigGet sceneType is null
+06-04 20:36:27.236  1649  1704 E statsd  : Stats puller failed for tag: 150134 at 2757486848518
+06-04 20:36:27.237  1649  1704 E statsd  : Gauge Stats puller failed for tag: 150119 at 2757486848518
+06-04 20:36:27.244  1745  1745 E QTI PowerHAL: Failed to acquire lock for hint_id: 10A5.
+06-04 20:36:27.246  1649  1704 E statsd  : Gauge Stats puller failed for tag: 150146 at 2757494421435
+06-04 20:36:27.270 10845 11264 E metis_v2_JenaHandlerManager: local thread match
+06-04 20:36:27.271 10845 11264 E metis_v2_JenaHandlerManager: local thread match
+06-04 20:36:27.275  1649  1704 E statsd  : Stats puller failed for tag: 150134 at 2757518299091
+06-04 20:36:27.551  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e47 went down
+06-04 20:36:27.552  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:27.552  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e4b went down
+06-04 20:36:27.552  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:27.910  4696  4696 E [OPLUS_AFS_CONFIG]: Failed to open AFS config file: /proc/oplus_afs_config/afs_config
+06-04 20:36:27.910  4696  4696 E AFS_CONFIG: Failed to get scene config
+06-04 20:36:27.910  4696  4696 E OplusAfsManager: afsConfigSceneConfigGet sceneType is null
+06-04 20:36:27.911  4696  4696 E IJankManager: latencySceneEnd unknown scene 2 mScene:-1
+06-04 20:36:28.085  1746 10405 E sensors-hal: handle_sns_client_event:94, pedometer_minute: report_ts=40,counter=14.000000 move_status =[SNS_CMC_STATIONARY] time_gap = 0 run_counter=0.000000 walk_counter=14.000000
+06-04 20:36:28.093  4696  4696 E OplusDisplayModeManager: has been initialized.
+06-04 20:36:28.256  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e58 went down
+06-04 20:36:28.256  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:28.257  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e59 went down
+06-04 20:36:28.257  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:28.258  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e5a went down
+06-04 20:36:28.258  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:28.260  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e5b went down
+06-04 20:36:28.261  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:28.574  3234  9247 E OplusStorageUFSBandwidth: storage_io_metrics_path is /proc/oplus_storage/io_metrics/forever/
+06-04 20:36:28.574  3234  9247 E OplusStorageUFSBandwidth: Bandwidth - Read: 0.00 MB/s, Write: 7.00 MB/s
+06-04 20:36:28.574  3234  9247 E OplusStorageUFSBandwidth: Task time: 0ms
+06-04 20:36:28.576  3234  9247 E OplusStorageUFSBandwidth: Alarm set to trigger in 10 seconds
+06-04 20:36:28.599  3234  5044 E OplusInputManagerService_jni: updateInvalidRegion start!!!
+06-04 20:36:28.599  3234  5044 E InputDispatcherExtImpl: rectF left: 0.000000, top: 2695.000000, right: 1240.000000, bottom: 2772.000000 offset_left: 0.000000, offset_top: -91.000000, offset_right: 0.000000, offset_bottom: 0.000000, isClosedRegion:0
+06-04 20:36:28.599  3234  5044 E OplusInputManagerService_jni: updateInvalidRegion start!!!
+06-04 20:36:28.599  3234  5044 E OplusInputManagerService_jni: updateInvalidRegion start!!!
+06-04 20:36:28.626  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:29.261  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:29.296  3234  7561 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+06-04 20:36:29.601  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:29.668  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e5c went down
+06-04 20:36:29.669  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:29.670  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e5d went down
+06-04 20:36:29.670  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:29.671  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e5e went down
+06-04 20:36:29.671  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:29.673  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e5f went down
+06-04 20:36:29.673  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:30.011  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:30.197  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:30.266  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e60 went down
+06-04 20:36:30.267  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:30.268  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e61 went down
+06-04 20:36:30.268  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:30.269  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e62 went down
+06-04 20:36:30.269  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:30.270  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e64 went down
+06-04 20:36:30.271  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:30.271  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e65 went down
+06-04 20:36:30.271  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:30.272  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e66 went down
+06-04 20:36:30.272  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:30.284  2487  2487 E perfetto: ng_service_impl.cc:3788 Unable to read ro.boot.hardware.revision
+06-04 20:36:30.284  2487  2487 E perfetto: ng_service_impl.cc:3795 Unable to read ro.boot.hardware.ufs
+06-04 20:36:30.284  2487  2487 E perfetto: ng_service_impl.cc:3802 Unable to read ro.boot.hardware.ddr
+06-04 20:36:30.575  3234  9247 E OplusStorageUFSBandwidth: storage_io_metrics_path is /proc/oplus_storage/io_metrics/forever/
+06-04 20:36:30.577  3234  9247 E OplusStorageUFSBandwidth: Bandwidth - Read: 1.00 MB/s, Write: 0.00 MB/s
+06-04 20:36:30.577  3234  9247 E OplusStorageUFSBandwidth: Task time: 2ms
+06-04 20:36:30.581  3234  9247 E OplusStorageUFSBandwidth: Alarm set to trigger in 10 seconds
+06-04 20:36:30.633  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:30.761  2534  2640 E QmiVsClient: sendAsyncRequest QMI_VS_SET_SYNC_WITH_AP_REQ_MSG_V01 ret 0
+06-04 20:36:30.768  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e68 went down
+06-04 20:36:30.769  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:30.769  4493  4493 E PhoneInterfaceManager: queryModemActivityInfo: invalid response
+06-04 20:36:30.769  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e69 went down
+06-04 20:36:30.770  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:30.771  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e6a went down
+06-04 20:36:30.771  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:30.771  4543  5238 E AMC     : [P-ooslimited_deep/0] execute failed in triggers[0]:[nwsrcht:0][nwsrcht:0]
+06-04 20:36:30.771  4543  5238 E AMC     : [P-ooslimited_deep/1] execute failed in triggers[0]:[nwsrcht:0][nwsrcht:0]
+06-04 20:36:30.771  4543  5238 E AMC     : [P-mpss_reset/0] execute failed in triggers[0]:[sleept:1][sleept:1045]
+06-04 20:36:30.772  4543  5238 E AMC     : [P-mpss_reset/1] execute failed in triggers[0]:[sleept:1][sleept:1045]
+06-04 20:36:30.772  4543  5238 E AMC     : [P-pidnetdisable_recovery] execute failed in triggers[0]:[sleept:1][sleept:1045, pidnetdisable:null]
+06-04 20:36:30.772  4543  5238 E AMC     : [P-standby_5gbackoff/0] execute failed in triggers[0]:[sleept:1][inactive:false, sleept:537]
+06-04 20:36:30.772  4543  5238 E AMC     : [P-standby_5gbackoff/1] execute failed in triggers[0]:[sleept:1][inactive:false, sleept:537]
+06-04 20:36:30.774  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e6b went down
+06-04 20:36:30.774  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:30.776  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:30.956 24450 24722 E HiddenApis2: Failed to init DecodeJObjectFuncPtr
+06-04 20:36:31.154 24450 24727 E fb4a.MobileConfigInit: MobileConfigDebug: endToEndConfigLevelConsistencyTests
+06-04 20:36:31.172 24450 24722 E fb4a.AppState: Returning default for firstRunInfo
+06-04 20:36:31.172 24450 24722 E fb4a.AppState: Returning default for firstRunInfo
+06-04 20:36:31.286  3234  4346 E WindowProcessControllerExtImpl: shouldMakeAbnormalActivityFinishing, list may empty, mHasActivities: false
+06-04 20:36:31.287  3234  4949 E Athena  : athena_optimize: pkg: com.heytap.mcs, processName: com.heytap.mcs.appservicegetPercentage: 40
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: unable to set dex config
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: java.lang.IllegalStateException: Main DexStore is null
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: 	at com.facebook.common.dextricksdi.ColdstartExperimentsController.A00(Unknown Source:211)
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: 	at com.facebook.common.dextricksdi.ColdstartExperimentsController.A01(Unknown Source:64)
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: 	at X.79K.A0W(Unknown Source:1167)
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: 	at X.79K.A1X(Unknown Source:3)
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: 	at X.2L7.A02(Unknown Source:3636)
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: 	at X.2L7.run(Unknown Source:1788)
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: 	at X.2Lp.call(Unknown Source:241)
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: 	at java.util.concurrent.FutureTask.run(FutureTask.java:317)
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: 	at X.R4A.A00(Unknown Source:28)
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: 	at X.1Sn.call(Unknown Source:48)
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: 	at java.util.concurrent.FutureTask.run(FutureTask.java:317)
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: 	at X.1S2.run(Unknown Source:2)
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: 	at X.1DO.run(Unknown Source:2)
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: 	at X.1Du.run(Unknown Source:3)
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: 	at X.1Dx.run(Unknown Source:17)
+06-04 20:36:31.366 24450 24723 E fb4a.ColdstartExperimentsController: 	at java.lang.Thread.run(Thread.java:1564)
+06-04 20:36:31.412  1894  1947 E ChargerInfo: SingleHyperPath not found
+06-04 20:36:31.532  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:31.626  2487  2487 E perfetto: ng_service_impl.cc:3788 Unable to read ro.boot.hardware.revision
+06-04 20:36:31.626  2487  2487 E perfetto: ng_service_impl.cc:3795 Unable to read ro.boot.hardware.ufs
+06-04 20:36:31.626  2487  2487 E perfetto: ng_service_impl.cc:3802 Unable to read ro.boot.hardware.ddr
+06-04 20:36:31.642  1854  3331 E PerformanceService: storage_feature: open /sys/devices/platform/soc/112b0000.ufshci//virtualtlcbuff fail
+06-04 20:36:31.675 24450 24706 E fb4a.AppState: Returning default for firstRunInfo
+06-04 20:36:31.679 24450 24726 E fb4a.AppState: Returning default for firstRunInfo
+06-04 20:36:31.686 24450 24726 E fb4a.AppState: Returning default for firstRunInfo
+06-04 20:36:31.747 24450 24726 E fb4a.AppState: Returning default for firstRunInfo
+06-04 20:36:31.869  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e6c went down
+06-04 20:36:31.869  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:31.871  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e6d went down
+06-04 20:36:31.872  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:31.874  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:31.874  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e6e went down
+06-04 20:36:31.876  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e6f went down
+06-04 20:36:31.877  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:32.248  5820 15944 E midasd  : getTotalFlipsFromSf mCurFrameCount: 20437
+06-04 20:36:32.407  3234  5250 E SensorService: Required app X.9ox, uid 10309, pid 24450
+06-04 20:36:32.411  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e70 went down
+06-04 20:36:32.412  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:32.413  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e71 went down
+06-04 20:36:32.413  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:32.414  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e72 went down
+06-04 20:36:32.415  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:32.415  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e73 went down
+06-04 20:36:32.441  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:32.503  1764  1792 E QConfig : failed to find config 10309
+06-04 20:36:32.503  1832  2396 E QC2VppFilterDeviceQuery: failed to getUserConfigValue
+06-04 20:36:32.503  1832  2396 E QC2VppFilterCaps: failed to get user config, try default config
+06-04 20:36:32.503  1764  1792 E QConfig : failed to find config GLOBAL_DEFAULT
+06-04 20:36:32.504  1832  2396 E QC2VppFilterDeviceQuery: failed to getUserConfigValue
+06-04 20:36:32.504  1832  2396 E QC2VppFilterCaps: failed to get preset
+06-04 20:36:32.504  1764  1792 E QConfig : failed to find config 10309
+06-04 20:36:32.504  1832  2396 E QC2VppFilterDeviceQuery: failed to getUserConfigValue
+06-04 20:36:32.504  1832  2396 E QC2VppFilterCaps: failed to get user config, try default config
+06-04 20:36:32.504  1764  1792 E QConfig : failed to find config GLOBAL_DEFAULT
+06-04 20:36:32.504  1832  2396 E QC2VppFilterDeviceQuery: failed to getUserConfigValue
+06-04 20:36:32.504  1832  2396 E QC2VppFilterCaps: failed to get preset
+06-04 20:36:32.504  1832  2396 E QC2VppFilterCaps: preset size is zero
+06-04 20:36:32.506  1764  1792 E QConfig : failed to find config 10309
+06-04 20:36:32.508  1764  1792 E QConfig : failed to find config 10309
+06-04 20:36:32.511  1764  1792 E QConfig : failed to find config 10309
+06-04 20:36:32.513  1764  1792 E QConfig : failed to find config 10309
+06-04 20:36:32.518  1764  1792 E QConfig : failed to find config 10309
+06-04 20:36:32.560  1764  1792 E QConfig : failed to find config 10309
+06-04 20:36:32.560  1832  1832 E QC2VppFilterDeviceQuery: failed to getUserConfigValue
+06-04 20:36:32.560  1832  1832 E QC2VppFilterCaps: failed to get user config, try default config
+06-04 20:36:32.560  1764  1792 E QConfig : failed to find config GLOBAL_DEFAULT
+06-04 20:36:32.560  1832  1832 E QC2VppFilterDeviceQuery: failed to getUserConfigValue
+06-04 20:36:32.561  1832  1832 E QC2VppFilterCaps: failed to get preset
+06-04 20:36:32.561  1764  1792 E QConfig : failed to find config 10309
+06-04 20:36:32.561  1832  1832 E QC2VppFilterDeviceQuery: failed to getUserConfigValue
+06-04 20:36:32.561  1832  1832 E QC2VppFilterCaps: failed to get user config, try default config
+06-04 20:36:32.561  1764  1792 E QConfig : failed to find config GLOBAL_DEFAULT
+06-04 20:36:32.561  1832  1832 E QC2VppFilterDeviceQuery: failed to getUserConfigValue
+06-04 20:36:32.561  1832  1832 E QC2VppFilterCaps: failed to get preset
+06-04 20:36:32.561  1832  1832 E QC2VppFilterCaps: preset size is zero
+06-04 20:36:32.563  1764  1792 E QConfig : failed to find config 10309
+06-04 20:36:32.566  1764  1792 E QConfig : failed to find config 10309
+06-04 20:36:32.569  1764  1792 E QConfig : failed to find config 10309
+06-04 20:36:32.571  1764  1792 E QConfig : failed to find config 10309
+06-04 20:36:32.574  1764  1792 E QConfig : failed to find config 10309
+06-04 20:36:32.578  3234  9247 E OplusStorageUFSBandwidth: storage_io_metrics_path is /proc/oplus_storage/io_metrics/forever/
+06-04 20:36:32.580  3234  9247 E OplusStorageUFSBandwidth: Bandwidth - Read: 14.49 MB/s, Write: 2.50 MB/s
+06-04 20:36:32.580  3234  9247 E OplusStorageUFSBandwidth: Task time: 2ms
+06-04 20:36:32.585  3234  9247 E OplusStorageUFSBandwidth: Alarm set to trigger in 10 seconds
+06-04 20:36:32.968  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e75 went down
+06-04 20:36:32.968  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:32.969  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e76 went down
+06-04 20:36:32.969  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:32.970  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e77 went down
+06-04 20:36:32.970  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:32.972  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e78 went down
+06-04 20:36:32.972  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:33.331 23386 23771 E msys    : E[N mns:TigonMNS]_OnResolverSuccess(318)=>Cache refresh succeeded with Multinetwork resolver. IP count: 2
+06-04 20:36:34.047  1647 11251 E         : destroyAllSocketForUid:10416
+06-04 20:36:34.072  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e79 went down
+06-04 20:36:34.072  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:34.073  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e7a went down
+06-04 20:36:34.073  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:34.074  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e7b went down
+06-04 20:36:34.074  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:34.075  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e7c went down
+06-04 20:36:34.076  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:34.439 24462 24571 E GoogleApiManager: Failed to get service from broker. 
+06-04 20:36:34.439 24462 24571 E GoogleApiManager: java.lang.SecurityException: Unknown calling package name 'com.google.android.gms'.
+06-04 20:36:34.439 24462 24571 E GoogleApiManager: 	at android.os.Parcel.createExceptionOrNull(Parcel.java:3369)
+06-04 20:36:34.439 24462 24571 E GoogleApiManager: 	at android.os.Parcel.createException(Parcel.java:3353)
+06-04 20:36:34.439 24462 24571 E GoogleApiManager: 	at android.os.Parcel.readException(Parcel.java:3336)
+06-04 20:36:34.439 24462 24571 E GoogleApiManager: 	at android.os.Parcel.readException(Parcel.java:3278)
+06-04 20:36:34.439 24462 24571 E GoogleApiManager: 	at bjqy.a(:com.google.android.gms@261934035@26.19.34 (260400-919740205):36)
+06-04 20:36:34.439 24462 24571 E GoogleApiManager: 	at bjou.z(:com.google.android.gms@261934035@26.19.34 (260400-919740205):143)
+06-04 20:36:34.439 24462 24571 E GoogleApiManager: 	at biuq.run(:com.google.android.gms@261934035@26.19.34 (260400-919740205):42)
+06-04 20:36:34.439 24462 24571 E GoogleApiManager: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:36:34.439 24462 24571 E GoogleApiManager: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:36:34.439 24462 24571 E GoogleApiManager: 	at dbbh.mJ(:com.google.android.gms@261934035@26.19.34 (260400-919740205):1)
+06-04 20:36:34.439 24462 24571 E GoogleApiManager: 	at dbbh.dispatchMessage(:com.google.android.gms@261934035@26.19.34 (260400-919740205):5)
+06-04 20:36:34.439 24462 24571 E GoogleApiManager: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:36:34.439 24462 24571 E GoogleApiManager: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:36:34.439 24462 24571 E GoogleApiManager: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+06-04 20:36:34.581  3234  9247 E OplusStorageUFSBandwidth: storage_io_metrics_path is /proc/oplus_storage/io_metrics/forever/
+06-04 20:36:34.586  3234  9247 E OplusStorageUFSBandwidth: Bandwidth - Read: 0.00 MB/s, Write: 0.00 MB/s
+06-04 20:36:34.586  3234  9247 E OplusStorageUFSBandwidth: Task time: 5ms
+06-04 20:36:34.592  3234  9247 E OplusStorageUFSBandwidth: Alarm set to trigger in 10 seconds
+06-04 20:36:34.626 23386 23771 E msys    : E[N mns:TigonMNS]_OnResolverSuccess(318)=>Cache refresh succeeded with Multinetwork resolver. IP count: 2
+06-04 20:36:35.074  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e63 went down
+06-04 20:36:35.075  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e67 went down
+06-04 20:36:35.075  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:35.124  1647 11251 E         : destroyAllSocketForUid:10316
+06-04 20:36:35.172  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e7d went down
+06-04 20:36:35.173  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:35.174  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e7e went down
+06-04 20:36:35.175  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:35.176  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:35.176  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e7f went down
+06-04 20:36:35.179  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e80 went down
+06-04 20:36:35.180  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:36.166  5811  5864 E horae   : 0: back:40094,frame:40442,front:41717, 8, +(-2117), 1 ,39600,48325,46268,49341,47182, target_temp:41717, algo:0
+06-04 20:36:36.587  3234  9247 E OplusStorageUFSBandwidth: storage_io_metrics_path is /proc/oplus_storage/io_metrics/forever/
+06-04 20:36:36.589  3234  9247 E OplusStorageUFSBandwidth: Bandwidth - Read: 0.00 MB/s, Write: 0.00 MB/s
+06-04 20:36:36.589  3234  9247 E OplusStorageUFSBandwidth: Task time: 2ms
+06-04 20:36:36.593  3234  9247 E OplusStorageUFSBandwidth: Alarm set to trigger in 10 seconds
+06-04 20:36:36.642  1854  1881 E PerformanceService: storage_feature: open /sys/devices/platform/soc/112b0000.ufshci//virtualtlcbuff fail
+06-04 20:36:36.825  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e81 went down
+06-04 20:36:36.826  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:36.827  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e82 went down
+06-04 20:36:36.827  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:36.828  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e83 went down
+06-04 20:36:36.829  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:36.832  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e84 went down
+06-04 20:36:36.832  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:37.273  1894  1947 E ChargerInfo: SingleHyperPath not found
+06-04 20:36:37.926  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e85 went down
+06-04 20:36:37.927  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:37.927  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e86 went down
+06-04 20:36:37.928  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:37.929  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e87 went down
+06-04 20:36:37.929  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:37.932  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e88 went down
+06-04 20:36:37.932  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:38.308  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:38.557  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:38.591  3234  9247 E OplusStorageUFSBandwidth: storage_io_metrics_path is /proc/oplus_storage/io_metrics/forever/
+06-04 20:36:38.592  3234  9247 E OplusStorageUFSBandwidth: Bandwidth - Read: 0.00 MB/s, Write: 2.00 MB/s
+06-04 20:36:38.593  3234  9247 E OplusStorageUFSBandwidth: Task time: 2ms
+06-04 20:36:38.599  3234  9247 E OplusStorageUFSBandwidth: Alarm set to trigger in 10 seconds
+06-04 20:36:40.595  3234  9247 E OplusStorageUFSBandwidth: storage_io_metrics_path is /proc/oplus_storage/io_metrics/forever/
+06-04 20:36:40.598  3234  9247 E OplusStorageUFSBandwidth: Bandwidth - Read: 0.00 MB/s, Write: 0.00 MB/s
+06-04 20:36:40.598  3234  9247 E OplusStorageUFSBandwidth: Task time: 3ms
+06-04 20:36:40.603  3234  9247 E OplusStorageUFSBandwidth: Alarm set to trigger in 10 seconds
+06-04 20:36:41.531  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:41.551  2043  2482 E HWComposer: getLuts: getLuts failed for display 4630946283567114626: UNSUPPORTED (8)
+06-04 20:36:41.568  4362  4362 E [OPLUS_AFS_CONFIG]: Failed to open AFS config file: /proc/oplus_afs_config/afs_config
+06-04 20:36:41.568  4362  4362 E AFS_CONFIG: Failed to get scene config
+06-04 20:36:41.568  4362  4362 E OplusAfsManager: afsConfigSceneConfigGet sceneType is null
+06-04 20:36:41.568  4362  4362 E IJankManager: latencySceneEnd unknown scene 42 mScene:-1
+06-04 20:36:41.643  1854  1881 E PerformanceService: storage_feature: open /sys/devices/platform/soc/112b0000.ufshci//virtualtlcbuff fail
+06-04 20:36:41.679  3234  3529 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:36:41.698  3234  3529 E SensorService: Required app com.android.server.policy.OplusScreenOffGestureManager, uid 1000, pid 3234
+06-04 20:36:41.699  1800  2047 E SDM     : DRMConnector::Perform: Connector Setting HBM_EN 58: hbm_en 8,prop_id=71
+06-04 20:36:41.703  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5da4 went down
+06-04 20:36:41.705  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:41.706  3234  5044 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+06-04 20:36:41.721  4362  4462 E FromGoneTransitionInteractor: Ignoring startTransition: This interactor asked to transition from GONE -> LOCKSCREEN, but we last transitioned to DOZING, not GONE. This should never happen - check currentTransitionInfoInternal or use filterRelevantKeyguardState before starting transitions.
+06-04 20:36:41.723  3234  5024 E Biometrics/FingerprintProvider/FingerprintServiceProviderExtImpl: current client is null.
+06-04 20:36:41.726  3234  5044 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:36:41.727  3234  3349 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:92
+06-04 20:36:41.729  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=167, info=1, wrFlag=0, cbsize=2048, readlen=2048
+06-04 20:36:41.729  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:PALM_TO_SLEEP_IN_LOCK_NODE set to 1.
+06-04 20:36:41.737  3234  3946 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:36:41.738  3234  3946 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:36:41.738  3234  3946 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:36:41.739  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e89 went down
+06-04 20:36:41.740  3234  3348 E AppStateEventMonitor: mTaskInfoChangeListener onVisibleTasksInfoChange param is illegal.
+06-04 20:36:41.740  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:41.741  3234  3348 E OplusStorageManagerFeature: clear Ae Be key
+06-04 20:36:41.743  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:41.743  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e8a went down
+06-04 20:36:41.743  1265  1271 E QC-time-services: Receive Passed == base = 13, unit = 1, operation = 2, result = 0
+06-04 20:36:41.745  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:41.745  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e8b went down
+06-04 20:36:41.745  1606  1615 E QC-time-services: Daemon: Time-services: Waiting to acceptconnection
+06-04 20:36:41.748  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:41.748  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e8c went down
+06-04 20:36:41.749  1606  1615 E QC-time-services: Daemon: Time-services: Waiting to acceptconnection
+06-04 20:36:41.750  4362  5037 E ServiceManager: error in isDeclared
+06-04 20:36:41.750  4362  5037 E ServiceManager: java.lang.SecurityException: SELinux denied for service.
+06-04 20:36:41.750  4362  5037 E ServiceManager: 	at android.os.Parcel.createExceptionOrNull(Parcel.java:3369)
+06-04 20:36:41.750  4362  5037 E ServiceManager: 	at android.os.Parcel.createException(Parcel.java:3353)
+06-04 20:36:41.750  4362  5037 E ServiceManager: 	at android.os.Parcel.readException(Parcel.java:3336)
+06-04 20:36:41.750  4362  5037 E ServiceManager: 	at android.os.Parcel.readException(Parcel.java:3278)
+06-04 20:36:41.750  4362  5037 E ServiceManager: 	at android.os.IServiceManager$Stub$Proxy.isDeclared(IServiceManager.java:656)
+06-04 20:36:41.750  4362  5037 E ServiceManager: 	at android.os.ServiceManagerProxy.isDeclared(ServiceManagerNative.java:104)
+06-04 20:36:41.750  4362  5037 E ServiceManager: 	at android.os.ServiceManager.isDeclared(ServiceManager.java:297)
+06-04 20:36:41.750  4362  5037 E ServiceManager: 	at com.pixelworks.hardware.IrisHal.<init>(go/retraceme 34ed87b5e9d8e492b7dc66c2d015cbcff445f9fd3fdc3a9624d8ce004c3ec26f:14)
+06-04 20:36:41.750  4362  5037 E ServiceManager: 	at com.oplus.systemui.biometrics.finger.udfps.OnScreenHighLightControl$Companion.access$enableDisplayIRIS(go/retraceme 34ed87b5e9d8e492b7dc66c2d015cbcff445f9fd3fdc3a9624d8ce004c3ec26f:10)
+06-04 20:36:41.750  4362  5037 E ServiceManager: 	at com.oplus.systemui.biometrics.finger.udfps.OnScreenHighLightControl.updateDisplayIRISAndColorMode(go/retraceme 34ed87b5e9d8e492b7dc66c2d015cbcff445f9fd3fdc3a9624d8ce004c3ec26f:57)
+06-04 20:36:41.750  4362  5037 E ServiceManager: 	at com.oplus.systemui.biometrics.finger.udfps.OnScreenHighLightControl.highlightControl(go/retraceme 34ed87b5e9d8e492b7dc66c2d015cbcff445f9fd3fdc3a9624d8ce004c3ec26f:155)
+06-04 20:36:41.750  4362  5037 E ServiceManager: 	at com.oplus.systemui.biometrics.finger.udfps.OnScreenHighLightControl.updateHighlightState(go/retraceme 34ed87b5e9d8e492b7dc66c2d015cbcff445f9fd3fdc3a9624d8ce004c3ec26f:37)
+06-04 20:36:41.750  4362  5037 E ServiceManager: 	at com.oplus.systemui.biometrics.finger.udfps.OnScreenFingerprintUiMech$touchEvent$2.run(go/retraceme 34ed87b5e9d8e492b7dc66c2d015cbcff445f9fd3fdc3a9624d8ce004c3ec26f:22)
+06-04 20:36:41.750  4362  5037 E ServiceManager: 	at android.os.Handler.handleCallback(Handler.java:1027)
+06-04 20:36:41.750  4362  5037 E ServiceManager: 	at android.os.Handler.dispatchMessage(Handler.java:108)
+06-04 20:36:41.750  4362  5037 E ServiceManager: 	at android.os.Looper.loopOnce(Looper.java:302)
+06-04 20:36:41.750  4362  5037 E ServiceManager: 	at android.os.Looper.loop(Looper.java:412)
+06-04 20:36:41.750  4362  5037 E ServiceManager: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+06-04 20:36:41.764  4362  4362 E SystemUi--Notification: StackScroller-->changeViewPosition index = 7 mStatusBarState = 1
+06-04 20:36:41.764  4362  4362 E StackScroller: Attempting to re-position  view {com.android.systemui.statusbar.notification.emptyshade.ui.view.EmptyShadeView{be92341 GFE...C.. ......ID 56,0-1184,224 alpha=0.0 viewInfo = }}
+06-04 20:36:41.769  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=21, info=, wrFlag=1, cbsize=128, readlen=128
+06-04 20:36:41.769  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:DOUBLE_TAP_INDEP_NODE get gesture_type 10000
+06-04 20:36:41.771  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=1, nodeFlag=21, info=, wrFlag=2, cbsize=2048, readlen=2048
+06-04 20:36:41.771  2820  2873 E OplusTouchDaemon: syna_touch_node_handle: Invalid deviceId
+06-04 20:36:41.771  2820  2873 E OplusTouchDaemon: 120970 is not over size!!
+06-04 20:36:41.772  2820  2873 E OplusTouchDaemon: update_value_count_list str=invalid_device_id_1, count=60
+06-04 20:36:41.773  3234  3365 E ColorTouchNodeManagerService: writeNodeFile failed, extradevice is not support touch node, extraDId:1
+06-04 20:36:41.774  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=21, info=2, wrFlag=0, cbsize=2048, readlen=2048
+06-04 20:36:41.774  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:DOUBLE_TAP_INDEP_NODE set gesture_type to 1
+06-04 20:36:41.774  3234  5044 E SensorService: Required app com.oplus.gesture.server.ScreenOffGestureService, uid 10250, pid 4226
+06-04 20:36:41.775  2820  2873 E OplusTouchDaemon: ts_set_gesture_type: Successful to set 1
+06-04 20:36:41.776  4362  4362 E LockScreenNotificationDispatcherImp: updateNotificationListOnKg size:1
+06-04 20:36:41.787 10738 10771 E MIDASApplication: MIDASPullAtomManager: onPullAtom 150016
+06-04 20:36:41.793  3234  3999 E UAH-Framework: invalid window type -1
+06-04 20:36:41.796  1800  2047 E SDM     : DRMConnector::Perform: Connector Setting HBM_EN 58: hbm_en 9,prop_id=71
+06-04 20:36:41.799  7808  7808 E SmartSidebar.SystemDialogReceiver: HLogµ£¬σê¥σºïσîû-->(main)onReceive() mHasRegister:true
+06-04 20:36:41.799  7808  7808 E SmartSidebar.SystemDialogSubject: HLogµ£¬σê¥σºïσîû-->(main)onReceive() action = android.intent.action.CLOSE_SYSTEM_DIALOGS
+06-04 20:36:41.799  7808  7808 E SmartSidebar.SystemDialogSubject: HLogµ£¬σê¥σºïσîû-->(main)handleCloseSystemDialog() reason = dream
+06-04 20:36:41.799  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5da9 went down
+06-04 20:36:41.800  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:41.801  1649  1704 E statsd  : Stats puller failed for tag: 10011 at 2772037413669
+06-04 20:36:41.802  1846  1846 E android.hardware.power.stats-impl.oplus: HandleFactory::read open power_ddr_residency(/sys/power/ddr/residency) failed! fd: -1 errno: 2
+06-04 20:36:41.803  5837 30666 E ostats_pullerd: PullAtomCallback getContentByHandleKey read nodeKey: power_ddr_residency, len=0
+06-04 20:36:41.804  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5db3 went down
+06-04 20:36:41.804  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:41.805  1846  1846 E android.hardware.power.stats-impl.oplus: HandleFactory::read open gpu_freq_table_qual(/sys/class/kgsl/kgsl-3d0/freq_table_mhz) failed! fd: -1 errno: 13
+06-04 20:36:41.805  5837 30666 E ostats_pullerd: getContentByHandleKey read nodeKey: gpu_freq_table_qual, len=0
+06-04 20:36:41.805  1846  1846 E android.hardware.power.stats-impl.oplus: HandleFactory::read open gpu_freq_time_qual(/sys/class/kgsl/kgsl-3d0/gpu_clock_stats) failed! fd: -1 errno: 13
+06-04 20:36:41.806  5837 30666 E ostats_pullerd: getContentByHandleKey read nodeKey: gpu_freq_time_qual, len=0
+06-04 20:36:41.807  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5dae went down
+06-04 20:36:41.808  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:41.812  2846  3222 E [FP_HAL][FPDevice]: [controlTp] open fp_enale fail, use touch hidl instead.
+06-04 20:36:41.813  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=31, info=, wrFlag=2, cbsize=2048, readlen=2048
+06-04 20:36:41.813  1800  2351 E SDM     : DRMConnector::Perform: Connector Setting HBM_EN 58: hbm_en 0,prop_id=71
+06-04 20:36:41.818 10738 10771 E MIDASApplication: MIDASPullAtomManager: onPullAtom 150017
+06-04 20:36:41.820  3234  3234 E OplusGestureAnimationManagerPolicy: mScreenHeight:2772 mScreenWidth:1240 mRotation:0
+06-04 20:36:41.821  1649  1704 E statsd  : Stats puller failed for tag: 150145 at 2772037413669
+06-04 20:36:41.821  1649  1704 E statsd  : Stats puller failed for tag: 150145 at 2772037413669
+06-04 20:36:41.821  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=31, info=1, wrFlag=0, cbsize=2048, readlen=2048
+06-04 20:36:41.821  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:FP_ENABLE_NODE set fingerprint_enabled to 1
+06-04 20:36:41.821  1649  1704 E statsd  : Gauge Stats puller failed for tag: 150145 at 2772037413669
+06-04 20:36:41.821  1649  1704 E statsd  : Gauge Stats puller failed for tag: 150146 at 2772037413669
+06-04 20:36:41.826  2820  2820 E OplusTouchDaemon: ts_suspend_application: +
+06-04 20:36:41.826  2820  2820 E OplusTouchDaemon: [prevent][oplus_reset_helper_points][4777]: screen state has changed. prevention reset points.
+06-04 20:36:41.826  2820  2820 E OplusTouchDaemon: ts_suspend_application: -
+06-04 20:36:41.833  3234  3876 E HandwritingModeController: Cannot get requestId: Handwriting was not initialized.
+06-04 20:36:41.837  4362  4362 E [OPLUS_AFS_CONFIG]: Failed to open AFS config file: /proc/oplus_afs_config/afs_config
+06-04 20:36:41.837  4362  4362 E AFS_CONFIG: Failed to get scene config
+06-04 20:36:41.837  4362  4362 E OplusAfsManager: afsConfigSceneConfigGet sceneType is null
+06-04 20:36:41.837  4362  4362 E [OPLUS_AFS_CONFIG]: Failed to open AFS config file: /proc/oplus_afs_config/afs_config
+06-04 20:36:41.837  4362  4362 E AFS_CONFIG: Failed to get scene config
+06-04 20:36:41.837  4362  4362 E OplusAfsManager: afsConfigSceneConfigGet sceneType is null
+06-04 20:36:41.837  2820  2873 E OplusTouchDaemon: ts_set_fingerprint_enable: dcValue.val = 3
+06-04 20:36:41.847  4362  4362 E LockScreenNotificationDispatcherImp: updateNotificationListOnKg size:1
+06-04 20:36:41.858  4362  4362 E [OPLUS_AFS_CONFIG]: Failed to open AFS config file: /proc/oplus_afs_config/afs_config
+06-04 20:36:41.858  4362  4362 E AFS_CONFIG: Failed to get scene config
+06-04 20:36:41.858  4362  4362 E OplusAfsManager: afsConfigSceneConfigGet sceneType is null
+06-04 20:36:41.858  4362  4362 E IJankManager: latencySceneEnd unknown scene 45 mScene:-1
+06-04 20:36:41.866  2820  2873 E OplusTouchDaemon: ts_set_fingerprint_enable: Successful to set 3
+06-04 20:36:41.866  2820  2820 E OplusTouchDaemon: syna_hbp_main: STATE_SCREEN_OFF
+06-04 20:36:41.866  2820  2820 E OplusTouchDaemon: syna_hbp_main: in_suspend +
+06-04 20:36:41.881  1854  1881 E PerformanceService: storage_feature: open /sys/bus/scsi/devices/0:0:0:2/hpb_params//load_top_srgn fail
+06-04 20:36:41.903 24205 24214 E WeatherS_PrivacyStatementExport: isSupportExportPrivacyVersion metaData -> true
+06-04 20:36:41.904 24205 24214 E WeatherS_PrivacyStatementExport: isAgreed-1
+06-04 20:36:41.916  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=21, info=, wrFlag=1, cbsize=128, readlen=128
+06-04 20:36:41.916  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:DOUBLE_TAP_INDEP_NODE get gesture_type 2
+06-04 20:36:41.916  3234  4841 E SensorService: Required app com.oplus.systemui.aod.display.OplusWakeUpController$amdSensorListener$1, uid 10223, pid 4362
+06-04 20:36:41.920  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e8e went down
+06-04 20:36:41.920  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=1, nodeFlag=21, info=, wrFlag=2, cbsize=2048, readlen=2048
+06-04 20:36:41.920  2820  2873 E OplusTouchDaemon: syna_touch_node_handle: Invalid deviceId
+06-04 20:36:41.921  2820  2873 E OplusTouchDaemon: 121036 is not over size!!
+06-04 20:36:41.921  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:41.921  2820  2873 E OplusTouchDaemon: update_value_count_list str=invalid_device_id_1, count=61
+06-04 20:36:41.922  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e8f went down
+06-04 20:36:41.922  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:41.922  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e90 went down
+06-04 20:36:41.922  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:41.923  3234  3365 E ColorTouchNodeManagerService: writeNodeFile failed, extradevice is not support touch node, extraDId:1
+06-04 20:36:41.924  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e91 went down
+06-04 20:36:41.924  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=21, info=65536, wrFlag=0, cbsize=2048, readlen=2048
+06-04 20:36:41.924  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:DOUBLE_TAP_INDEP_NODE set gesture_type to 8192
+06-04 20:36:41.924  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:41.925  2820  2873 E OplusTouchDaemon: ts_set_gesture_type: Successful to set 8192
+06-04 20:36:41.927  3234  4009 E SensorService: Required app com.oplus.systemui.aod.display.OplusWakeUpController$amdSensorListener$1, uid 10223, pid 4362
+06-04 20:36:41.930  3234  4009 E SensorService: Required app android.view.OrientationEventListener, uid 10223, pid 4362
+06-04 20:36:41.930  4362  4362 E LockScreenNotificationDispatcherImp: updateNotificationListOnKg size:1
+06-04 20:36:41.942  3234  4268 E SensorService: Required app com.oplus.systemui.keyguard.gesture.OplusDoubleClickSleep$3, uid 10223, pid 4362
+06-04 20:36:41.946  3234  4841 E OplusInputManagerService_jni: updateInvalidRegion start!!!
+06-04 20:36:41.946  3234  4841 E InputDispatcherExtImpl: rectF left: 0.000000, top: 2695.000000, right: 1240.000000, bottom: 2772.000000 offset_left: 0.000000, offset_top: 0.000000, offset_right: 0.000000, offset_bottom: 0.000000, isClosedRegion:0
+06-04 20:36:41.947  3234  4841 E OplusInputManagerService_jni: updateInvalidRegion start!!!
+06-04 20:36:41.947  3234  4841 E OplusInputManagerService_jni: updateInvalidRegion start!!!
+06-04 20:36:42.142  4833  4971 E ScreenCapture: Failed to generate screen capture. Error code: -12
+06-04 20:36:42.142  4833  4971 E Blur_ScreenCapture: [captureScreenInternal] exceeds fail times limit=1
+06-04 20:36:42.148  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:42.150  1745  1745 E QTI PowerHAL: Failed to acquire lock for hint_id: 1040.
+06-04 20:36:42.151  4833  4971 E ScreenCapture: Failed to generate screen capture. Error code: -12
+06-04 20:36:42.151  4833  4971 E Blur_ScreenCapture: [captureScreenInternal] exceeds fail times limit=1
+06-04 20:36:42.152  4833  4971 E ScreenCapture: Failed to generate screen capture. Error code: -12
+06-04 20:36:42.152  4833  4971 E Blur_ScreenCapture: [captureScreenInternal] exceeds fail times limit=1
+06-04 20:36:42.153  3234  3529 E OplusCustomizeRestrictionManagerService: isBiometricDisabled start
+06-04 20:36:42.159  7808 29190 E SmartSidebar.KeyguardSubject: HLogµ£¬σê¥σºïσîû-->(binder:7808_6)onScreenOff
+06-04 20:36:42.159  7808 29190 E SmartSidebar.DisplayDataManager: HLogµ£¬σê¥σºïσîû-->(binder:7808_6)toDismissExpandingPanel tag=KeyguardSubject
+06-04 20:36:42.170  1894  1894 E vendor.oplus.hardware.charger-V10-service: notifyScreenStatus: 0
+06-04 20:36:42.171  2534  3415 E RadioProxy: radioResponseCallback invalid user data or proxy
+06-04 20:36:42.172  2530  3395 E RadioProxy: radioResponseCallback invalid user data or proxy
+06-04 20:36:42.173  2534  2684 E Proxy   : Unsupported message id 4001
+06-04 20:36:42.173  2530  2650 E Proxy   : Unsupported message id 4001
+06-04 20:36:42.185  5811  5864 E horae   : 0: back:39953,frame:39834,front:41157, 8, +(-1557), 0 ,39600,47526,45712,48247,46056, target_temp:41157, algo:0
+06-04 20:36:42.191  3234  3234 E OplusGestureAnimationManagerPolicy: mScreenHeight:2772 mScreenWidth:1240 mRotation:0
+06-04 20:36:42.197  1745  1745 E QTI PowerHAL: Failed to acquire lock for hint_id: 1041.
+06-04 20:36:42.203  3234  4012 E OplusWifiPower_WakeupApp: updateCollectInfo finish
+06-04 20:36:42.204  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.204  3234  4011 E OplusSupplicantStaIfaceHalAidlImpl: Can't call doStringCommand, IOplusSupplicantStaIface is null
+06-04 20:36:42.205  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.205  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.206  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.206  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.210  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.220  3234  5026 E SensorService: Required app com.oplus.systemui.aod.sensor.backlight.OplusAODLightController$aodLuxSensorEventListener$1, uid 10223, pid 4362
+06-04 20:36:42.222  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e93 went down
+06-04 20:36:42.223  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:42.223  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e94 went down
+06-04 20:36:42.224  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:42.226  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e95 went down
+06-04 20:36:42.226  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e96 went down
+06-04 20:36:42.227  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:42.229  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:Id=0, nodeFlag=167, info=0, wrFlag=0, cbsize=2048, readlen=2048
+06-04 20:36:42.230  2820  2873 E OplusTouchDaemon: syna_touch_node_handle:PALM_TO_SLEEP_IN_LOCK_NODE set to 0.
+06-04 20:36:42.232  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.232  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.232  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.232  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.233  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.233  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.233  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.233  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.233  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.233  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.234  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.234  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.234  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.234  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.234  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.234  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.239  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.239  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.239  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.240  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.240  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.240  4633  4633 E DPMJ    : |SERVICE| sendScreenState state  falseand int value 0
+06-04 20:36:42.240  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.240  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.240  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.240  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.240  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.241  3234  4010 E OplusWifiPowerMcsTrxInfor:  no mcs information
+06-04 20:36:42.241  3234  4010 E OplusWifiPowerMcsTrxInfor:  no mcs information
+06-04 20:36:42.242  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.242  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.242  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.242  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.243  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.243  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.249  3234  4128 E LinkPower: [JudgeMonitorProcess] failed to deleteLastRecord, mMonitorRecordAccumulate is empty!
+06-04 20:36:42.249  3234  4128 E LinkPower: [JudgeMonitorProcess] failed to deleteLastRecord, mMonitorRecordAccumulate is empty!
+06-04 20:36:42.249  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.249  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.250  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.250  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.250  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.250  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.250  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.250  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.250  1922  1922 E vendor.oplus.hardware.wifi-aidl-service: wifiPopen error
+06-04 20:36:42.250  3234  4010 E OplusWifiHalServiceAidlImpl: IOplusWifiService.executeDriverCommandWithResult failed: android.os.ServiceSpecificException:  (code 0)
+06-04 20:36:42.256  1854  1881 E PerformanceService: storage_feature: open /sys/bus/scsi/devices/0:0:0:2/hpb_params//load_top_srgn fail
+06-04 20:36:42.337  7783 20690 E PTC.DEVICEMGR.DeviceInfoCollectUtil: getNetworkStatus except!;getDataNetworkTypeForSubscriber
+06-04 20:36:42.421  1746 25048 E sensors-hal: handle_sns_client_event:69, oplus lux_aod: report_ts=22, state=0.000000, ts=2772581572685
+06-04 20:36:42.474  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:42.477  1800  2047 E SDM     : DRMConnector::Perform: Connector Setting HBM_EN 58: hbm_en 8,prop_id=71
+06-04 20:36:42.477  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:42.478  4833  4971 E ScreenCapture: Failed to generate screen capture. Error code: -12
+06-04 20:36:42.478  4833  4971 E Blur_ScreenCapture: [captureScreenInternal] exceeds fail times limit=1
+06-04 20:36:42.694  3234  3348 E OplusAppQuickStart_AppQuickStartController: not start from launcher transition:93
+06-04 20:36:42.705  1800  2047 E SDM     : DRMConnector::Perform: Connector Setting HBM_EN 58: hbm_en c,prop_id=71
+06-04 20:36:42.743  4543  5743 E OplusNetlinkConnect: parse rsp msg failed!Protocol message contained an invalid tag (zero).
+06-04 20:36:42.768  3234  4009 E SensorService: Required app com.oplus.systemui.keyguard.gesture.OplusBlackScreenGestureControllExImpl$initInConstructor$2, uid 10223, pid 4362
+06-04 20:36:42.857  1647 11251 E TetherController: property_get sys.radio.data.modem_share_flag return 0, 1!
+06-04 20:36:43.583  1894  1947 E ChargerInfo: SingleHyperPath not found
+06-04 20:36:43.978  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e98 went down
+06-04 20:36:43.979  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:43.980  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e99 went down
+06-04 20:36:43.980  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:43.981  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e9a went down
+06-04 20:36:43.982  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:43.983  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e9b went down
+06-04 20:36:43.984  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:44.300  3234  3234 E OplusGestureAnimationManagerPolicy: mScreenHeight:2772 mScreenWidth:1240 mRotation:0
+06-04 20:36:44.318  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:44.345  2043  2043 E CompositionEngine: [StatusBar#96] Invalid device requested composition type change: Client (1) --> Device (2)
+06-04 20:36:44.346  2043  2043 E CompositionEngine: [OnScreenFingerprintIcon#1062] Invalid device requested composition type change: Client (1) --> Device (2)
+06-04 20:36:44.361  2043  2043 E CompositionEngine: [StatusBar#96] Invalid device requested composition type change: Client (1) --> Device (2)
+06-04 20:36:44.361  2043  2043 E CompositionEngine: [OnScreenFingerprintIcon#1062] Invalid device requested composition type change: Client (1) --> Device (2)
+06-04 20:36:44.361  2043  2043 E Scheduler: trackPendingFrame: Invalid present fence
+06-04 20:36:44.594  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:44.750  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:45.082  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e9c went down
+06-04 20:36:45.083  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:45.084  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e9d went down
+06-04 20:36:45.084  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:45.085  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e9e went down
+06-04 20:36:45.086  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:45.087  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5e9f went down
+06-04 20:36:45.088  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:45.432  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:45.652  1810  1914 E ANDR-PERF-RESOURCEQS: Resource with major=16, minor=0 not supported
+06-04 20:36:46.182  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5ea0 went down
+06-04 20:36:46.183  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:46.184  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5ea1 went down
+06-04 20:36:46.184  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:46.185  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5ea2 went down
+06-04 20:36:46.185  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:46.188  1716  1807 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5ea3 went down
+06-04 20:36:46.188  3647  3651 E Diag_Lib: [IMS_AP]"ims-rtp-daemon ims_rtp_qmi_handler_thread_func waiting on select thread>"
+06-04 20:36:46.220 10738 16002 E MIDASApplication: MIDASPullAtomManager: onPullAtom 150122
+06-04 20:36:46.643  1854  1881 E PerformanceService: storage_feature: open /sys/devices/platform/soc/112b0000.ufshci//virtualtlcbuff fail
+06-04 20:36:47.182  2530  2620 E QmiVsClient: sendAsyncRequest QMI_VS_SEND_SCORE_INFO_REQ_MSG_V01 ret 0
+06-04 20:36:47.250  3234  4128 E LinkPower: [Main] failed to uninstall loop alarm, charging now!
+06-04 20:36:47.263  3234  4128 E LinkPower: [JudgeMonitorProcess] failed to deleteLastRecord, mMonitorRecordAccumulate is empty!
+06-04 20:36:47.263  3234  4128 E LinkPower: [JudgeMonitorProcess] failed to deleteLastRecord, mMonitorRecordAccumulate is empty!
+06-04 20:36:47.422  3234  9247 E OplusStorageUFSBandwidth: storage_io_metrics_path is /proc/oplus_storage/io_metrics/forever/
+06-04 20:36:47.424  3234  9247 E OplusStorageUFSBandwidth: Bandwidth - Read: 0.15 MB/s, Write: 0.44 MB/s
+06-04 20:36:47.424  3234  9247 E OplusStorageUFSBandwidth: Task time: 2ms
+06-04 20:36:47.430  3234  9247 E OplusStorageUFSBandwidth: Alarm set to trigger in 10 seconds

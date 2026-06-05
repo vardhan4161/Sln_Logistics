@@ -23,7 +23,8 @@
       "permissions": [
         "android.permission.INTERNET",
         "android.permission.READ_EXTERNAL_STORAGE",
-        "android.permission.WRITE_EXTERNAL_STORAGE"
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.USE_BIOMETRIC"
       ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/icon.png",
@@ -42,7 +43,6 @@
       ],
       "expo-font",
       "expo-web-browser",
-      "expo-sqlite",
       [
         "expo-file-system",
         {
@@ -54,7 +54,9 @@
         {
           "android": {}
         }
-      ]
+      ],
+      "expo-sqlite",
+      "expo-local-authentication"
     ],
     "experiments": {
       "typedRoutes": true,
@@ -64,6 +66,7 @@
       "router": {
         "origin": "https://replit.com/"
       },
+      "apiBaseUrl": "http://10.0.2.2:8080/api",
       "eas": {
         "projectId": "7bce66f9-2e9a-43be-8198-9c9036bc4c79"
       }
