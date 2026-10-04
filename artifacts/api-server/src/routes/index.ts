@@ -5,6 +5,7 @@ import vehiclesRouter from "./vehicles.js";
 import tripsRouter from "./trips.js";
 import ratesRouter from "./rates.js";
 import invoicesRouter from "./invoices.js";
+import challansRouter from "./challans.js";
 
 const router: IRouter = Router();
 
@@ -14,5 +15,6 @@ router.use("/vehicles", vehiclesRouter);
 router.use("/trips", tripsRouter);
 router.use("/rates", ratesRouter);
 router.use("/invoices", invoicesRouter);
+router.use("/challans", challansRouter);
 
 export default router;

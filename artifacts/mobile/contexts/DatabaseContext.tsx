@@ -15,6 +15,11 @@ export interface Trip {
 export interface Route {
   id: number; from_location: string; to_location: string; weight_mt: number; rate: number; hamali: number;
 }
+export interface Challan {
+  id: number; challan_no: string; date: string; vehicle_no: string;
+  from_location: string; to_location: string; consignee: string; material: string;
+  quantity: number; notes: string; created_at: string;
+}
 export interface GeneratedInvoice {
   id: number; invoice_no: string; invoice_date: string; period: string;
   amount: number; cgst: number; sgst: number; total_amount: number;
@@ -42,6 +47,9 @@ interface DBContextType {
   updateRoute: (id: number, r: Omit<Route, "id">) => void;
   deleteRoute: (id: number) => void;
   lookupRouteRate: (from: string, to: string, weight: number) => { rate: number; hamali: number } | null;
+  getChallans: () => Challan[];
+  addChallan: (challan: Omit<Challan, "id" | "created_at">) => Challan;
+  deleteChallan: (id: number) => void;
   getNextInvoiceNo: (monthKey: string) => Promise<string>;
   peekNextInvoiceNo: (monthKey: string) => Promise<string>;
   getInvoices: () => GeneratedInvoice[];
@@ -124,6 +132,7 @@ export function DatabaseProvider({ children }: { children: React.ReactNode }) {
   const vehiclesRef = useRef<Vehicle[]>(seedVehicles);
   const tripsRef = useRef<Trip[]>([]);
   const routesRef = useRef<Route[]>(seedRoutes);
+  const challansRef = useRef<Challan[]>([]);
   const invoicesRef = useRef<GeneratedInvoice[]>([]);
   const localFilesRef = useRef<Record<number, { pdf_base64?: string; excel_base64?: string }>>({});
   const invoiceSeqsRef = useRef<Record<string, number>>({});
@@ -161,12 +170,13 @@ export function DatabaseProvider({ children }: { children: React.ReactNode }) {
   const refresh = useCallback(async () => {
     setIsLoading(true);
     try {
-      const [locations, vehicles, trips, routes, invoices] = await Promise.all([
+      const [locations, vehicles, trips, routes, invoices, challans] = await Promise.all([
         api<ApiDocument<Location>[]>("/locations"),
         api<ApiDocument<Vehicle>[]>("/vehicles"),
         api<ApiDocument<Trip>[]>("/trips"),
         api<ApiDocument<Route>[]>("/rates"),
         api<ApiDocument<GeneratedInvoice>[]>("/invoices"),
+        api<ApiDocument<Challan>[]>("/challans"),
       ]);
 
       locationsRef.current = normalizeCollection(locations);
@@ -174,6 +184,7 @@ export function DatabaseProvider({ children }: { children: React.ReactNode }) {
       tripsRef.current = normalizeCollection(trips);
       routesRef.current = normalizeCollection(routes);
       invoicesRef.current = normalizeCollection(invoices);
+      challansRef.current = normalizeCollection(challans);
       setIsConnected(true);
       bump();
     } catch (error) {
@@ -363,6 +374,26 @@ export function DatabaseProvider({ children }: { children: React.ReactNode }) {
     return { rate: closest.rate, hamali: closest.hamali };
   }, [version]);
 
+  const getChallans = useCallback(() => [...challansRef.current].sort((a, b) => b.id - a.id), [version]);
+
+  const addChallan = useCallback((challanData: Omit<Challan, "id" | "created_at">) => {
+    const duplicate = challansRef.current.find((challan) => challan.challan_no === challanData.challan_no);
+    if (duplicate) return duplicate;
+    const created: Challan = { ...challanData, id: maxId(challansRef.current) + 1, created_at: new Date().toISOString() };
+    challansRef.current = [created, ...challansRef.current];
+    bump();
+    saveRemote(api<Challan>("/challans", { method: "POST", body: JSON.stringify(challanData) }), (remote) => {
+      challansRef.current = challansRef.current.map((item) => item.id === created.id ? remote : item);
+    });
+    return created;
+  }, [api, bump, saveRemote]);
+
+  const deleteChallan = useCallback((id: number) => {
+    challansRef.current = challansRef.current.filter((challan) => challan.id !== id);
+    bump();
+    saveRemote(api<void>(`/challans/${id}`, { method: "DELETE" }));
+  }, [api, bump, saveRemote]);
+
   const getInvoices = useCallback(() => [...invoicesRef.current].sort((a, b) => b.id - a.id), [version]);
 
   const addInvoice = useCallback((invData: Omit<GeneratedInvoice, "id" | "created_at">) => {
@@ -441,6 +472,9 @@ export function DatabaseProvider({ children }: { children: React.ReactNode }) {
     updateRoute,
     deleteRoute,
     lookupRouteRate,
+    getChallans,
+    addChallan,
+    deleteChallan,
     getNextInvoiceNo,
     peekNextInvoiceNo,
     getInvoices,
@@ -467,6 +501,9 @@ export function DatabaseProvider({ children }: { children: React.ReactNode }) {
     updateRoute,
     deleteRoute,
     lookupRouteRate,
+    getChallans,
+    addChallan,
+    deleteChallan,
     getNextInvoiceNo,
     peekNextInvoiceNo,
     getInvoices,

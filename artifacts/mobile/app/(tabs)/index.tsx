@@ -202,6 +202,7 @@ export default function HomeScreen() {
             { icon: "map-pin" as const,   label: "Locations",      sub: "Manage routes",   accent: "#6A1B9A", route: "/locations" },
             { icon: "truck" as const,     label: "Vehicles",       sub: "Manage fleet",    accent: "#00695C", route: "/vehicles" },
             { icon: "file" as const,      label: "Invoice",        sub: "PDF \& Excel bill", accent: "#1565C0", route: "/invoice" },
+            { icon: "clipboard" as const, label: "Challans",       sub: "Add delivery challan", accent: "#7B1FA2", route: "/challans" },
             { icon: "dollar-sign" as const, label: "Rate Table",   sub: "Route pricing",    accent: "#C62828", route: "/rates" },
           ].map((item) => (
             <TouchableOpacity
@@ -268,4 +269,3 @@ const styles = StyleSheet.create({
   offlinePill: { flexDirection: "row", alignItems: "center", gap: 8, marginHorizontal: 16, padding: 13, borderRadius: 12, borderWidth: 1, justifyContent: "center" },
   offlineText: { fontSize: 13, fontFamily: "Inter_500Medium", fontWeight: "500" },
 });
-
