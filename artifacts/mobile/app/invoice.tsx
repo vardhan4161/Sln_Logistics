@@ -7,12 +7,12 @@ import * as Sharing from "expo-sharing";
 import React, { useCallback, useState } from "react";
 import { ActivityIndicator, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import * as XLSX from "xlsx";
 
 import DatePickerField from "../components/DatePickerField";
 import Toast from "../components/Toast";
 import { Trip, useDB } from "../contexts/DatabaseContext";
 import { useColors } from "../hooks/useColors";
+import { appendToMasterWorkbook, MIME_XLSX } from "../lib/masterWorkbook";
 
 type QuickFilter = "this_month" | "last_month" | "first_half" | "second_half" | "custom";
 
@@ -41,7 +41,6 @@ const CLIENT = {
   place: "Telangana",
   code: "IIL",
 };
-const MIME_XLSX = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 
 export default function InvoiceScreen() {
   const colors = useColors();
@@ -198,42 +197,6 @@ export default function InvoiceScreen() {
         </body></html>`;
       };
 
-      const buildXlsx = () => {
-        const wb = XLSX.utils.book_new();
-        // Summary Sheet
-        const summaryRows: any[][] = [
-          [COMPANY.name, "", ""],
-          [`${COMPANY.address}  GST NO. ${COMPANY.gst}  Mobile: ${COMPANY.mobile}`, "", ""],
-          ["TAX INVOICE", "", ""],
-          ["To", "Inv. No.", invNo],
-          [CLIENT.name, "Inv. Dt", fmtDot(invDate)],
-          [CLIENT.address1, "", ""],
-          [CLIENT.address2, "", ""],
-          [`GST No.  ${CLIENT.gst}`, "", ""],
-          [`Place of Supply: ${CLIENT.place}`, "", ""],
-          ["Bill particulars", "Amount", "Total Amount"],
-          [`Transportation service for the period of ${period}\nas per the particulars attached`, freshAmount, freshAmount],
-          ["Add: CGST @ 9%", "", freshCgst],
-          ["Add: SGST @ 9%", "", freshSgst],
-          ["Grand Total", "", freshTotal],
-          ["", "", ""],
-          ["", "for SLN Logistics", ""],
-          ["", "Authorised Signatory", ""],
-        ];
-        const wsSummary = XLSX.utils.aoa_to_sheet(summaryRows);
-        wsSummary["!cols"] = [{ wch: 50 }, { wch: 14 }, { wch: 16 }];
-        XLSX.utils.book_append_sheet(wb, wsSummary, "Invoice Summary");
-
-        // Particulars Sheet
-        const partHeaders = ["S.No", "Date", "Vehicle No", "From Location", "To Location", "Weight (MT)", "Rate", "Hamali", "Total"];
-        const partData = freshTrips.map((t, index) => [index + 1, t.trip_date, t.vehicle_no, t.from_location, t.to_location, t.chargeable_weight, t.rate, t.hamali, t.total_freight]);
-        const wsPart = XLSX.utils.aoa_to_sheet([partHeaders, ...partData]);
-        wsPart["!cols"] = [{ wch: 6 }, { wch: 12 }, { wch: 15 }, { wch: 25 }, { wch: 25 }, { wch: 12 }, { wch: 10 }, { wch: 10 }, { wch: 12 }];
-        XLSX.utils.book_append_sheet(wb, wsPart, "Trip Particulars");
-
-        return wb;
-      };
-
       if (Platform.OS === "web") {
         const w = window.open("", "_blank");
         if (w) {
@@ -250,12 +213,31 @@ export default function InvoiceScreen() {
       const pdfDest = `${FileSystem.cacheDirectory}${invNo.replace(/\//g, "-")}.pdf`;
       await FileSystem.moveAsync({ from: pdfUri, to: pdfDest });
 
-      // Excel. Write it directly to the cache file and do not retain a second
-      // copy in React state or the database. Large workbooks can exceed the
-      // Android heap when PDF + XLSX Base64 strings are kept together.
-      const b64 = XLSX.write(buildXlsx(), { type: "base64", bookType: "xlsx" });
-      const xlsxDest = `${FileSystem.cacheDirectory}${invNo.replace(/\//g, "-")}.xlsx`;
-      await FileSystem.writeAsStringAsync(xlsxDest, b64, { encoding: FileSystem.EncodingType.Base64 });
+      const masterResult = await appendToMasterWorkbook({
+        invoiceNo: invNo,
+        invoiceDate: fmtDot(invDate),
+        period,
+        amount: freshAmount,
+        cgst: freshCgst,
+        sgst: freshSgst,
+        totalAmount: freshTotal,
+        trips: freshTrips.map((trip) => ({
+          date: trip.trip_date,
+          vehicleNo: trip.vehicle_no,
+          from: trip.from_location,
+          to: trip.to_location,
+          weight: trip.chargeable_weight,
+          rate: trip.rate,
+          hamali: trip.hamali,
+          total: trip.total_freight,
+        })),
+      });
+      const xlsxDest = masterResult.uri;
+
+      if (masterResult.duplicate) {
+        showToast(`Invoice ${invNo} is already present in the master Excel. Nothing was added.`, "info");
+        return;
+      }
 
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       showToast(`Invoice ${invNo} created with ${freshTrips.length} trips!`, "success");
@@ -281,7 +263,7 @@ export default function InvoiceScreen() {
       if (await Sharing.isAvailableAsync()) {
         await Sharing.shareAsync(pdfDest, { mimeType: "application/pdf", dialogTitle: `Share Invoice ${invNo} (PDF)` });
         setTimeout(async () => {
-          try { await Sharing.shareAsync(xlsxDest, { mimeType: MIME_XLSX, dialogTitle: `Share Invoice ${invNo} (Excel)` }); } catch {}
+          try { await Sharing.shareAsync(xlsxDest, { mimeType: MIME_XLSX, dialogTitle: `Share Master Excel — Invoice ${invNo}` }); } catch {}
         }, 800);
       }
     } catch (e: any) {
