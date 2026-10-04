@@ -60,6 +60,13 @@ router.post("/", async (req, res, next) => {
     if (!data.id || !data.invoice_no) {
       return res.status(400).json({ error: "Invalid invoice data" });
     }
+    const duplicate = await getDb().collection("invoices").findOne({
+      invoice_no: data.invoice_no,
+      id: { $ne: data.id },
+    });
+    if (duplicate) {
+      return res.status(409).json({ error: `Invoice ${data.invoice_no} already exists.` });
+    }
     await getDb().collection("invoices").updateOne(
       { id: data.id },
       { $set: data },

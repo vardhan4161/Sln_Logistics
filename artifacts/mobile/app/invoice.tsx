@@ -120,9 +120,9 @@ export default function InvoiceScreen() {
       const period = `${fmtDot(freshStart)} to ${fmtDot(freshEnd)}`;
 
       const buildHtml = (): string => {
-        const tripRows = freshTrips.map(t => `
+        const tripRows = freshTrips.map((t, index) => `
           <tr>
-            <td class="center">${t.serial_no}</td>
+            <td class="center">${index + 1}</td>
             <td class="center">${t.trip_date}</td>
             <td class="center">${t.vehicle_no}</td>
             <td>${t.from_location} to ${t.to_location}</td>
@@ -226,7 +226,7 @@ export default function InvoiceScreen() {
 
         // Particulars Sheet
         const partHeaders = ["S.No", "Date", "Vehicle No", "From Location", "To Location", "Weight (MT)", "Rate", "Hamali", "Total"];
-        const partData = freshTrips.map(t => [t.serial_no, t.trip_date, t.vehicle_no, t.from_location, t.to_location, t.chargeable_weight, t.rate, t.hamali, t.total_freight]);
+        const partData = freshTrips.map((t, index) => [index + 1, t.trip_date, t.vehicle_no, t.from_location, t.to_location, t.chargeable_weight, t.rate, t.hamali, t.total_freight]);
         const wsPart = XLSX.utils.aoa_to_sheet([partHeaders, ...partData]);
         wsPart["!cols"] = [{ wch: 6 }, { wch: 12 }, { wch: 15 }, { wch: 25 }, { wch: 25 }, { wch: 12 }, { wch: 10 }, { wch: 10 }, { wch: 12 }];
         XLSX.utils.book_append_sheet(wb, wsPart, "Trip Particulars");
