@@ -30,6 +30,9 @@ jobs:
       - name: 📦 Install dependencies
         run: pnpm install --no-frozen-lockfile
 
+      - name: 📱 Install mobile dependencies
+        run: pnpm install --dir artifacts/mobile --no-frozen-lockfile
+
       - name: 🛠 Prebuild Android
         run: |
           cd artifacts/mobile
