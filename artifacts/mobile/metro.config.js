@@ -8,6 +8,7 @@ const projectRoot = __dirname;
 const workspaceRoot = path.resolve(projectRoot, "../..");
 
 const config = getDefaultConfig(projectRoot);
+config.resolver.assetExts = [...config.resolver.assetExts, "xlsx"];
 
 // 1. Watch all files within the monorepo
 config.watchFolders = [workspaceRoot];

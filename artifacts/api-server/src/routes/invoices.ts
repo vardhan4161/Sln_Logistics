@@ -3,6 +3,13 @@ import { getDb } from "../lib/mongo.js";
 
 const router = Router();
 
+function formatInvoiceNumber(monthKey: string, sequence: number) {
+  const month = Number(monthKey.slice(0, 2));
+  const year = Number(monthKey.slice(2));
+  const suffix = month >= 4 ? `${year}-${String((year + 1) % 100).padStart(2, "0")}` : String(year);
+  return `IIL/${monthKey.slice(0, 2)}/${suffix}-${String(sequence).padStart(3, "0")}`;
+}
+
 // GET /invoices/next?monthKey=MMYYYY  — PEEK only, does NOT increment counter
 // Used for pre-filling the invoice number input field
 router.get("/next", async (req, res, next) => {
@@ -13,7 +20,7 @@ router.get("/next", async (req, res, next) => {
     }
     const doc = await getDb().collection("invoice_sequences").findOne({ month_key: monthKey });
     const nextSeq = (doc?.last_seq ?? 0) + 1;
-    const invoiceNo = `IIL/${monthKey.slice(0, 2)}/${monthKey.slice(2)}/${String(nextSeq).padStart(3, "0")}`;
+    const invoiceNo = formatInvoiceNumber(monthKey, nextSeq);
     return res.json({ invoice_number: invoiceNo, monthKey, sequence: nextSeq });
   } catch (error) {
     return next(error);
@@ -36,7 +43,7 @@ router.post("/next", async (req, res, next) => {
       return res.status(500).json({ error: "Unable to generate invoice number." });
     }
     const sequence = result.last_seq;
-    const invoiceNo = `IIL/${monthKey.slice(0, 2)}/${monthKey.slice(2)}/${String(sequence).padStart(3, "0")}`;
+    const invoiceNo = formatInvoiceNumber(monthKey, sequence);
     return res.json({ invoice_number: invoiceNo, monthKey, sequence });
   } catch (error) {
     return next(error);

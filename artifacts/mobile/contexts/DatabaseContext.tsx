@@ -122,6 +122,13 @@ function maxId(items: Array<{ id: number }>) {
   return items.reduce((max, item) => Math.max(max, item.id), 0);
 }
 
+function formatInvoiceNumber(monthKey: string, sequence: number) {
+  const month = Number(monthKey.slice(0, 2));
+  const year = Number(monthKey.slice(2));
+  const suffix = month >= 4 ? `${year}-${String((year + 1) % 100).padStart(2, "0")}` : String(year);
+  return `IIL/${monthKey.slice(0, 2)}/${suffix}-${String(sequence).padStart(3, "0")}`;
+}
+
 function normalizeCollection<T extends { id: number }>(items: ApiDocument<T>[]) {
   return items.filter((item): item is T => Number.isInteger(item.id));
 }
@@ -433,7 +440,7 @@ export function DatabaseProvider({ children }: { children: React.ReactNode }) {
     } catch (error) {
       console.warn("Peek invoice number failed; using local fallback", error);
       const nextSeq = (invoiceSeqsRef.current[monthKey] ?? 0) + 1;
-      return `IIL/${monthKey.slice(0, 2)}/${monthKey.slice(2)}/${String(nextSeq).padStart(3, "0")}`;
+      return formatInvoiceNumber(monthKey, nextSeq);
     }
   }, [api]);
 
@@ -448,7 +455,7 @@ export function DatabaseProvider({ children }: { children: React.ReactNode }) {
       console.warn("Cloud invoice number failed; using local fallback", error);
       const nextSeq = (invoiceSeqsRef.current[monthKey] ?? 0) + 1;
       invoiceSeqsRef.current = { ...invoiceSeqsRef.current, [monthKey]: nextSeq };
-      return `IIL/${monthKey.slice(0, 2)}/${monthKey.slice(2)}/${String(nextSeq).padStart(3, "0")}`;
+      return formatInvoiceNumber(monthKey, nextSeq);
     }
   }, [api]);
 
