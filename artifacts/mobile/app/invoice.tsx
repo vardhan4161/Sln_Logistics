@@ -250,13 +250,12 @@ export default function InvoiceScreen() {
       const pdfDest = `${FileSystem.cacheDirectory}${invNo.replace(/\//g, "-")}.pdf`;
       await FileSystem.moveAsync({ from: pdfUri, to: pdfDest });
 
-      // Excel
+      // Excel. Write it directly to the cache file and do not retain a second
+      // copy in React state or the database. Large workbooks can exceed the
+      // Android heap when PDF + XLSX Base64 strings are kept together.
       const b64 = XLSX.write(buildXlsx(), { type: "base64", bookType: "xlsx" });
       const xlsxDest = `${FileSystem.cacheDirectory}${invNo.replace(/\//g, "-")}.xlsx`;
       await FileSystem.writeAsStringAsync(xlsxDest, b64, { encoding: FileSystem.EncodingType.Base64 });
-
-      // Read PDF as base64 for saving
-      const pdfB64 = await FileSystem.readAsStringAsync(pdfDest, { encoding: FileSystem.EncodingType.Base64 });
 
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       showToast(`Invoice ${invNo} created with ${freshTrips.length} trips!`, "success");
@@ -271,8 +270,6 @@ export default function InvoiceScreen() {
         sgst: freshSgst,
         total_amount: freshTotal,
         trip_count: freshTrips.length,
-        pdf_base64: pdfB64,
-        excel_base64: b64,
       });
 
       // Reset the input to the NEXT unused number after successful generation
@@ -354,7 +351,7 @@ export default function InvoiceScreen() {
           <View style={{ flexDirection: "row", gap: 12 }}>
             <View style={{ flex: 1 }}>
               <Text style={[styles.lbl, { color: colors.mutedForeground }]}>From</Text>
-              <DatePickerField date={fromDate} onChange={(d) => { setFromDate(d); loadDefaultInvNo(); }} />
+              <DatePickerField date={fromDate} onChange={(d) => { setFromDate(d); setInvNoLocked(false); void peekInvNo(); }} />
             </View>
             <View style={{ flex: 1 }}>
               <Text style={[styles.lbl, { color: colors.mutedForeground }]}>To</Text>
